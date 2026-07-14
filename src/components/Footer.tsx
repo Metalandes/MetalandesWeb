@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { NAV, CONTACT } from "@/lib/content";
 
 const SOCIAL = [
@@ -32,6 +33,12 @@ export default function Footer() {
                   {n.label}
                 </a>
               ))}
+              <Link
+                href="/proyectos"
+                className="text-sm text-muted transition hover:text-white"
+              >
+                Proyectos
+              </Link>
             </nav>
             <nav className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-faint">Redes</span>
