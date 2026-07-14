@@ -57,7 +57,7 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm transition-colors ${
-                  isActive(item.href) ? "text-white" : "text-muted hover:text-white"
+                  isActive(item.href) ? "text-[var(--text)]" : "text-muted hover:text-[var(--text)]"
                 }`}
               >
                 {item.label}
@@ -74,7 +74,7 @@ export default function Navbar() {
                       <Link
                         key={c.href}
                         href={c.href}
-                        className="rounded-lg px-3 py-2 text-sm text-muted transition hover:bg-white/5 hover:text-white"
+                        className="rounded-lg px-3 py-2 text-sm text-muted transition hover:bg-black/[0.03] hover:text-[var(--text)]"
                       >
                         {c.label}
                       </Link>
@@ -86,7 +86,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contacto"
-            className="ml-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#0c0f15] transition hover:bg-electric hover:text-white"
+            className="ml-2 rounded-lg bg-electric px-4 py-2 text-sm font-semibold text-white transition hover:bg-electric hover:text-[var(--text)]"
           >
             Cotizar
           </Link>
@@ -99,10 +99,10 @@ export default function Navbar() {
           aria-label="Menú"
           aria-expanded={open}
         >
-          <span className={`h-0.5 w-6 bg-white transition ${open ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`h-0.5 w-6 bg-white transition ${open ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-6 bg-electric transition ${open ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`h-0.5 w-6 bg-electric transition ${open ? "opacity-0" : ""}`} />
           <span
-            className={`h-0.5 w-6 bg-white transition ${open ? "-translate-y-2 -rotate-45" : ""}`}
+            className={`h-0.5 w-6 bg-electric transition ${open ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </div>
@@ -119,7 +119,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <Link
                   href={item.href}
-                  className="flex-1 px-4 py-3 text-left text-muted transition hover:text-white"
+                  className="flex-1 px-4 py-3 text-left text-muted transition hover:text-[var(--text)]"
                 >
                   {item.label}
                 </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
                     <Link
                       key={c.href}
                       href={c.href}
-                      className="block px-8 py-2.5 text-sm text-faint transition hover:text-white"
+                      className="block px-8 py-2.5 text-sm text-faint transition hover:text-[var(--text)]"
                     >
                       {c.label}
                     </Link>
@@ -156,7 +156,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contacto"
-            className="mt-2 rounded-lg bg-white px-4 py-3 text-center font-semibold text-[#0c0f15]"
+            className="mt-2 rounded-lg bg-electric px-4 py-3 text-center font-semibold text-white"
           >
             Cotizar
           </Link>

@@ -57,7 +57,7 @@ export default function ProductosContent() {
               </div>
               <div className="flex flex-1 flex-col p-8 pt-6">
                 <span className="font-display text-sm text-faint">{c.n}</span>
-                <h2 className="mt-4 font-display text-2xl font-semibold text-white">{c.title}</h2>
+                <h2 className="mt-4 font-display text-2xl font-semibold text-[var(--text)]">{c.title}</h2>
                 <p className="mt-3 flex-1 leading-relaxed text-muted">{c.desc}</p>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
                   Ver detalle <span aria-hidden>→</span>

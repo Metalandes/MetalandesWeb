@@ -70,7 +70,7 @@ export default function Productos() {
                     </span>
                     <span
                       className={`font-display text-xl font-semibold transition md:text-2xl ${
-                        on ? "text-white" : "text-muted group-hover:text-white"
+                        on ? "text-[var(--text)]" : "text-muted group-hover:text-[var(--text)]"
                       }`}
                     >
                       {item.title}
@@ -100,7 +100,7 @@ export default function Productos() {
               <div className="grid-bg absolute inset-0 opacity-30" />
 
               <div className="relative flex items-start justify-between">
-                <span className="font-display text-7xl font-bold text-white/10">
+                <span className="font-display text-7xl font-bold text-black/[0.06]">
                   {String(active + 1).padStart(2, "0")}
                 </span>
                 <span className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-electric">
@@ -109,13 +109,13 @@ export default function Productos() {
               </div>
 
               <div className="relative">
-                <h3 className="font-display text-3xl font-bold text-white md:text-4xl">
+                <h3 className="font-display text-3xl font-bold text-[var(--text)] md:text-4xl">
                   {p.title}
                 </h3>
                 <p className="mt-3 text-lg text-muted">{p.spec}</p>
                 <a
                   href="#contacto"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+                  className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
                 >
                   Solicitar ficha técnica
                   <span aria-hidden>→</span>

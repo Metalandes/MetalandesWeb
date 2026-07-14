@@ -12,7 +12,7 @@ export default function PageHero({
   return (
     <header className="relative overflow-hidden px-5 pt-40 pb-16 md:pt-48 md:pb-24">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_-10%,#1a2130_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_-10%,#eef2f8_0%,transparent_60%)]" />
         <div className="grid-bg absolute inset-0" />
         <div className="absolute -right-20 top-0 h-80 w-80 rounded-full bg-electric/15 blur-[120px]" />
       </div>

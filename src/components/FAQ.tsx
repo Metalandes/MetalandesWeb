@@ -46,7 +46,7 @@ function Row({ q, a }: { q: string; a: string }) {
         aria-expanded={open}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
       >
-        <span className="font-display text-lg font-medium text-white">{q}</span>
+        <span className="font-display text-lg font-medium text-[var(--text)]">{q}</span>
         <span
           className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-[var(--border)] text-cyan transition-transform duration-300 ${
             open ? "rotate-45" : ""

@@ -33,7 +33,7 @@ export default function Aliados() {
                 {PARTNERS.map((name) => (
                   <span
                     key={name}
-                    className="font-display text-2xl font-semibold text-muted/70 transition hover:text-white md:text-3xl"
+                    className="font-display text-2xl font-semibold text-muted/70 transition hover:text-[var(--text)] md:text-3xl"
                   >
                     {name}
                   </span>

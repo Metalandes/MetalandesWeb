@@ -51,7 +51,7 @@ export default function Empresa() {
                   0{i + 1}
                 </div>
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-electric/0 blur-2xl transition group-hover:bg-electric/20" />
-                <h3 className="font-display text-2xl font-semibold text-white">{v.title}</h3>
+                <h3 className="font-display text-2xl font-semibold text-[var(--text)]">{v.title}</h3>
                 <p className="mt-2 max-w-sm text-muted">{v.desc}</p>
               </div>
             ))}

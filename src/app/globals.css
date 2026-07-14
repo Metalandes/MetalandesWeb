@@ -1,27 +1,26 @@
 @import "tailwindcss";
 
 /* ============================================================
-   METALANDES — cinematic gradient theme
+   METALANDES — tema claro (blanco) · marca rojo #e2042d + navy
    ============================================================ */
 :root {
-  /* Marca Metalandes: rojo #e2042d + navy carbón #2a313b */
-  --bg: #0c0f15;
-  --bg-2: #12161f;
-  --surface: #1a212e;
-  --border: rgba(180, 190, 210, 0.12);
+  --bg: #ffffff;
+  --bg-2: #f4f6fa;
+  --surface: #ffffff;
+  --surface-2: #f2f5f9;
+  --border: rgba(20, 30, 55, 0.1);
 
-  --text: #eef1f6;
-  --muted: #9aa3b5;
-  --faint: #6a7488;
+  --text: #141b28; /* navy casi negro */
+  --muted: #54607a;
+  --faint: #8791a6;
 
-  /* token names conservados; valores = paleta de marca */
   --electric: #e2042d; /* rojo primario */
-  --cyan: #8aa0c0; /* acero frío (secundario) */
-  --energy: #ff3b57; /* rojo claro (gradientes/glow) */
+  --cyan: #3f5c86; /* acero (secundario, oscuro para contraste) */
+  --energy: #ff3b57; /* rojo claro */
 
-  --glow-blue: rgba(226, 4, 45, 0.5);
-  --glow-cyan: rgba(138, 160, 192, 0.35);
-  --glow-energy: rgba(255, 59, 87, 0.45);
+  --glow-blue: rgba(226, 4, 45, 0.18);
+  --glow-cyan: rgba(63, 92, 134, 0.14);
+  --glow-energy: rgba(255, 59, 87, 0.16);
 }
 
 @theme inline {
@@ -41,7 +40,7 @@
 }
 
 html {
-  scroll-behavior: auto; /* Lenis handles smoothing */
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -52,7 +51,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Lenis */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -69,9 +67,8 @@ html.lenis body {
   color: #fff;
 }
 
-/* Accessible focus ring — only for keyboard users */
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--electric);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -79,15 +76,14 @@ html.lenis body {
   outline: none;
 }
 
-/* Skip link — hidden until focused */
 .skip-link {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 100;
   transform: translateY(-150%);
-  background: #fff;
-  color: #05070d;
+  background: var(--text);
+  color: #fff;
   font-weight: 600;
   padding: 0.6rem 1rem;
   border-radius: 0.6rem;
@@ -97,15 +93,14 @@ html.lenis body {
   transform: translateY(0);
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: var(--bg-2);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--electric), var(--cyan));
+  background: linear-gradient(var(--electric), var(--energy));
   border-radius: 10px;
 }
 
@@ -113,7 +108,7 @@ html.lenis body {
    Utilities
    ============================================================ */
 .text-gradient {
-  background: linear-gradient(100deg, #ffffff 0%, #cdd7e8 42%, var(--energy) 78%, var(--electric) 100%);
+  background: linear-gradient(100deg, var(--text) 0%, #6a1020 35%, var(--electric) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -128,8 +123,8 @@ html.lenis body {
 
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(120, 150, 220, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(120, 150, 220, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(20, 30, 55, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 30, 55, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
@@ -140,28 +135,25 @@ html.lenis body {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
+  opacity: 0.02;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .glass {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  background: linear-gradient(160deg, #ffffff, #f5f8fc);
   border: 1px solid var(--border);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -18px rgba(16, 24, 40, 0.18);
 }
 
 .glow-ring {
-  box-shadow: 0 0 0 1px var(--border), 0 20px 60px -20px var(--glow-blue);
+  box-shadow: 0 0 0 1px var(--border), 0 24px 60px -24px var(--glow-blue);
 }
 
-/* Reveal defaults — hidden until GSAP animates in.
-   .no-js fallback keeps them visible if JS fails. */
 [data-reveal] {
   will-change: transform, opacity;
 }
 
-/* Marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

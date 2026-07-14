@@ -26,7 +26,7 @@ export default function Page() {
         <span className="text-sm tracking-widest text-electric">LÍNEA DE EMERGENCIA</span>
         <a
           href={`tel:+57${mantenimiento.emergencia.replace(/\s/g, "")}`}
-          className="font-display text-2xl font-bold text-white"
+          className="font-display text-2xl font-bold text-[var(--text)]"
         >
           {mantenimiento.emergencia}
         </a>

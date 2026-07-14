@@ -21,7 +21,7 @@ export default function Page() {
       <div className="grid gap-4 sm:grid-cols-3">
         {certificaciones.iso.map((c) => (
           <div key={c.code} data-reveal className="glass rounded-2xl p-6">
-            <div className="font-display text-xl font-bold text-white">{c.code}</div>
+            <div className="font-display text-xl font-bold text-[var(--text)]">{c.code}</div>
             <p className="mt-2 text-sm text-muted">{c.name}</p>
           </div>
         ))}
@@ -34,7 +34,7 @@ export default function Page() {
         {certificaciones.retie.map((c) => (
           <div key={c.code} data-reveal className="glass rounded-2xl p-5">
             <div className="text-xs tracking-widest text-electric">RETIE 2013</div>
-            <div className="mt-1 font-display font-semibold text-white">{c.code}</div>
+            <div className="mt-1 font-display font-semibold text-[var(--text)]">{c.code}</div>
             <p className="mt-1 text-sm text-muted">{c.name}</p>
           </div>
         ))}

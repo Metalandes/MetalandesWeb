@@ -30,7 +30,7 @@ export default function Page() {
                 <span className="font-display text-lg font-bold text-electric">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-white">{step}</span>
+                <span className="text-[var(--text)]">{step}</span>
               </li>
             ))}
           </ol>

@@ -34,7 +34,7 @@ export default function ContactoContent() {
                 href={CONTACT.waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-display text-2xl font-bold text-white transition hover:text-electric"
+                className="font-display text-2xl font-bold text-[var(--text)] transition hover:text-electric"
               >
                 {CONTACT.whatsapp}
               </a>
@@ -46,7 +46,7 @@ export default function ContactoContent() {
               </span>
               <a
                 href={`tel:${CONTACT.emergenciaHref}`}
-                className="font-display text-2xl font-bold text-white"
+                className="font-display text-2xl font-bold text-[var(--text)]"
               >
                 {CONTACT.emergencia}
               </a>
@@ -57,7 +57,7 @@ export default function ContactoContent() {
                 <span className="text-xs uppercase tracking-widest text-faint">Teléfono</span>
                 <a
                   href={`tel:${CONTACT.phoneHref}`}
-                  className="mt-1 block text-white transition hover:text-electric"
+                  className="mt-1 block text-[var(--text)] transition hover:text-electric"
                 >
                   {CONTACT.phone}
                 </a>
@@ -66,14 +66,14 @@ export default function ContactoContent() {
                 <span className="text-xs uppercase tracking-widest text-faint">Correo</span>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="mt-1 block text-white transition hover:text-electric"
+                  className="mt-1 block text-[var(--text)] transition hover:text-electric"
                 >
                   {CONTACT.email}
                 </a>
               </div>
               <div className="sm:col-span-2">
                 <span className="text-xs uppercase tracking-widest text-faint">Dirección</span>
-                <p className="mt-1 text-white">{CONTACT.address}</p>
+                <p className="mt-1 text-[var(--text)]">{CONTACT.address}</p>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ export default function ContactoContent() {
                 {CONTACT.extensiones.map((e) => (
                   <li key={e.area} className="flex items-center justify-between gap-4 py-2.5 text-sm">
                     <span className="text-muted">{e.area}</span>
-                    <span className="font-medium text-white">Ext. {e.ext}</span>
+                    <span className="font-medium text-[var(--text)]">Ext. {e.ext}</span>
                   </li>
                 ))}
               </ul>
@@ -97,7 +97,7 @@ export default function ContactoContent() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-muted transition hover:text-white"
+                  className="rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-muted transition hover:text-[var(--text)]"
                 >
                   {s.label}
                 </a>

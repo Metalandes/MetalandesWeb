@@ -34,11 +34,11 @@ export default function SubPage({
           className="mb-12 flex items-center gap-2 text-sm text-faint"
           aria-label="Ruta"
         >
-          <Link href="/" className="transition hover:text-white">
+          <Link href="/" className="transition hover:text-[var(--text)]">
             Inicio
           </Link>
           <span>/</span>
-          <Link href={parentHref} className="transition hover:text-white">
+          <Link href={parentHref} className="transition hover:text-[var(--text)]">
             {parent}
           </Link>
           <span>/</span>
@@ -50,13 +50,13 @@ export default function SubPage({
         <div data-reveal className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--border)] pt-8">
           <Link
             href={parentHref}
-            className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-white"
+            className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-[var(--text)]"
           >
             <span aria-hidden>←</span> Volver a {parent}
           </Link>
           <Link
             href="/contacto"
-            className="rounded-xl bg-white px-6 py-3 font-semibold text-[#0c0f15] transition hover:bg-electric hover:text-white"
+            className="rounded-xl bg-electric px-6 py-3 font-semibold text-white transition hover:bg-electric hover:text-[var(--text)]"
           >
             Contactar
           </Link>

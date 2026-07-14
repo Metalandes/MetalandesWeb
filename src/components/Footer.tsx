@@ -11,7 +11,7 @@ const SOCIAL = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[var(--border)] bg-[#080a10] py-14">
+    <footer className="relative border-t border-[var(--border)] bg-[#f4f6fa] py-14">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div>
@@ -27,7 +27,7 @@ export default function Footer() {
             <p className="mt-4 text-sm text-muted">{CONTACT.address}</p>
             <a
               href={`tel:${CONTACT.phoneHref}`}
-              className="mt-1 block text-sm text-muted transition hover:text-white"
+              className="mt-1 block text-sm text-muted transition hover:text-[var(--text)]"
             >
               {CONTACT.phone}
             </a>
@@ -40,12 +40,12 @@ export default function Footer() {
                 <Link
                   key={n.href}
                   href={n.href}
-                  className="text-sm text-muted transition hover:text-white"
+                  className="text-sm text-muted transition hover:text-[var(--text)]"
                 >
                   {n.label}
                 </Link>
               ))}
-              <Link href="/proyectos" className="text-sm text-muted transition hover:text-white">
+              <Link href="/proyectos" className="text-sm text-muted transition hover:text-[var(--text)]">
                 Proyectos
               </Link>
             </nav>
@@ -57,7 +57,7 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted transition hover:text-white"
+                  className="text-sm text-muted transition hover:text-[var(--text)]"
                 >
                   {s.label}
                 </a>

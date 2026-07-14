@@ -68,7 +68,7 @@ export default function Hero() {
     >
       {/* Backdrop */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,#12203f_0%,#05070d_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,#eef2f8_0%,#ffffff_55%)]" />
         <div className="grid-bg absolute inset-0" />
         <div className="blob-a absolute -left-20 top-10 h-[38rem] w-[38rem] rounded-full bg-electric/25 blur-[120px]" />
         <div className="blob-b absolute -right-24 top-40 h-[34rem] w-[34rem] rounded-full bg-cyan/20 blur-[120px]" />
@@ -76,7 +76,7 @@ export default function Hero() {
       </div>
 
       <div className="hero-content relative z-10 mx-auto w-full max-w-7xl px-5">
-        <p className="hero-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-muted backdrop-blur">
+        <p className="hero-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-black/[0.03] px-4 py-1.5 text-xs font-medium tracking-wide text-muted backdrop-blur">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" />
           Sector eléctrico · Medellín, Colombia
         </p>
@@ -96,21 +96,21 @@ export default function Hero() {
 
         <p className="hero-sub mt-8 max-w-xl text-lg leading-relaxed text-muted">
           65 años diseñando, fabricando y manteniendo{" "}
-          <span className="text-white">subestaciones e infraestructura eléctrica</span> con
+          <span className="text-[var(--text)]">subestaciones e infraestructura eléctrica</span> con
           compromiso, confianza e innovación.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#contacto"
-            className="hero-cta group relative overflow-hidden rounded-xl bg-white px-7 py-3.5 font-semibold text-[#05070d] transition"
+            className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 font-semibold text-white transition"
           >
             <span className="relative z-10">Solicitar cotización</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
           </a>
           <a
             href="#servicios"
-            className="hero-cta rounded-xl border border-[var(--border)] px-7 py-3.5 font-semibold text-white transition hover:bg-white/5"
+            className="hero-cta rounded-xl border border-[var(--border)] px-7 py-3.5 font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
           >
             Ver servicios
           </a>
@@ -118,7 +118,7 @@ export default function Hero() {
       </div>
 
       {/* Marquee strip at bottom */}
-      <div className="hero-strip pointer-events-none absolute bottom-0 left-0 z-10 w-full border-t border-[var(--border)] bg-[#05070d]/60 py-4 backdrop-blur">
+      <div className="hero-strip pointer-events-none absolute bottom-0 left-0 z-10 w-full border-t border-[var(--border)] bg-white/70 py-4 backdrop-blur">
         <div className="flex overflow-hidden">
           <div className="marquee-track flex shrink-0 items-center gap-10 whitespace-nowrap pr-10 text-sm font-medium tracking-widest text-faint">
             {Array.from({ length: 2 }).map((_, r) => (

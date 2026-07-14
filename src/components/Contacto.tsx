@@ -42,14 +42,14 @@ export default function Contacto() {
             href={`https://wa.me/${CONTACT.whatsappHref}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative overflow-hidden rounded-xl bg-white px-8 py-4 font-semibold text-[#05070d]"
+            className="group relative overflow-hidden rounded-xl bg-electric px-8 py-4 font-semibold text-white"
           >
             <span className="relative z-10">Escríbenos por WhatsApp</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
           </a>
           <a
             href={`mailto:${CONTACT.email}`}
-            className="rounded-xl border border-[var(--border)] px-8 py-4 font-semibold text-white transition hover:bg-white/5"
+            className="rounded-xl border border-[var(--border)] px-8 py-4 font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
           >
             {CONTACT.email}
           </a>
@@ -67,11 +67,11 @@ export default function Contacto() {
             <div key={c.label} className="glass rounded-2xl p-5">
               <p className="text-xs uppercase tracking-widest text-faint">{c.label}</p>
               {c.href ? (
-                <a href={c.href} className="mt-2 block text-sm text-white transition hover:text-cyan">
+                <a href={c.href} className="mt-2 block text-sm text-[var(--text)] transition hover:text-cyan">
                   {c.value}
                 </a>
               ) : (
-                <p className="mt-2 text-sm text-white">{c.value}</p>
+                <p className="mt-2 text-sm text-[var(--text)]">{c.value}</p>
               )}
             </div>
           ))}

@@ -42,7 +42,7 @@ export default function ServiciosContent() {
             >
               <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
               <span className="font-display text-sm text-faint">{c.n}</span>
-              <h2 className="mt-5 font-display text-2xl font-semibold text-white">{c.title}</h2>
+              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{c.title}</h2>
               <p className="mt-3 flex-1 leading-relaxed text-muted">{c.desc}</p>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
                 Ver más <span aria-hidden>→</span>

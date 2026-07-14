@@ -28,12 +28,12 @@ export default function ProjectsGrid() {
             className={`relative flex h-44 items-end bg-gradient-to-br ${HUES[i % HUES.length]} to-transparent p-5`}
           >
             <div className="grid-bg absolute inset-0 opacity-40" />
-            <span className="relative rounded-full border border-[var(--border)] bg-[#05070d]/60 px-3 py-1 text-xs text-cyan backdrop-blur">
+            <span className="relative rounded-full border border-[var(--border)] bg-black/55 px-3 py-1 text-xs text-white backdrop-blur">
               {p.cat}
             </span>
           </div>
           <div className="p-6">
-            <h3 className="font-display text-xl font-semibold text-white">{p.title}</h3>
+            <h3 className="font-display text-xl font-semibold text-[var(--text)]">{p.title}</h3>
             <p className="mt-1 text-sm text-muted">
               {p.place} · {p.year}
             </p>

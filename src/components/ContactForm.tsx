@@ -6,7 +6,7 @@ import { CONTACT } from "@/lib/content";
 type Status = "idle" | "sending" | "sent";
 
 const FIELD =
-  "w-full rounded-xl border border-[var(--border)] bg-white/[0.03] px-4 py-3 text-sm text-white outline-none transition placeholder:text-faint focus:border-cyan focus:bg-white/[0.05]";
+  "w-full rounded-xl border border-[var(--border)] bg-black/[0.02] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-faint focus:border-cyan focus:bg-black/[0.04]";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -37,7 +37,7 @@ export default function ContactForm() {
         <span className="grid h-12 w-12 place-items-center rounded-full bg-cyan/15 text-2xl text-cyan">
           ✓
         </span>
-        <p className="font-display text-xl font-semibold text-white">¡Mensaje listo!</p>
+        <p className="font-display text-xl font-semibold text-[var(--text)]">¡Mensaje listo!</p>
         <p className="max-w-sm text-sm text-muted">
           Abrimos WhatsApp para que envíes tu solicitud. Te responderemos pronto.
         </p>
@@ -99,7 +99,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={!valid || status === "sending"}
-        className="group relative overflow-hidden rounded-xl bg-white px-6 py-3.5 font-semibold text-[#05070d] transition disabled:cursor-not-allowed disabled:opacity-40"
+        className="group relative overflow-hidden rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-40"
       >
         <span className="relative z-10">
           {status === "sending" ? "Enviando…" : "Enviar solicitud"}

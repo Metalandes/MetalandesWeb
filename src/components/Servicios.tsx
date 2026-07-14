@@ -54,7 +54,7 @@ export default function Servicios() {
 
               <div className="flex flex-1 flex-col p-8 pt-6">
               <span className="font-display text-sm text-faint">{s.n}</span>
-              <h3 className="mt-5 font-display text-2xl font-semibold text-white">{s.title}</h3>
+              <h3 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{s.title}</h3>
               <p className="mt-3 flex-1 leading-relaxed text-muted">{s.desc}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {s.tags.map((t) => (

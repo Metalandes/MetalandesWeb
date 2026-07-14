@@ -24,7 +24,7 @@ export default function Page() {
         </p>
         <p data-reveal className="mt-6 text-sm text-faint">
           Para peticiones, quejas o reclamos sobre el tratamiento de sus datos, contáctenos en{" "}
-          <span className="text-white">info@metalandes.com</span>.
+          <span className="text-[var(--text)]">info@metalandes.com</span>.
         </p>
       </div>
     </SubPage>
