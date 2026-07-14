@@ -35,8 +35,7 @@ export default function Hero() {
         )
         .from(".hero-sub", { y: 24, opacity: 0, duration: 0.9 }, "-=0.7")
         .from(".hero-cta", { y: 20, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.6")
-        .from(".hero-strip", { opacity: 0, duration: 1 }, "-=0.4")
-        .from(".hero-cue", { opacity: 0, y: -10, duration: 0.8 }, "-=0.3");
+        .from(".hero-strip", { opacity: 0, duration: 1 }, "-=0.4");
 
       // Floating gradient blobs — subtle infinite drift
       gsap.to(".blob-a", { x: 60, y: -40, duration: 9, yoyo: true, repeat: -1, ease: "sine.inOut" });
@@ -160,10 +159,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-cue absolute bottom-24 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-faint md:flex">
-        <span className="text-[10px] tracking-[0.3em]">SCROLL</span>
-        <span className="h-8 w-[1px] bg-gradient-to-b from-cyan to-transparent" />
-      </div>
     </section>
   );
 }
