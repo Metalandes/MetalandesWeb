@@ -15,7 +15,7 @@ export default function ProyectosPage() {
       <header className="fixed inset-x-0 top-0 z-50 py-5">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5">
           <Link href="/" className="font-display text-lg font-bold tracking-tight">
-            METAL<span className="text-cyan">ANDES</span>
+            METAL<span className="text-electric">ANDES</span>
           </Link>
           <Link
             href="/"

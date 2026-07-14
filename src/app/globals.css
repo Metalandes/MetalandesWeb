@@ -4,22 +4,24 @@
    METALANDES — cinematic gradient theme
    ============================================================ */
 :root {
-  --bg: #05070d;
-  --bg-2: #0a0e1a;
-  --surface: #0d1424;
-  --border: rgba(120, 150, 220, 0.12);
+  /* Marca Metalandes: rojo #e2042d + navy carbón #2a313b */
+  --bg: #0c0f15;
+  --bg-2: #12161f;
+  --surface: #1a212e;
+  --border: rgba(180, 190, 210, 0.12);
 
-  --text: #e8edff;
-  --muted: #8b96b8;
-  --faint: #5a6486;
+  --text: #eef1f6;
+  --muted: #9aa3b5;
+  --faint: #6a7488;
 
-  --electric: #3a72ff;
-  --cyan: #24d9f0;
-  --energy: #ff7a24;
+  /* token names conservados; valores = paleta de marca */
+  --electric: #e2042d; /* rojo primario */
+  --cyan: #8aa0c0; /* acero frío (secundario) */
+  --energy: #ff3b57; /* rojo claro (gradientes/glow) */
 
-  --glow-blue: rgba(47, 107, 255, 0.5);
-  --glow-cyan: rgba(34, 211, 238, 0.45);
-  --glow-energy: rgba(255, 106, 26, 0.45);
+  --glow-blue: rgba(226, 4, 45, 0.5);
+  --glow-cyan: rgba(138, 160, 192, 0.35);
+  --glow-energy: rgba(255, 59, 87, 0.45);
 }
 
 @theme inline {
@@ -111,14 +113,14 @@ html.lenis body {
    Utilities
    ============================================================ */
 .text-gradient {
-  background: linear-gradient(100deg, #ffffff 0%, #b9ccff 40%, var(--cyan) 75%, var(--electric) 100%);
+  background: linear-gradient(100deg, #ffffff 0%, #cdd7e8 42%, var(--energy) 78%, var(--electric) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-energy-gradient {
-  background: linear-gradient(100deg, var(--energy), #ffcf6a);
+  background: linear-gradient(100deg, var(--electric), #ff6b83);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

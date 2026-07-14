@@ -11,18 +11,21 @@ export const SERVICES = [
     title: "Subestaciones",
     desc: "Diseño, fabricación y montaje de subestaciones eléctricas de media y alta tensión, a la medida de cada proyecto.",
     tags: ["Media tensión", "Alta tensión", "Llave en mano"],
+    img: "/img/subestaciones.jpg",
   },
   {
     n: "02",
     title: "Mantenimiento",
     desc: "Mantenimiento predictivo, preventivo y correctivo que asegura continuidad y vida útil de la infraestructura eléctrica.",
     tags: ["Predictivo", "Preventivo", "24/7"],
+    img: "/img/mantenimiento.jpg",
   },
   {
     n: "03",
     title: "Ingeniería",
     desc: "Estudios, diseño eléctrico y acompañamiento técnico que traducen los requerimientos del cliente en soluciones confiables.",
     tags: ["Diseño", "Estudios", "Consultoría"],
+    img: null,
   },
 ] as const;
 

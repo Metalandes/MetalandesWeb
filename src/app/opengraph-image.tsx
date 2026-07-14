@@ -16,8 +16,8 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           padding: 80,
           background:
-            "radial-gradient(1200px 600px at 50% -20%, #12203f 0%, #05070d 60%)",
-          color: "#e8edff",
+            "radial-gradient(1200px 600px at 50% -20%, #2a313b 0%, #0c0f15 62%)",
+          color: "#eef1f6",
           fontFamily: "sans-serif",
         }}
       >
@@ -27,12 +27,13 @@ export default function OpengraphImage() {
               width: 48,
               height: 48,
               borderRadius: 12,
-              background: "linear-gradient(135deg, #3a72ff, #24d9f0)",
+              background: "#2a313b",
+              border: "2px solid #e2042d",
             }}
           />
           <div style={{ display: "flex", fontSize: 32, fontWeight: 700, letterSpacing: -1 }}>
             <span>METAL</span>
-            <span style={{ color: "#24d9f0" }}>ANDES</span>
+            <span style={{ color: "#e2042d" }}>ANDES</span>
           </div>
         </div>
 
@@ -46,14 +47,14 @@ export default function OpengraphImage() {
               fontWeight: 700,
               lineHeight: 1.02,
               letterSpacing: -2,
-              background: "linear-gradient(100deg, #b9ccff, #24d9f0)",
+              background: "linear-gradient(100deg, #cdd7e8, #e2042d)",
               backgroundClip: "text",
               color: "transparent",
             }}
           >
             Colombia
           </div>
-          <div style={{ fontSize: 28, color: "#8b96b8", marginTop: 8 }}>
+          <div style={{ fontSize: 28, color: "#9aa3b5", marginTop: 8 }}>
             65 años · Subestaciones y mantenimiento eléctrico · Medellín
           </div>
         </div>

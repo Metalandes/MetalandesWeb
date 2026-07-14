@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReveal } from "@/hooks/useReveal";
 import { SERVICES } from "@/lib/content";
 
@@ -27,9 +28,30 @@ export default function Servicios() {
             <article
               key={s.n}
               data-reveal
-              className="group glass relative flex flex-col overflow-hidden rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:glow-ring"
+              className="group glass relative flex flex-col overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-2 hover:glow-ring"
             >
-              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition group-hover:opacity-100" />
+              <div className="absolute inset-x-0 -top-px z-20 h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
+
+              {s.img ? (
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={s.img}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="scale-105 object-cover opacity-70 grayscale-[0.2] transition duration-500 group-hover:scale-100 group-hover:opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
+                </div>
+              ) : (
+                <div className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-[var(--electric)]/20 to-transparent">
+                  <div className="grid-bg absolute inset-0 opacity-50" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] to-transparent" />
+                </div>
+              )}
+
+              <div className="flex flex-1 flex-col p-8 pt-6">
               <span className="font-display text-sm text-faint">{s.n}</span>
               <h3 className="mt-5 font-display text-2xl font-semibold text-white">{s.title}</h3>
               <p className="mt-3 flex-1 leading-relaxed text-muted">{s.desc}</p>
@@ -42,6 +64,7 @@ export default function Servicios() {
                     {t}
                   </span>
                 ))}
+              </div>
               </div>
             </article>
           ))}

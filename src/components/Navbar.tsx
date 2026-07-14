@@ -50,7 +50,7 @@ export default function Navbar() {
             <LogoMark className="relative h-8 w-8" />
           </span>
           <span className="font-display text-lg font-bold tracking-tight">
-            METAL<span className="text-cyan">ANDES</span>
+            METAL<span className="text-electric">ANDES</span>
           </span>
         </button>
 

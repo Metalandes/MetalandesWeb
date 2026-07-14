@@ -5,26 +5,13 @@
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} role="img" aria-label="Metalandes">
-      <defs>
-        <linearGradient id="ml-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="var(--electric)" />
-          <stop offset="1" stopColor="var(--cyan)" />
-        </linearGradient>
-      </defs>
-      <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#ml-grad)" />
+      <rect x="1" y="1" width="30" height="30" rx="8" fill="#2a313b" />
+      {/* "M" de pulso / latido eléctrico */}
       <path
-        d="M8 23V10l5 7 5-7v13"
+        d="M3 18 H8 L11 18 L14 7 L17 22 L20 8 L23 18 L25 18 H29"
         fill="none"
-        stroke="#05070d"
-        strokeWidth="2.4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <path
-        d="M22 9l-3 6h3l-3 8"
-        fill="none"
-        stroke="#05070d"
-        strokeWidth="2.4"
+        stroke="#e2042d"
+        strokeWidth="2.6"
         strokeLinejoin="round"
         strokeLinecap="round"
       />
@@ -37,7 +24,7 @@ export function LogoWordmark({ className = "" }: { className?: string }) {
     <span className={`flex items-center gap-2.5 ${className}`}>
       <LogoMark className="h-8 w-8" />
       <span className="font-display text-lg font-bold tracking-tight">
-        METAL<span className="text-cyan">ANDES</span>
+        METAL<span className="text-electric">ANDES</span>
       </span>
     </span>
   );
