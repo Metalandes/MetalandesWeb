@@ -45,12 +45,12 @@ export default function Empresa() {
               <div
                 key={v.title}
                 data-reveal
-                className="group glass relative overflow-hidden rounded-2xl p-7 transition hover:-translate-y-1"
+                className="group glass relative overflow-hidden rounded-2xl p-7 transition duration-300 hover:-translate-y-1 hover:glow-ring"
               >
                 <div className="absolute right-6 top-6 font-display text-sm text-faint">
                   0{i + 1}
                 </div>
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-electric/0 blur-2xl transition group-hover:bg-electric/20" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(140px_140px_at_92%_8%,var(--glow-blue),transparent_70%)] opacity-0 transition duration-300 group-hover:opacity-100" />
                 <h3 className="font-display text-2xl font-semibold text-[var(--text)]">{v.title}</h3>
                 <p className="mt-2 max-w-sm text-muted">{v.desc}</p>
               </div>
