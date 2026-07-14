@@ -6,6 +6,7 @@ const SOCIAL = [
   { label: "Instagram", href: CONTACT.instagram },
   { label: "Facebook", href: CONTACT.facebook },
   { label: "YouTube", href: CONTACT.youtube },
+  { label: "Webmail", href: CONTACT.webmail },
 ];
 
 export default function Footer() {
@@ -14,33 +15,37 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div>
-            <div className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5">
               <LogoMark className="h-9 w-9" />
               <span className="font-display text-2xl font-bold tracking-tight">
                 METAL<span className="text-electric">ANDES</span>
               </span>
-            </div>
+            </Link>
             <p className="mt-3 max-w-xs text-sm text-muted">
-              Ingeniería del sector eléctrico. 65 años energizando Colombia desde Medellín.
+              Metalúrgica de los Andes S.A.S. Ramo metal eléctrico desde 1960 · Medellín, Colombia.
             </p>
+            <p className="mt-4 text-sm text-muted">{CONTACT.address}</p>
+            <a
+              href={`tel:${CONTACT.phoneHref}`}
+              className="mt-1 block text-sm text-muted transition hover:text-white"
+            >
+              {CONTACT.phone}
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-14">
             <nav className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-faint">Navegación</span>
               {NAV.map((n) => (
-                <a
-                  key={n.id}
-                  href={`#${n.id}`}
+                <Link
+                  key={n.href}
+                  href={n.href}
                   className="text-sm text-muted transition hover:text-white"
                 >
                   {n.label}
-                </a>
+                </Link>
               ))}
-              <Link
-                href="/proyectos"
-                className="text-sm text-muted transition hover:text-white"
-              >
+              <Link href="/proyectos" className="text-sm text-muted transition hover:text-white">
                 Proyectos
               </Link>
             </nav>
@@ -62,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-[var(--border)] pt-6 text-xs text-faint md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} Metalandes S.A.S. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Metalúrgica de los Andes S.A.S. Todos los derechos reservados.</p>
           <p>Demo — diseño conceptual · Next.js · GSAP · Lenis</p>
         </div>
       </div>

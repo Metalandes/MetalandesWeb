@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Empresa from "@/components/Empresa";
 import Aliados from "@/components/Aliados";
@@ -7,23 +6,18 @@ import Productos from "@/components/Productos";
 import Stats from "@/components/Stats";
 import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main id="main" className="relative z-[2]">
-        <Hero />
-        <Empresa />
-        <Aliados />
-        <Servicios />
-        <Productos />
-        <Stats />
-        <FAQ />
-        <Contacto />
-      </main>
-      <Footer />
-    </>
+    <main id="main" className="relative z-[2]">
+      <Hero />
+      <Empresa />
+      <Aliados />
+      <Servicios />
+      <Productos />
+      <Stats />
+      <FAQ />
+      <Contacto />
+    </main>
   );
 }

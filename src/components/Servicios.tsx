@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import { SERVICES } from "@/lib/content";
 
@@ -65,6 +66,12 @@ export default function Servicios() {
                   </span>
                 ))}
               </div>
+              <Link
+                href={s.href}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3"
+              >
+                Ver más <span aria-hidden>→</span>
+              </Link>
               </div>
             </article>
           ))}

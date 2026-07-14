@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -56,7 +58,11 @@ export default function RootLayout({
           Saltar al contenido
         </a>
         <div className="noise" aria-hidden />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
