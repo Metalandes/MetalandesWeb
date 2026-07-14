@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/* ============================================================
+   METALANDES — cinematic gradient theme
+   ============================================================ */
+:root {
+  --bg: #05070d;
+  --bg-2: #0a0e1a;
+  --surface: #0d1424;
+  --border: rgba(120, 150, 220, 0.12);
+
+  --text: #e8edff;
+  --muted: #8b96b8;
+  --faint: #5a6486;
+
+  --electric: #2f6bff;
+  --cyan: #22d3ee;
+  --energy: #ff6a1a;
+
+  --glow-blue: rgba(47, 107, 255, 0.5);
+  --glow-cyan: rgba(34, 211, 238, 0.45);
+  --glow-energy: rgba(255, 106, 26, 0.45);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-electric: var(--electric);
+  --color-cyan: var(--cyan);
+  --color-energy: var(--energy);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smoothing */
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--electric);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--electric), var(--cyan));
+  border-radius: 10px;
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, #b9ccff 40%, var(--cyan) 75%, var(--electric) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-energy-gradient {
+  background: linear-gradient(100deg, var(--energy), #ffcf6a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(120, 150, 220, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120, 150, 220, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.glow-ring {
+  box-shadow: 0 0 0 1px var(--border), 0 20px 60px -20px var(--glow-blue);
+}
+
+/* Reveal defaults — hidden until GSAP animates in.
+   .no-js fallback keeps them visible if JS fails. */
+[data-reveal] {
+  will-change: transform, opacity;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
