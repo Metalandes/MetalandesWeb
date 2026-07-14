@@ -22,11 +22,11 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://metalandes.net"),
   title: {
-    default: "Metalandes — 65 años energizando Colombia",
+    default: "Metalandes — Más de 65 años energizando Colombia",
     template: "%s · Metalandes",
   },
   description:
-    "Metalandes S.A.S. Ingeniería del sector eléctrico: diseño, fabricación y mantenimiento de subestaciones. 65 años de compromiso, confianza e innovación desde Medellín, Colombia.",
+    "Metalandes S.A.S. Ingeniería del sector eléctrico: diseño, fabricación y mantenimiento de subestaciones. Más de 65 años de compromiso, confianza e innovación desde Medellín, Colombia.",
   keywords: [
     "subestaciones",
     "sector eléctrico",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "energía",
   ],
   openGraph: {
-    title: "Metalandes — 65 años energizando Colombia",
+    title: "Metalandes — Más de 65 años energizando Colombia",
     description:
       "Diseño, fabricación y mantenimiento de subestaciones. Ingeniería eléctrica desde Medellín.",
     type: "website",

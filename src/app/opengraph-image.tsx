@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Metalandes — 65 años energizando Colombia";
+export const alt = "Metalandes — Más de 65 años energizando Colombia";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,7 +55,7 @@ export default function OpengraphImage() {
             Colombia
           </div>
           <div style={{ fontSize: 28, color: "#9aa3b5", marginTop: 8 }}>
-            65 años · Subestaciones y mantenimiento eléctrico · Medellín
+            Más de 65 años · Subestaciones y mantenimiento eléctrico · Medellín
           </div>
         </div>
       </div>

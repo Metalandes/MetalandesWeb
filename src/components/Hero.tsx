@@ -118,7 +118,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-sub mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          65 años diseñando, fabricando y manteniendo{" "}
+          Más de 65 años diseñando, fabricando y manteniendo{" "}
           <span className="text-[var(--text)]">subestaciones e infraestructura eléctrica</span> con
           compromiso, confianza e innovación.
         </p>

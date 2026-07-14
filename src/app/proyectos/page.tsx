@@ -17,7 +17,7 @@ export default function ProyectosPage() {
             Proyectos que <span className="text-gradient">energizan Colombia</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted">
-            Una muestra de la ingeniería que hemos entregado en 65 años: subestaciones, fabricación
+            Una muestra de la ingeniería que hemos entregado en más de 65 años: subestaciones, fabricación
             y mantenimiento a lo largo del país.
           </p>
 

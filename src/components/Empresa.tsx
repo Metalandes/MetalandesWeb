@@ -33,7 +33,7 @@ export default function Empresa() {
             </p>
 
             <div data-reveal className="mt-10 flex items-center gap-6">
-              <span className="font-display text-6xl font-bold text-energy-gradient">65</span>
+              <span className="font-display text-6xl font-bold text-energy-gradient">65+</span>
               <span className="max-w-[12rem] text-sm leading-snug text-muted">
                 años reafirmando nuestros principios fundacionales.
               </span>
