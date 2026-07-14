@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { LogoWordmark } from "@/components/Logo";
 
 const LINE_1 = "Energía que";
 const LINE_2 = "enciende Colombia";
@@ -25,7 +26,8 @@ export default function Hero() {
     () => {
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      tl.from(".hero-eyebrow", { y: 20, opacity: 0, duration: 0.8 })
+      tl.from(".hero-logo", { y: 24, opacity: 0, duration: 0.9 })
+        .from(".hero-eyebrow", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5")
         .from(
           ".hero-word",
           { yPercent: 120, duration: 1.1, stagger: 0.08 },
@@ -94,6 +96,10 @@ export default function Hero() {
       </div>
 
       <div className="hero-content relative z-10 mx-auto w-full max-w-7xl px-5">
+        <div className="hero-logo mb-8">
+          <LogoWordmark className="h-12 w-auto md:h-16" />
+        </div>
+
         <p className="hero-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-black/[0.03] px-4 py-1.5 text-xs font-medium tracking-wide text-muted backdrop-blur">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" />
           Sector eléctrico · Medellín, Colombia
