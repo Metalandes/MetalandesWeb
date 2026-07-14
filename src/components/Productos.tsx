@@ -95,7 +95,7 @@ export default function Productos() {
               className="glass relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-3xl p-8 md:p-10"
             >
               <div
-                className={`pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br ${HUES[active % HUES.length]} to-transparent blur-2xl`}
+                className={`pointer-events-none absolute inset-0 bg-[radial-gradient(260px_220px_at_100%_0%,var(--tw-gradient-from),transparent_70%)] ${HUES[active % HUES.length]}`}
               />
               <div className="grid-bg absolute inset-0 opacity-30" />
 
