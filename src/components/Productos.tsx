@@ -1,77 +1,128 @@
 "use client";
 
-import { useRef } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { useRef, useState } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { useReveal } from "@/hooks/useReveal";
 import { PRODUCTS } from "@/lib/content";
 
-export default function Productos() {
-  const root = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
+const HUES = [
+  "from-electric/30",
+  "from-cyan/25",
+  "from-energy/30",
+  "from-electric/25",
+  "from-cyan/30",
+];
 
+export default function Productos() {
+  const scope = useReveal<HTMLDivElement>();
+  const panel = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  // Crossfade panel content on change
   useGSAP(
     () => {
-      const el = track.current!;
-      // Only pin+scrub on wider screens; mobile falls back to native scroll.
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 768px)", () => {
-        const distance = el.scrollWidth - window.innerWidth;
-        const tween = gsap.to(el, {
-          x: -distance,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root.current,
-            start: "top top",
-            end: () => `+=${distance}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-        return () => tween.kill();
-      });
-
-      ScrollTrigger.refresh();
+      gsap.fromTo(
+        panel.current,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }
+      );
     },
-    { scope: root }
+    { dependencies: [active] }
   );
 
-  return (
-    <section id="productos" ref={root} className="relative overflow-hidden py-24 md:py-0">
-      <div className="mx-auto max-w-7xl px-5 md:absolute md:left-1/2 md:top-16 md:z-10 md:-translate-x-1/2 md:px-0">
-        <p className="mb-4 text-center text-sm font-medium tracking-widest text-cyan md:text-left">
-          / PRODUCTOS
-        </p>
-        <h2 className="text-center font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight md:text-left">
-          Fabricación <span className="text-gradient">de precisión</span>.
-        </h2>
-      </div>
+  const p = PRODUCTS[active];
 
-      <div className="md:flex md:min-h-dvh md:items-center">
-        <div
-          ref={track}
-          className="mt-10 flex flex-col gap-5 md:mt-0 md:flex-row md:gap-8 md:px-[8vw] md:pt-24 md:will-change-transform"
-        >
-          {PRODUCTS.map((p, i) => (
-            <article
-              key={p.title}
-              className="glass group relative flex min-h-[16rem] shrink-0 flex-col justify-between overflow-hidden rounded-3xl p-8 md:h-[22rem] md:w-[24rem]"
+  return (
+    <section id="productos" className="relative py-28 md:py-40">
+      <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[60%] rounded-full bg-electric/10 blur-[150px]" />
+      <div ref={scope} className="relative mx-auto max-w-7xl px-5">
+        <div className="mb-14 max-w-2xl">
+          <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-electric">
+            / PRODUCTOS
+          </p>
+          <h2
+            data-reveal
+            className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+          >
+            Fabricación <span className="text-gradient">de precisión</span>.
+          </h2>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
+          {/* Lista seleccionable */}
+          <ul data-reveal className="flex flex-col">
+            {PRODUCTS.map((item, i) => {
+              const on = i === active;
+              return (
+                <li key={item.title}>
+                  <button
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    onClick={() => setActive(i)}
+                    className="group flex w-full items-center gap-5 border-b border-[var(--border)] py-6 text-left transition"
+                  >
+                    <span
+                      className={`font-display text-sm tabular-nums transition ${
+                        on ? "text-electric" : "text-faint"
+                      }`}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`font-display text-xl font-semibold transition md:text-2xl ${
+                        on ? "text-white" : "text-muted group-hover:text-white"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      className={`ml-auto text-electric transition-all duration-300 ${
+                        on ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                      }`}
+                    >
+                      →
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Panel activo (sticky en desktop) */}
+          <div className="lg:sticky lg:top-28 lg:h-fit">
+            <div
+              ref={panel}
+              className="glass relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-3xl p-8 md:p-10"
             >
-              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-cyan/10 blur-3xl transition group-hover:bg-cyan/25" />
-              <span className="font-display text-6xl font-bold text-white/10">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="font-display text-2xl font-semibold text-white">{p.title}</h3>
-                <p className="mt-2 text-muted">{p.spec}</p>
-                <div className="mt-5 inline-flex items-center gap-2 text-sm text-cyan">
-                  Ficha técnica
-                  <span className="transition group-hover:translate-x-1">→</span>
-                </div>
+              <div
+                className={`pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br ${HUES[active % HUES.length]} to-transparent blur-2xl`}
+              />
+              <div className="grid-bg absolute inset-0 opacity-30" />
+
+              <div className="relative flex items-start justify-between">
+                <span className="font-display text-7xl font-bold text-white/10">
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <span className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-electric">
+                  {String(active + 1).padStart(2, "0")} / {String(PRODUCTS.length).padStart(2, "0")}
+                </span>
               </div>
-            </article>
-          ))}
+
+              <div className="relative">
+                <h3 className="font-display text-3xl font-bold text-white md:text-4xl">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-lg text-muted">{p.spec}</p>
+                <a
+                  href="#contacto"
+                  className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+                >
+                  Solicitar ficha técnica
+                  <span aria-hidden>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
