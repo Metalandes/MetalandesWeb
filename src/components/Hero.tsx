@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { LogoWordmark } from "@/components/Logo";
+import HeroVideo from "@/components/HeroVideo";
 
 const LINE_1 = "Energía que";
 const LINE_2 = "enciende Colombia";
@@ -67,32 +68,8 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-dvh items-center overflow-hidden pt-28"
     >
-      {/* Backdrop: video de subestación + overlay para legibilidad */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* poster (fallback + reduced-motion) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/hero-poster.jpg"
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <video
-          className="hero-video absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/hero-poster.jpg"
-        >
-          <source src="/hero.webm" type="video/webm" />
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        {/* Overlay: suficiente blanco a la izquierda (texto) → video más visible a la derecha */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 to-white/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-white/5" />
-        <div className="grid-bg absolute inset-0 opacity-35" />
-      </div>
+      {/* Backdrop: video de subestación diferido + poster optimizado */}
+      <HeroVideo />
 
       <div className="hero-content relative z-10 mx-auto w-full max-w-7xl px-5">
         <div className="hero-logo mb-8">

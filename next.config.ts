@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // AVIF primero (más liviano), luego WebP.
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
+  },
 };
 
 export default nextConfig;
