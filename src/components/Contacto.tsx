@@ -2,6 +2,7 @@
 
 import { useReveal } from "@/hooks/useReveal";
 import { CONTACT } from "@/lib/content";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contacto() {
   const scope = useReveal<HTMLDivElement>();
@@ -28,7 +29,15 @@ export default function Contacto() {
           medida.
         </p>
 
-        <div data-reveal className="mt-10 flex flex-wrap justify-center gap-4">
+        <div data-reveal className="mx-auto mt-12 max-w-2xl">
+          <ContactForm />
+        </div>
+
+        <div className="mx-auto my-8 flex max-w-xs items-center gap-4 text-xs text-faint">
+          <span className="h-px flex-1 bg-[var(--border)]" />o contáctanos directo<span className="h-px flex-1 bg-[var(--border)]" />
+        </div>
+
+        <div data-reveal className="flex flex-wrap justify-center gap-4">
           <a
             href={`https://wa.me/${CONTACT.whatsappHref}`}
             target="_blank"
