@@ -26,7 +26,7 @@ export default function ProyectosPage() {
         </div>
       </header>
 
-      <main className="relative z-[2] min-h-dvh px-5 pt-36 pb-24">
+      <main id="main" className="relative z-[2] min-h-dvh px-5 pt-36 pb-24">
         <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 rounded-full bg-electric/10 blur-[140px]" />
         <div className="relative mx-auto max-w-7xl">
           <p className="mb-4 text-sm font-medium tracking-widest text-cyan">/ PORTAFOLIO</p>

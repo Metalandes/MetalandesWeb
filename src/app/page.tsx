@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative z-[2]">
+      <main id="main" className="relative z-[2]">
         <Hero />
         <Empresa />
         <Aliados />

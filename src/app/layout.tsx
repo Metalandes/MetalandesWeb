@@ -52,6 +52,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-dvh">
+        <a href="#main" className="skip-link">
+          Saltar al contenido
+        </a>
         <div className="noise" aria-hidden />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

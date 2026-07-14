@@ -67,6 +67,34 @@ html.lenis body {
   color: #fff;
 }
 
+/* Accessible focus ring — only for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link — hidden until focused */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  background: #fff;
+  color: #05070d;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
