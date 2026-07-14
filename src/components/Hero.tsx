@@ -89,15 +89,15 @@ export default function Hero() {
           <source src="/hero.webm" type="video/webm" />
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        {/* Overlay: blanco fuerte a la izquierda (texto) → imagen visible a la derecha */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/78 to-white/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/20" />
-        <div className="grid-bg absolute inset-0 opacity-50" />
+        {/* Overlay: suficiente blanco a la izquierda (texto) → video más visible a la derecha */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 to-white/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-white/5" />
+        <div className="grid-bg absolute inset-0 opacity-35" />
       </div>
 
       <div className="hero-content relative z-10 mx-auto w-full max-w-7xl px-5">
         <div className="hero-logo mb-8">
-          <LogoWordmark className="h-12 w-auto md:h-16" />
+          <LogoWordmark className="h-14 w-auto md:h-20" />
         </div>
 
         <p className="hero-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-black/[0.03] px-4 py-1.5 text-xs font-medium tracking-wide text-muted backdrop-blur">
