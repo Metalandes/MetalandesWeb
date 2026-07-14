@@ -198,4 +198,5 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/metalandes/",
   facebook: "https://www.facebook.com/metalandes.sas",
   youtube: "http://youtube.com/metalandes",
+  linkedin: "https://www.linkedin.com/company/metalandes-sas/",
 };

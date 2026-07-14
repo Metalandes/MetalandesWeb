@@ -8,6 +8,7 @@ import { CONTACT } from "@/lib/content";
 const SOCIAL = [
   { label: "Instagram", href: CONTACT.instagram },
   { label: "Facebook", href: CONTACT.facebook },
+  { label: "LinkedIn", href: CONTACT.linkedin },
   { label: "YouTube", href: CONTACT.youtube },
   { label: "Webmail", href: CONTACT.webmail },
 ];
