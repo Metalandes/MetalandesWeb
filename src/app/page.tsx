@@ -5,6 +5,7 @@ import Aliados from "@/components/Aliados";
 import Servicios from "@/components/Servicios";
 import Productos from "@/components/Productos";
 import Stats from "@/components/Stats";
+import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Servicios />
         <Productos />
         <Stats />
+        <FAQ />
         <Contacto />
       </main>
       <Footer />
