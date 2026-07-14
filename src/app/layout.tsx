@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -63,6 +64,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScroll>
+        <WhatsAppButton />
       </body>
     </html>
   );
