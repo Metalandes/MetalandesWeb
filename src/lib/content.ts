@@ -13,25 +13,25 @@ export const NAV: NavItem[] = [
     label: "Empresa",
     href: "/empresa",
     children: [
-      { label: "Gestión integral", href: "/empresa#gestion" },
-      { label: "Certificaciones", href: "/empresa#certificaciones" },
-      { label: "Tratamiento de datos", href: "/empresa#datos" },
+      { label: "Gestión integral", href: "/empresa/gestion-integral" },
+      { label: "Certificaciones", href: "/empresa/certificaciones" },
+      { label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
     ],
   },
   {
     label: "Servicios",
     href: "/servicios",
     children: [
-      { label: "Automatización", href: "/servicios#automatizacion" },
-      { label: "Mantenimiento", href: "/servicios#mantenimiento" },
+      { label: "Automatización", href: "/servicios/automatizacion" },
+      { label: "Mantenimiento", href: "/servicios/mantenimiento" },
     ],
   },
   {
     label: "Productos",
     href: "/productos",
     children: [
-      { label: "Subestaciones media tensión", href: "/productos#media" },
-      { label: "Subestaciones baja tensión", href: "/productos#baja" },
+      { label: "Subestaciones media tensión", href: "/productos/media-tension" },
+      { label: "Subestaciones baja tensión", href: "/productos/baja-tension" },
     ],
   },
   { label: "Contacto", href: "/contacto" },
@@ -45,7 +45,7 @@ export const SERVICES = [
     desc: "Ingeniería en automatización industrial junto a ELICO GROUP: diseño de procesos, sistemas de control y puesta en marcha.",
     tags: ["Control", "Procesos", "Puesta en marcha"],
     img: null as string | null,
-    href: "/servicios#automatizacion",
+    href: "/servicios/automatizacion",
   },
   {
     n: "02",
@@ -53,7 +53,7 @@ export const SERVICES = [
     desc: "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
     tags: ["Media tensión", "Baja tensión", "24/7"],
     img: "/img/mantenimiento.jpg",
-    href: "/servicios#mantenimiento",
+    href: "/servicios/mantenimiento",
   },
   {
     n: "03",

@@ -1,12 +1,33 @@
 "use client";
 
+import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
 import { EMPRESA } from "@/lib/content";
 
+const CARDS = [
+  {
+    n: "01",
+    title: "Gestión integral",
+    desc: "Política del Sistema Integrado de Gestión: calidad, seguridad, salud y ambiente.",
+    href: "/empresa/gestion-integral",
+  },
+  {
+    n: "02",
+    title: "Certificaciones",
+    desc: "ISO 9001, 14001, 45001 y certificados RETIE 2013 (0307–0310).",
+    href: "/empresa/certificaciones",
+  },
+  {
+    n: "03",
+    title: "Tratamiento de datos",
+    desc: "Política de manejo de datos personales según Decreto 1074 de 2015.",
+    href: "/empresa/tratamiento-datos",
+  },
+];
+
 export default function EmpresaContent() {
   const scope = useReveal<HTMLDivElement>();
-  const { gestion, certificaciones, datos } = EMPRESA;
 
   return (
     <main id="main" ref={scope} className="relative z-[2]">
@@ -22,75 +43,24 @@ export default function EmpresaContent() {
           {EMPRESA.fortaleza}
         </p>
 
-        {/* Gestión integral */}
-        <section id="gestion" className="mt-24 scroll-mt-28">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p data-reveal className="text-sm tracking-widest text-electric">01</p>
-              <h2 data-reveal className="mt-2 font-display text-3xl font-bold md:text-4xl">
-                {gestion.title}
-              </h2>
-              <p data-reveal className="mt-4 text-muted">
-                {gestion.lead}
-              </p>
-            </div>
-            <div>
-              <p data-reveal className="text-lg leading-relaxed text-muted">
-                {gestion.body}
-              </p>
-              <ul className="mt-6 flex flex-col gap-3">
-                {gestion.points.map((p) => (
-                  <li key={p} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
-                    <span className="mt-1 text-electric">◆</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Certificaciones */}
-        <section id="certificaciones" className="mt-28 scroll-mt-28">
-          <p data-reveal className="text-sm tracking-widest text-electric">02</p>
-          <h2 data-reveal className="mt-2 font-display text-3xl font-bold md:text-4xl">
-            {certificaciones.title}
-          </h2>
-          <p data-reveal className="mt-3 max-w-xl text-muted">{certificaciones.lead}</p>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {certificaciones.iso.map((c) => (
-              <div key={c.code} data-reveal className="glass rounded-2xl p-6">
-                <div className="font-display text-xl font-bold text-white">{c.code}</div>
-                <p className="mt-2 text-sm text-muted">{c.name}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {certificaciones.retie.map((c) => (
-              <div key={c.code} data-reveal className="glass rounded-2xl p-5">
-                <div className="text-xs tracking-widest text-electric">RETIE 2013</div>
-                <div className="mt-1 font-display font-semibold text-white">{c.code}</div>
-                <p className="mt-1 text-sm text-muted">{c.name}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Tratamiento de datos */}
-        <section id="datos" className="mt-28 scroll-mt-28">
-          <div className="glass relative overflow-hidden rounded-3xl p-8 md:p-12">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-electric/15 blur-3xl" />
-            <p data-reveal className="text-sm tracking-widest text-electric">03</p>
-            <h2 data-reveal className="mt-2 font-display text-3xl font-bold md:text-4xl">
-              {datos.title}
-            </h2>
-            <p data-reveal className="mt-5 max-w-3xl text-lg leading-relaxed text-muted">
-              {datos.body}
-            </p>
-          </div>
-        </section>
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
+          {CARDS.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              data-reveal
+              className="group glass relative flex flex-col overflow-hidden rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:glow-ring"
+            >
+              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
+              <span className="font-display text-sm text-faint">{c.n}</span>
+              <h2 className="mt-5 font-display text-2xl font-semibold text-white">{c.title}</h2>
+              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.desc}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
+                Ver más <span aria-hidden>→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );
