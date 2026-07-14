@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { NAV } from "@/lib/content";
+import { LogoMark } from "@/components/Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,9 +45,9 @@ export default function Navbar() {
           className="group flex items-center gap-2.5"
           aria-label="Metalandes inicio"
         >
-          <span className="relative grid h-8 w-8 place-items-center">
-            <span className="absolute inset-0 rounded-lg bg-gradient-to-br from-electric to-cyan opacity-90 blur-[2px] transition group-hover:opacity-100" />
-            <span className="relative font-display text-sm font-bold text-white">M</span>
+          <span className="relative">
+            <span className="absolute -inset-1 rounded-xl bg-gradient-to-br from-electric to-cyan opacity-0 blur-md transition group-hover:opacity-60" />
+            <LogoMark className="relative h-8 w-8" />
           </span>
           <span className="font-display text-lg font-bold tracking-tight">
             METAL<span className="text-cyan">ANDES</span>

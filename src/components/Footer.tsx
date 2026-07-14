@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV, CONTACT } from "@/lib/content";
+import { LogoMark } from "@/components/Logo";
 
 const SOCIAL = [
   { label: "Instagram", href: CONTACT.instagram },
@@ -13,8 +14,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div>
-            <div className="font-display text-2xl font-bold tracking-tight">
-              METAL<span className="text-cyan">ANDES</span>
+            <div className="flex items-center gap-2.5">
+              <LogoMark className="h-9 w-9" />
+              <span className="font-display text-2xl font-bold tracking-tight">
+                METAL<span className="text-cyan">ANDES</span>
+              </span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted">
               Ingeniería del sector eléctrico. 65 años energizando Colombia desde Medellín.
