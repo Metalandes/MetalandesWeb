@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/content";
-import { LogoMark } from "@/components/Logo";
+import { LogoWordmark } from "@/components/Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,14 +40,8 @@ export default function Navbar() {
             : ""
         }`}
       >
-        <Link href="/" className="group flex items-center gap-2.5" aria-label="Metalandes inicio">
-          <span className="relative">
-            <span className="absolute -inset-1 rounded-xl bg-gradient-to-br from-electric to-energy opacity-0 blur-md transition group-hover:opacity-60" />
-            <LogoMark className="relative h-8 w-8" />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">
-            METAL<span className="text-electric">ANDES</span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label="Metalandes inicio">
+          <LogoWordmark className="h-7 w-auto md:h-8" />
         </Link>
 
         {/* Desktop */}

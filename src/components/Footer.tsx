@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV, CONTACT } from "@/lib/content";
-import { LogoMark } from "@/components/Logo";
+import { LogoWordmark } from "@/components/Logo";
 
 const SOCIAL = [
   { label: "Instagram", href: CONTACT.instagram },
@@ -15,11 +15,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <LogoMark className="h-9 w-9" />
-              <span className="font-display text-2xl font-bold tracking-tight">
-                METAL<span className="text-electric">ANDES</span>
-              </span>
+            <Link href="/" className="flex items-center">
+              <LogoWordmark className="h-10 w-auto" />
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted">
               Metalúrgica de los Andes S.A.S. Ramo metal eléctrico desde 1960 · Medellín, Colombia.
