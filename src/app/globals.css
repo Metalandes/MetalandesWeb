@@ -165,4 +165,5 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .hero-video { display: none; } /* muestra solo el poster */
 }

@@ -66,13 +66,31 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-dvh items-center overflow-hidden pt-28"
     >
-      {/* Backdrop */}
+      {/* Backdrop: video de subestación + overlay para legibilidad */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,#eef2f8_0%,#ffffff_55%)]" />
-        <div className="grid-bg absolute inset-0" />
-        <div className="blob-a absolute -left-20 top-10 h-[38rem] w-[38rem] rounded-full bg-electric/25 blur-[120px]" />
-        <div className="blob-b absolute -right-24 top-40 h-[34rem] w-[34rem] rounded-full bg-cyan/20 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-energy/10 blur-[100px]" />
+        {/* poster (fallback + reduced-motion) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero-poster.jpg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <video
+          className="hero-video absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/hero-poster.jpg"
+        >
+          <source src="/hero.webm" type="video/webm" />
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay: blanco fuerte a la izquierda (texto) → imagen visible a la derecha */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/78 to-white/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/20" />
+        <div className="grid-bg absolute inset-0 opacity-50" />
       </div>
 
       <div className="hero-content relative z-10 mx-auto w-full max-w-7xl px-5">
