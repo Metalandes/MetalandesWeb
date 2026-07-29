@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/hooks/useReveal";
 import { PRODUCTS } from "@/lib/content";
+import { ElectricEyebrow, ArrowButton } from "@/components/brand/BrandBits";
+import { SectionIcon } from "@/components/brand/SectionIcon";
 
 const HUES = [
   "from-electric/30",
@@ -37,9 +39,10 @@ export default function Productos() {
       <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[60%] rounded-full bg-electric/10 blur-[150px]" />
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-14 max-w-2xl">
-          <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-electric">
-            / PRODUCTOS
-          </p>
+          <div data-reveal className="mb-5 flex items-center gap-4">
+            <SectionIcon name="productos" className="h-12 w-12" />
+            <ElectricEyebrow>PRODUCTOS</ElectricEyebrow>
+          </div>
           <h2
             data-reveal
             className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
@@ -92,7 +95,7 @@ export default function Productos() {
           <div className="lg:sticky lg:top-28 lg:h-fit">
             <div
               ref={panel}
-              className="glass relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-3xl p-8 md:p-10"
+              className="glass clip-proto-lg relative flex min-h-[22rem] flex-col justify-between overflow-hidden p-8 md:p-10"
             >
               <div
                 className={`pointer-events-none absolute inset-0 bg-[radial-gradient(260px_220px_at_100%_0%,var(--tw-gradient-from),transparent_70%)] ${HUES[active % HUES.length]}`}
@@ -115,10 +118,10 @@ export default function Productos() {
                 <p className="mt-3 text-lg text-muted">{p.spec}</p>
                 <a
                   href="#contacto"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
+                  className="group mt-8 inline-flex items-center gap-3 text-sm font-semibold text-[var(--text)]"
                 >
+                  <ArrowButton className="h-10 w-10" />
                   Solicitar ficha técnica
-                  <span aria-hidden>→</span>
                 </a>
               </div>
             </div>

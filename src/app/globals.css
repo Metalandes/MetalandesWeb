@@ -157,6 +157,21 @@ html.lenis body {
   will-change: transform, opacity;
 }
 
+/* Contenedor "protoboard": esquina superior-derecha achaflanada (angular)
+   mientras el resto queda recto — guiño a las placas del manual de marca. */
+.clip-proto {
+  clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+}
+.clip-proto-lg {
+  clip-path: polygon(0 0, calc(100% - 42px) 0, 100% 42px, 100% 100%, 0 100%);
+}
+
+/* Patrón de fondo con marca "T" (conector) — muy sutil, decorativo. */
+.brand-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23e3032c' stroke-width='2' stroke-linecap='round' opacity='0.5'%3E%3Cpath d='M10 30 H46 M46 22 V38 M46 22 H58 M46 38 H58'/%3E%3Cpath d='M70 84 H106 M70 76 V92 M70 76 H82 M70 92 H82'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

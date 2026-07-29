@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import { SERVICES } from "@/lib/content";
+import { ElectricEyebrow } from "@/components/brand/BrandBits";
+import { SectionIcon } from "@/components/brand/SectionIcon";
 
 export default function Servicios() {
   const scope = useReveal<HTMLDivElement>();
@@ -13,9 +15,10 @@ export default function Servicios() {
       <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 rounded-full bg-electric/10 blur-[140px]" />
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-16 max-w-2xl">
-          <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-cyan">
-            / SERVICIOS
-          </p>
+          <div data-reveal className="mb-5 flex items-center gap-4">
+            <SectionIcon name="servicios" className="h-12 w-12" />
+            <ElectricEyebrow>SERVICIOS</ElectricEyebrow>
+          </div>
           <h2
             data-reveal
             className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"

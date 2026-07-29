@@ -1,6 +1,8 @@
 "use client";
 
 import { useReveal } from "@/hooks/useReveal";
+import { ElectricEyebrow } from "@/components/brand/BrandBits";
+import { SectionIcon } from "@/components/brand/SectionIcon";
 
 const VALUES = [
   { title: "Compromiso", desc: "Respondemos por cada proyecto de principio a fin." },
@@ -16,9 +18,10 @@ export default function Empresa() {
       <div ref={scope} className="mx-auto max-w-7xl px-5">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
           <div>
-            <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-cyan">
-              / NUESTRA EMPRESA
-            </p>
+            <div data-reveal className="mb-5 flex items-center gap-4">
+              <SectionIcon name="nosotros" className="h-12 w-12" />
+              <ElectricEyebrow>NUESTRA EMPRESA</ElectricEyebrow>
+            </div>
             <h2
               data-reveal
               className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
