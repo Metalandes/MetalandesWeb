@@ -7,12 +7,6 @@ import PageHero from "@/components/PageHero";
 const CARDS = [
   {
     n: "01",
-    title: "Automatización",
-    desc: "Ingeniería en automatización industrial junto a ELICO GROUP: diseño de procesos, control y puesta en marcha.",
-    href: "/servicios/automatizacion",
-  },
-  {
-    n: "02",
     title: "Mantenimiento",
     desc: "Media y baja tensión, certificado ISO 45001. Operación 24/7 en todo el territorio nacional.",
     href: "/servicios/mantenimiento",
@@ -28,11 +22,11 @@ export default function ServiciosContent() {
         kicker="/ SERVICIOS"
         title="Soluciones eléctricas"
         highlight="integrales"
-        subtitle="Automatización industrial y mantenimiento en media y baja tensión, con respaldo técnico y cobertura nacional."
+        subtitle="Mantenimiento en media y baja tensión, con respaldo técnico y cobertura nacional."
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
-        <div className="grid gap-5 md:grid-cols-2">
+      <div className="mx-auto max-w-3xl px-5 pb-28">
+        <div className="grid gap-5">
           {CARDS.map((c) => (
             <Link
               key={c.href}

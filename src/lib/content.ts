@@ -22,7 +22,6 @@ export const NAV: NavItem[] = [
     label: "Servicios",
     href: "/servicios",
     children: [
-      { label: "Automatización", href: "/servicios/automatizacion" },
       { label: "Mantenimiento", href: "/servicios/mantenimiento" },
     ],
   },
@@ -41,22 +40,14 @@ export const NAV: NavItem[] = [
 export const SERVICES = [
   {
     n: "01",
-    title: "Automatización",
-    desc: "Ingeniería en automatización industrial junto a ELICO GROUP: diseño de procesos, sistemas de control y puesta en marcha.",
-    tags: ["Control", "Procesos", "Puesta en marcha"],
-    img: null as string | null,
-    href: "/servicios/automatizacion",
-  },
-  {
-    n: "02",
     title: "Mantenimiento",
     desc: "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
     tags: ["Media tensión", "Baja tensión", "24/7"],
-    img: "/img/mantenimiento.jpg",
+    img: "/img/mantenimiento.jpg" as string | null,
     href: "/servicios/mantenimiento",
   },
   {
-    n: "03",
+    n: "02",
     title: "Subestaciones",
     desc: "Fabricación de subestaciones eléctricas, tableros y gabinetes de media y baja tensión con certificación RETIE 2013.",
     tags: ["Tablerista", "RETIE 2013", "A la medida"],
@@ -83,9 +74,9 @@ export const STATS = [
 /* --- Empresa --- */
 export const EMPRESA = {
   intro:
-    "Metalandes S.A.S es una empresa colombiana que produce bienes y servicios en el ramo metal eléctrico para atender las necesidades crecientes del mercado colombiano e internacional. Fundada en 1960, es líder en los sectores tablerista, automatización industrial y mantenimiento eléctrico.",
+    "Metalandes S.A.S es una empresa colombiana que produce bienes y servicios en el ramo metal eléctrico para atender las necesidades crecientes del mercado colombiano e internacional. Fundada en 1960, es líder en los sectores tablerista y de mantenimiento eléctrico.",
   fortaleza:
-    "Ofrecemos soluciones de manera integral: departamento técnico-comercial, ingeniería, soporte en automatización y sistemas, diseño mecánico y eléctrico, carpintería metálica, ensamble, pruebas, logística de despacho y servicio posventa.",
+    "Ofrecemos soluciones de manera integral: departamento técnico-comercial, ingeniería, diseño mecánico y eléctrico, carpintería metálica, ensamble, pruebas, logística de despacho y servicio posventa.",
   gestion: {
     title: "Gestión integral",
     lead: "Política del Sistema Integrado de Gestión",
@@ -120,18 +111,6 @@ export const EMPRESA = {
 
 /* --- Servicios --- */
 export const SERVICIOS_PAGE = {
-  automatizacion: {
-    title: "Automatización industrial",
-    body: "A través de nuestra empresa asociada ELICO GROUP S.A.S. ofrecemos servicios de ingeniería en automatización industrial, con infraestructura humana y técnica para dar respuestas tecnológicas a la creciente industria colombiana.",
-    flow: [
-      "Asesoramiento inicial",
-      "Diseño de procesos inteligentes",
-      "Desarrollo de sistemas de control",
-      "Puesta en marcha y capacitación",
-      "Mantenimiento y soporte",
-    ],
-    sectores: ["Alimenticio", "Cervecero", "Cerámico", "Papelero", "Metalúrgico", "Químico"],
-  },
   mantenimiento: {
     title: "Mantenimiento — asistencia técnica",
     body: "Servicio de mantenimiento para media y baja tensión certificado ISO 45001:2018, con impecable cumplimiento de salud y seguridad en el trabajo. Operamos 24 horas, 7 días a la semana en todo el territorio nacional.",

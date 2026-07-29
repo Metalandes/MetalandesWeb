@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/empresa/certificaciones",
     "/empresa/tratamiento-datos",
     "/servicios",
-    "/servicios/automatizacion",
     "/servicios/mantenimiento",
     "/productos",
     "/productos/media-tension",
