@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 /* ============================================================
-   METALANDES — tema claro (blanco) · marca rojo #e2042d + navy
+   METALANDES ELECTRIC — paleta oficial (manual de marca Sensorial)
+   navy #2b313c (7546C) · gris #d3d6d7 (427C) · rojo #e3032c (185C)
    ============================================================ */
 :root {
   --bg: #ffffff;
   --bg-2: #f4f6fa;
   --surface: #ffffff;
   --surface-2: #f2f5f9;
-  --border: rgba(20, 30, 55, 0.1);
+  --border: rgba(43, 49, 60, 0.1);
 
-  --text: #141b28; /* navy casi negro */
-  --muted: #54607a;
-  --faint: #8791a6;
+  --text: #2b313c; /* navy oficial (Pantone 7546C) */
+  --muted: #5a6474;
+  --faint: #8a93a3;
+  --steel: #d3d6d7; /* gris claro oficial (Pantone 427C) */
 
-  --electric: #e2042d; /* rojo primario */
-  --cyan: #3f5c86; /* acero (secundario, oscuro para contraste) */
-  --energy: #ff3b57; /* rojo claro */
+  --electric: #e3032c; /* rojo oficial (Pantone 185C) */
+  --cyan: #566178; /* acero navy (secundario neutro) */
+  --energy: #ff2d4f; /* tinte rojo claro (glows/degradados) */
 
-  --glow-blue: rgba(226, 4, 45, 0.18);
-  --glow-cyan: rgba(63, 92, 134, 0.14);
-  --glow-energy: rgba(255, 59, 87, 0.16);
+  --glow-blue: rgba(227, 3, 44, 0.18);
+  --glow-cyan: rgba(86, 97, 120, 0.14);
+  --glow-energy: rgba(255, 45, 79, 0.16);
 }
 
 @theme inline {
@@ -31,6 +33,7 @@
   --color-electric: var(--electric);
   --color-cyan: var(--cyan);
   --color-energy: var(--energy);
+  --color-steel: var(--steel);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -108,14 +111,14 @@ html.lenis body {
    Utilities
    ============================================================ */
 .text-gradient {
-  background: linear-gradient(100deg, var(--text) 0%, #6a1020 35%, var(--electric) 100%);
+  background: linear-gradient(100deg, var(--text) 0%, #7a0a1e 40%, var(--electric) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-energy-gradient {
-  background: linear-gradient(100deg, var(--electric), #ff6b83);
+  background: linear-gradient(100deg, var(--electric), #ff5a76);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -123,8 +126,8 @@ html.lenis body {
 
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(20, 30, 55, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(20, 30, 55, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(43, 49, 60, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(43, 49, 60, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);

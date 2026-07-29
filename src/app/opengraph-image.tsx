@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Metalandes — Más de 65 años energizando Colombia";
+export const alt = "Metalandes Electric — Más de 65 años energizando Colombia";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,24 +16,24 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           padding: 80,
           background:
-            "radial-gradient(1200px 600px at 50% -20%, #2a313b 0%, #0c0f15 62%)",
+            "radial-gradient(1200px 600px at 50% -20%, #2b313c 0%, #14171d 62%)",
           color: "#eef1f6",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div
             style={{
               width: 48,
               height: 48,
               borderRadius: 12,
-              background: "#2a313b",
-              border: "2px solid #e2042d",
+              background: "#2b313c",
+              border: "2px solid #e3032c",
             }}
           />
-          <div style={{ display: "flex", fontSize: 32, fontWeight: 700, letterSpacing: -1 }}>
-            <span>METAL</span>
-            <span style={{ color: "#e2042d" }}>ANDES</span>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 10, fontSize: 32, fontWeight: 700, letterSpacing: -1 }}>
+            <span>Metalandes</span>
+            <span style={{ color: "#e3032c", fontSize: 22, letterSpacing: 2 }}>ELECTRIC</span>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ export default function OpengraphImage() {
               fontWeight: 700,
               lineHeight: 1.02,
               letterSpacing: -2,
-              background: "linear-gradient(100deg, #cdd7e8, #e2042d)",
+              background: "linear-gradient(100deg, #d3d6d7, #e3032c)",
               backgroundClip: "text",
               color: "transparent",
             }}

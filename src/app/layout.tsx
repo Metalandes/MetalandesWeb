@@ -1,32 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Anybody } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const display = Space_Grotesk({
+// Tipografía oficial de marca (manual Sensorial): familia Anybody.
+// Medium para títulos, Light/Regular para texto corrido.
+const display = Anybody({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   display: "swap",
 });
 
-const sans = Inter({
+const sans = Anybody({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://metalandes.net"),
   title: {
-    default: "Metalandes — Más de 65 años energizando Colombia",
-    template: "%s · Metalandes",
+    default: "Metalandes Electric — Más de 65 años energizando Colombia",
+    template: "%s · Metalandes Electric",
   },
   description:
-    "Metalandes S.A.S. Ingeniería del sector eléctrico: diseño, fabricación y mantenimiento de subestaciones. Más de 65 años de compromiso, confianza e innovación desde Medellín, Colombia.",
+    "Metalandes Electric. Ingeniería del sector metal eléctrico: diseño, fabricación y mantenimiento de subestaciones. Más de 65 años de compromiso, confianza e innovación desde Medellín, Colombia. Energía que permanece.",
   keywords: [
     "subestaciones",
     "sector eléctrico",
@@ -34,12 +37,13 @@ export const metadata: Metadata = {
     "Medellín",
     "Colombia",
     "Metalandes",
+    "Metalandes Electric",
     "energía",
   ],
   openGraph: {
-    title: "Metalandes — Más de 65 años energizando Colombia",
+    title: "Metalandes Electric — Más de 65 años energizando Colombia",
     description:
-      "Diseño, fabricación y mantenimiento de subestaciones. Ingeniería eléctrica desde Medellín.",
+      "Diseño, fabricación y mantenimiento de subestaciones. Ingeniería metal eléctrica desde Medellín. Energía que permanece.",
     type: "website",
     locale: "es_CO",
   },

@@ -66,7 +66,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-[var(--border)] pt-6 text-xs text-faint md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} Metalúrgica de los Andes S.A.S. Todos los derechos reservados.</p>
-          <p>Demo — diseño conceptual · Next.js · GSAP · Lenis</p>
+          <p>Metalandes Electric · Energía que permanece</p>
         </div>
       </div>
     </footer>
