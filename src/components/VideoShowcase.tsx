@@ -83,14 +83,27 @@ export default function VideoShowcase() {
             Mira lo que <span className="text-gradient">fabricamos</span>.
           </h2>
           <p data-reveal className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-            Un recorrido por nuestra planta y los equipos que desarrollamos. Más que proveedores,
-            somos parte del circuito: diseñamos, fabricamos y acompañamos cada proyecto eléctrico.
+            Más de 65 años en el mercado eléctrico colombiano. Diseñamos, fabricamos y mantenemos{" "}
+            <span className="text-[var(--text)]">tableros, subestaciones y sistemas de potencia</span>,
+            con cumplimiento RETIE. En el mundo eléctrico, la seguridad y la confiabilidad no son una
+            opción.
           </p>
+
+          <div data-reveal className="mt-7 flex flex-wrap gap-2">
+            {["RETIE", "ISO 9001", "ISO 14001", "ISO 45001"].map((c) => (
+              <span
+                key={c}
+                className="rounded-full border border-[var(--border)] px-3 py-1 text-xs font-medium text-muted"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
 
           <div data-reveal className="mt-8 flex items-center gap-4">
             <NodeSeparator />
             <span className="font-display text-lg font-semibold text-[var(--text)]">
-              Energía que permanece
+              Tu próximo proyecto ya tiene energía: la nuestra
             </span>
           </div>
         </div>
