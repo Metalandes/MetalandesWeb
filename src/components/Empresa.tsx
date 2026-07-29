@@ -48,7 +48,7 @@ export default function Empresa() {
               <div
                 key={v.title}
                 data-reveal
-                className="group glass relative overflow-hidden rounded-2xl p-7 transition duration-300 hover:-translate-y-1 hover:glow-ring"
+                className="group glass clip-proto relative overflow-hidden p-7 transition duration-300 hover:-translate-y-1"
               >
                 <div className="absolute right-6 top-6 font-display text-sm text-faint">
                   0{i + 1}

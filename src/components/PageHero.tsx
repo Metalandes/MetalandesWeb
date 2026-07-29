@@ -1,3 +1,5 @@
+import { ElectricEyebrow } from "@/components/brand/BrandBits";
+
 export default function PageHero({
   kicker,
   title,
@@ -17,9 +19,9 @@ export default function PageHero({
         <div className="absolute -right-20 top-0 h-80 w-80 rounded-full bg-electric/15 blur-[120px]" />
       </div>
       <div className="relative mx-auto max-w-7xl">
-        <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-electric">
-          {kicker}
-        </p>
+        <div data-reveal className="mb-5">
+          <ElectricEyebrow>{kicker.replace(/^\/\s*/, "")}</ElectricEyebrow>
+        </div>
         <h1
           data-reveal
           className="max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold leading-[1.02] tracking-tight"

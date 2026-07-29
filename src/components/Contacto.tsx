@@ -3,6 +3,8 @@
 import { useReveal } from "@/hooks/useReveal";
 import { CONTACT } from "@/lib/content";
 import ContactForm from "@/components/ContactForm";
+import { ElectricEyebrow, NodeSeparator } from "@/components/brand/BrandBits";
+import { SectionIcon } from "@/components/brand/SectionIcon";
 
 export default function Contacto() {
   const scope = useReveal<HTMLDivElement>();
@@ -15,9 +17,10 @@ export default function Contacto() {
       </div>
 
       <div ref={scope} className="relative mx-auto max-w-5xl px-5 text-center">
-        <p data-reveal className="mb-4 text-sm font-medium tracking-widest text-cyan">
-          / CONTACTO
-        </p>
+        <div data-reveal className="mb-5 flex flex-col items-center gap-4">
+          <SectionIcon name="contacto" className="h-14 w-14" />
+          <ElectricEyebrow>CONTACTO</ElectricEyebrow>
+        </div>
         <h2
           data-reveal
           className="mx-auto max-w-3xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold leading-[1.02] tracking-tight"
@@ -33,8 +36,9 @@ export default function Contacto() {
           <ContactForm />
         </div>
 
-        <div className="mx-auto my-8 flex max-w-xs items-center gap-4 text-xs text-faint">
-          <span className="h-px flex-1 bg-[var(--border)]" />o contáctanos directo<span className="h-px flex-1 bg-[var(--border)]" />
+        <div className="my-8 flex flex-col items-center gap-3 text-xs text-faint">
+          <NodeSeparator />
+          <span>o contáctanos directo</span>
         </div>
 
         <div data-reveal className="flex flex-wrap justify-center gap-4">
@@ -64,10 +68,10 @@ export default function Contacto() {
             { label: "Teléfono", value: CONTACT.phone, href: `tel:${CONTACT.phoneHref}` },
             { label: "WhatsApp", value: CONTACT.whatsapp, href: `https://wa.me/${CONTACT.whatsappHref}` },
           ].map((c) => (
-            <div key={c.label} className="glass rounded-2xl p-5">
+            <div key={c.label} className="glass clip-proto p-5">
               <p className="text-xs uppercase tracking-widest text-faint">{c.label}</p>
               {c.href ? (
-                <a href={c.href} className="mt-2 block text-sm text-[var(--text)] transition hover:text-cyan">
+                <a href={c.href} className="mt-2 block text-sm text-[var(--text)] transition hover:text-electric">
                   {c.value}
                 </a>
               ) : (

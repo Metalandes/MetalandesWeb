@@ -32,7 +32,7 @@ export default function Servicios() {
             <article
               key={s.n}
               data-reveal
-              className="group glass relative flex flex-col overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-2 hover:glow-ring"
+              className="group glass clip-proto-lg relative flex flex-col overflow-hidden transition duration-300 hover:-translate-y-2"
             >
               <div className="absolute inset-x-0 -top-px z-20 h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
 
