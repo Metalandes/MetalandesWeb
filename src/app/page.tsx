@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Empresa from "@/components/Empresa";
+import VideoShowcase from "@/components/VideoShowcase";
 import Aliados from "@/components/Aliados";
 import Servicios from "@/components/Servicios";
 import Productos from "@/components/Productos";
@@ -12,6 +13,7 @@ export default function Home() {
     <main id="main" className="relative z-[2]">
       <Hero />
       <Empresa />
+      <VideoShowcase />
       <Aliados />
       <Servicios />
       <Productos />
