@@ -24,7 +24,7 @@ export default function Servicios() {
           </h2>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2">
           {SERVICES.map((s) => (
             <article
               key={s.n}
@@ -34,19 +34,19 @@ export default function Servicios() {
               <div className="absolute inset-x-0 -top-px z-20 h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
 
               {s.img ? (
-                <div className="relative h-40 w-full overflow-hidden">
+                <div className="relative h-56 w-full overflow-hidden md:h-64">
                   <Image
                     src={s.img}
                     alt={s.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="scale-105 object-cover opacity-70 grayscale-[0.2] transition duration-500 group-hover:scale-100 group-hover:opacity-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/40 to-transparent" />
                   <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
                 </div>
               ) : (
-                <div className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-[var(--electric)]/20 to-transparent">
+                <div className="relative h-56 w-full overflow-hidden bg-gradient-to-br from-[var(--electric)]/20 to-transparent md:h-64">
                   <div className="grid-bg absolute inset-0 opacity-50" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] to-transparent" />
                 </div>
