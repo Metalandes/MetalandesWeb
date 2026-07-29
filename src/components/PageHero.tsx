@@ -1,15 +1,18 @@
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
+import { SectionIcon } from "@/components/brand/SectionIcon";
 
 export default function PageHero({
   kicker,
   title,
   highlight,
   subtitle,
+  icon,
 }: {
   kicker: string;
   title: string;
   highlight?: string;
   subtitle?: string;
+  icon?: "nosotros" | "productos" | "servicios" | "contacto";
 }) {
   return (
     <header className="relative overflow-hidden px-5 pt-40 pb-16 md:pt-48 md:pb-24">
@@ -19,7 +22,8 @@ export default function PageHero({
         <div className="absolute -right-20 top-0 h-80 w-80 rounded-full bg-electric/15 blur-[120px]" />
       </div>
       <div className="relative mx-auto max-w-7xl">
-        <div data-reveal className="mb-5">
+        <div data-reveal className="mb-5 flex items-center gap-4">
+          {icon && <SectionIcon name={icon} className="h-12 w-12" />}
           <ElectricEyebrow>{kicker.replace(/^\/\s*/, "")}</ElectricEyebrow>
         </div>
         <h1

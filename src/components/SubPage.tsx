@@ -23,9 +23,22 @@ export default function SubPage({
 }) {
   const scope = useReveal<HTMLDivElement>();
 
+  const ICON_BY_PARENT: Record<string, "nosotros" | "productos" | "servicios" | "contacto"> = {
+    "/empresa": "nosotros",
+    "/productos": "productos",
+    "/servicios": "servicios",
+    "/contacto": "contacto",
+  };
+
   return (
     <main id="main" ref={scope} className="relative z-[2]">
-      <PageHero kicker={kicker} title={title} highlight={highlight} subtitle={subtitle} />
+      <PageHero
+        kicker={kicker}
+        title={title}
+        highlight={highlight}
+        subtitle={subtitle}
+        icon={ICON_BY_PARENT[parentHref]}
+      />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
         {/* Breadcrumb */}

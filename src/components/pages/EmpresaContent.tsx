@@ -36,6 +36,7 @@ export default function EmpresaContent() {
         title="Ingeniería metal eléctrica"
         highlight="desde 1960"
         subtitle={EMPRESA.intro}
+        icon="nosotros"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
@@ -49,7 +50,7 @@ export default function EmpresaContent() {
               key={c.href}
               href={c.href}
               data-reveal
-              className="group glass relative flex flex-col overflow-hidden rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:glow-ring"
+              className="group glass clip-proto relative flex flex-col overflow-hidden p-8 transition duration-300 hover:-translate-y-2"
             >
               <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
               <span className="font-display text-sm text-faint">{c.n}</span>

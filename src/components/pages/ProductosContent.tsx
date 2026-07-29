@@ -21,6 +21,13 @@ const CARDS = [
     href: "/productos/baja-tension",
     img: PRODUCTOS_PAGE.baja.img,
   },
+  {
+    n: "03",
+    title: "Bancos de capacitores",
+    desc: "Corrección de factor de potencia con conmutación por pasos y controlador automático. Fabricados a la medida, certificación RETIE.",
+    href: "/#bancos-capacitores",
+    img: "/img/capacitores-1.jpg",
+  },
 ];
 
 export default function ProductosContent() {
@@ -33,16 +40,17 @@ export default function ProductosContent() {
         title="Fabricación de"
         highlight="subestaciones"
         subtitle={PRODUCTOS_PAGE.intro}
+        icon="productos"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-3">
           {CARDS.map((c) => (
             <Link
               key={c.href}
               href={c.href}
               data-reveal
-              className="group glass relative flex flex-col overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-2 hover:glow-ring"
+              className="group glass clip-proto-lg relative flex flex-col overflow-hidden transition duration-300 hover:-translate-y-2"
             >
               <div className="relative h-52 w-full overflow-hidden">
                 <Image

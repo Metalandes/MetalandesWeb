@@ -23,13 +23,14 @@ export default function ContactoContent() {
         title="Hablemos de tu"
         highlight="proyecto"
         subtitle="Nuestras líneas están abiertas para cotizaciones, soporte y emergencias en todo el territorio nacional."
+        icon="contacto"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           {/* Canales */}
           <div className="flex flex-col gap-4">
-            <div data-reveal className="glass flex flex-col gap-1 rounded-2xl p-6">
+            <div data-reveal className="glass clip-proto flex flex-col gap-1 p-6">
               <span className="text-xs uppercase tracking-widest text-faint">WhatsApp</span>
               <a
                 href={CONTACT.waLink}
@@ -41,7 +42,7 @@ export default function ContactoContent() {
               </a>
             </div>
 
-            <div data-reveal className="glow-ring flex flex-col gap-1 rounded-2xl bg-electric/10 p-6">
+            <div data-reveal className="clip-proto flex flex-col gap-1 border border-electric/20 bg-electric/10 p-6">
               <span className="text-xs uppercase tracking-widest text-electric">
                 Línea de emergencia · 24/7
               </span>
@@ -53,7 +54,7 @@ export default function ContactoContent() {
               </a>
             </div>
 
-            <div data-reveal className="glass grid gap-4 rounded-2xl p-6 sm:grid-cols-2">
+            <div data-reveal className="glass clip-proto grid gap-4 p-6 sm:grid-cols-2">
               <div>
                 <span className="text-xs uppercase tracking-widest text-faint">Teléfono</span>
                 <a
@@ -79,7 +80,7 @@ export default function ContactoContent() {
             </div>
 
             {/* Extensiones */}
-            <div data-reveal className="glass rounded-2xl p-6">
+            <div data-reveal className="glass clip-proto p-6">
               <span className="text-xs uppercase tracking-widest text-faint">Extensiones</span>
               <ul className="mt-3 flex flex-col divide-y divide-[var(--border)]">
                 {CONTACT.extensiones.map((e) => (
