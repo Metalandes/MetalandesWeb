@@ -4,6 +4,7 @@ import VideoShowcase from "@/components/VideoShowcase";
 import Aliados from "@/components/Aliados";
 import Servicios from "@/components/Servicios";
 import Productos from "@/components/Productos";
+import ProductoDestacado from "@/components/ProductoDestacado";
 import Stats from "@/components/Stats";
 import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
@@ -17,6 +18,7 @@ export default function Home() {
       <Aliados />
       <Servicios />
       <Productos />
+      <ProductoDestacado />
       <Stats />
       <FAQ />
       <Contacto />
