@@ -36,7 +36,7 @@ export default function Productos() {
 
   return (
     <section id="productos" className="relative py-28 md:py-40">
-      <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[60%] rounded-full bg-electric/10 blur-[150px]" />
+      <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[60%] transform-gpu rounded-full bg-electric/10 blur-[120px]" />
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-14 max-w-2xl">
           <div data-reveal className="mb-5 flex items-center gap-4">

@@ -12,7 +12,8 @@ export default function Contacto() {
   return (
     <section id="contacto" className="relative overflow-hidden py-28 md:py-40">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/15 blur-[150px]" />
+        {/* Glow como radial-gradient (sin filtro blur) — no re-pinta al scrollear */}
+        <div className="absolute inset-0 bg-[radial-gradient(38%_45%_at_50%_45%,rgba(227,3,44,0.14),transparent_70%)]" />
         <div className="grid-bg absolute inset-0 opacity-60" />
       </div>
 
