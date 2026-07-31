@@ -7,7 +7,7 @@ import { useReveal } from "@/hooks/useReveal";
 const ITEMS = [
   {
     q: "¿Qué tipo de subestaciones fabrican?",
-    a: "Diseñamos y construimos subestaciones de media y alta tensión bajo modalidad llave en mano, adaptadas a la capacidad y ubicación de cada proyecto.",
+    a: "Diseñamos y construimos subestaciones de media y baja tensión bajo modalidad llave en mano, adaptadas a la capacidad y ubicación de cada proyecto.",
   },
   {
     q: "¿Atienden proyectos fuera de Antioquia?",

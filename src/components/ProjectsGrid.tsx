@@ -3,12 +3,12 @@
 import { useReveal } from "@/hooks/useReveal";
 
 const PROJECTS = [
-  { title: "Subestación 115 kV", place: "Antioquia", year: "2024", cat: "Alta tensión" },
+  { title: "Subestación de media tensión", place: "Antioquia", year: "2024", cat: "Media tensión" },
   { title: "Repotenciación de celdas", place: "Bogotá", year: "2023", cat: "Media tensión" },
   { title: "Mantenimiento predictivo anual", place: "Costa Caribe", year: "2023", cat: "Mantenimiento" },
   { title: "Tableros de distribución industrial", place: "Valle del Cauca", year: "2022", cat: "Fabricación" },
-  { title: "Sistema de puesta a tierra", place: "Santander", year: "2022", cat: "Seguridad" },
-  { title: "Subestación móvil llave en mano", place: "Meta", year: "2021", cat: "Alta tensión" },
+  { title: "Banco de capacitores", place: "Santander", year: "2022", cat: "Baja tensión" },
+  { title: "Subestación llave en mano", place: "Meta", year: "2021", cat: "Baja tensión" },
 ];
 
 const HUES = ["from-electric/30", "from-cyan/25", "from-energy/25"];

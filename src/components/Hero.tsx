@@ -123,7 +123,7 @@ export default function Hero() {
           <div className="marquee-track flex shrink-0 items-center gap-10 whitespace-nowrap pr-10 text-sm font-medium tracking-widest text-faint">
             {Array.from({ length: 2 }).map((_, r) => (
               <span key={r} className="flex items-center gap-10">
-                {["SUBESTACIONES", "MEDIA TENSIÓN", "ALTA TENSIÓN", "MANTENIMIENTO", "INGENIERÍA", "PUESTA A TIERRA"].map(
+                {["SUBESTACIONES", "MEDIA TENSIÓN", "BAJA TENSIÓN", "TABLEROS", "MANTENIMIENTO", "INGENIERÍA"].map(
                   (t) => (
                     <span key={t} className="flex items-center gap-10">
                       {t} <span className="text-cyan">◆</span>
