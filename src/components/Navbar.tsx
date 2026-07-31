@@ -50,12 +50,18 @@ export default function Navbar() {
 
         {/* Desktop */}
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => (
+          {NAV.map((item) => {
+            const isContacto = item.href === "/contacto";
+            return (
             <div key={item.href} className="group relative">
               <Link
                 href={item.href}
                 className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm transition-colors ${
-                  isActive(item.href) ? "text-[var(--text)]" : "text-muted hover:text-[var(--text)]"
+                  isContacto
+                    ? "font-semibold text-electric underline decoration-electric decoration-2 underline-offset-[6px] hover:opacity-80"
+                    : isActive(item.href)
+                      ? "text-[var(--text)]"
+                      : "text-muted hover:text-[var(--text)]"
                 }`}
               >
                 {item.label}
@@ -81,13 +87,8 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-          ))}
-          <Link
-            href="/contacto"
-            className="ml-2 rounded-lg bg-electric px-4 py-2 text-sm font-semibold text-white transition hover:bg-electric hover:text-[var(--text)]"
-          >
-            Cotizar
-          </Link>
+            );
+          })}
         </nav>
 
         {/* Toggle móvil */}
@@ -117,7 +118,11 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <Link
                   href={item.href}
-                  className="flex-1 px-4 py-3 text-left text-muted transition hover:text-[var(--text)]"
+                  className={`flex-1 px-4 py-3 text-left transition ${
+                    item.href === "/contacto"
+                      ? "font-semibold text-electric underline decoration-electric decoration-2 underline-offset-4"
+                      : "text-muted hover:text-[var(--text)]"
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -152,12 +157,6 @@ export default function Navbar() {
               )}
             </div>
           ))}
-          <Link
-            href="/contacto"
-            className="mt-2 rounded-lg bg-electric px-4 py-3 text-center font-semibold text-white"
-          >
-            Cotizar
-          </Link>
         </nav>
       </div>
     </header>
