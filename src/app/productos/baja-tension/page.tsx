@@ -6,7 +6,7 @@ import { PRODUCTOS_PAGE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Subestaciones de baja tensión",
   description:
-    "Tableros y gabinetes de baja tensión en lámina Cold Rolled, galvanizada o inox. Pintura RAL 7032, certificación RETIE 2013 (Cert. 0308).",
+    "Tableros y gabinetes de baja tensión en lámina Cold Rolled, galvanizada o inox. Pintura RAL 7032, certificación RETIE (Cert. 0308).",
 };
 
 export default function Page() {

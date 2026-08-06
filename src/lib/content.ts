@@ -49,15 +49,15 @@ export const SERVICES = [
   {
     n: "02",
     title: "Subestaciones",
-    desc: "Fabricación de subestaciones eléctricas, tableros y gabinetes de media y baja tensión con certificación RETIE 2013.",
-    tags: ["Tablerista", "RETIE 2013", "A la medida"],
+    desc: "Fabricación de subestaciones eléctricas, tableros y gabinetes de media y baja tensión con certificación RETIE.",
+    tags: ["Tablerista", "RETIE", "A la medida"],
     img: "/img/subestaciones.jpg",
     href: "/productos",
   },
 ] as const;
 
 export const PRODUCTS = [
-  { title: "Celdas de media tensión", spec: "13.2 kV – 34.5 kV · RETIE 2013" },
+  { title: "Celdas de media tensión", spec: "13.2 kV – 34.5 kV · RETIE" },
   { title: "Tableros de baja tensión", spec: "Auto soportados / adosables" },
   { title: "Envolventes y gabinetes", spec: "Uso interior y exterior" },
   { title: "Transferencias automáticas", spec: "Baja y media tensión" },
@@ -68,7 +68,7 @@ export const STATS = [
   { value: 1960, suffix: "", label: "Fundada en" },
   { value: 65, suffix: "+", label: "Años de trayectoria" },
   { value: 24, suffix: "/7", label: "Línea de mantenimiento" },
-  { value: 4, suffix: "", label: "Certificaciones ISO / RETIE" },
+  { value: 7, suffix: "", label: "Certificaciones ISO / RETIE" },
 ] as const;
 
 /* --- Empresa --- */
@@ -180,10 +180,10 @@ export const SERVICIOS_PAGE = {
 /* --- Productos --- */
 export const PRODUCTOS_PAGE = {
   intro:
-    "Somos fabricantes de subestaciones eléctricas de media y baja tensión, con amplia oferta de tableros y gabinetes para uso interior y exterior, ajustados a la medida del cliente. Certificación RETIE 2013.",
+    "Somos fabricantes de subestaciones eléctricas de media y baja tensión, con amplia oferta de tableros y gabinetes para uso interior y exterior, ajustados a la medida del cliente. Certificación RETIE.",
   media: {
     title: "Subestaciones de media tensión",
-    body: "Celdas de media tensión de 13.2 kV a 34.5 kV. Diseño y fabricación bajo norma, con certificación RETIE 2013 y certificado 0309.",
+    body: "Celdas de media tensión de 13.2 kV a 34.5 kV. Diseño y fabricación bajo norma, con certificación RETIE y certificado 0309.",
     specs: [
       "Rango 13.2 kV – 34.5 kV",
       "Celdas certificadas (Cert. 0309)",
@@ -199,7 +199,7 @@ export const PRODUCTOS_PAGE = {
       "Lámina Cold Rolled / Galvanizada / Inox",
       "Pintura en polvo RAL 7032",
       "Fosfatizado en zinc de 5 pasos",
-      "Certificación RETIE 2013 (Cert. 0308)",
+      "Certificación RETIE (Cert. 0308)",
     ],
     img: "/img/mantenimiento.jpg",
   },

@@ -15,7 +15,7 @@ const CARDS = [
   {
     n: "02",
     title: "Certificaciones",
-    desc: "ISO 9001, 14001, 45001 y certificados RETIE 2013 (0307–0310).",
+    desc: "ISO 9001, 14001, 45001 y certificados RETIE (0307–0310).",
     href: "/empresa/certificaciones",
   },
   {

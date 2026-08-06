@@ -6,7 +6,7 @@ import { PRODUCTOS_PAGE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Subestaciones de media tensión",
   description:
-    "Celdas de media tensión 13.2–34.5 kV, diseño y fabricación bajo norma con certificación RETIE 2013 (Cert. 0309).",
+    "Celdas de media tensión 13.2–34.5 kV, diseño y fabricación bajo norma con certificación RETIE (Cert. 0309).",
 };
 
 export default function Page() {
