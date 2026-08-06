@@ -89,17 +89,6 @@ export default function VideoShowcase() {
             opción.
           </p>
 
-          <div data-reveal className="mt-7 flex flex-wrap gap-2">
-            {["RETIE", "ISO 9001", "ISO 14001", "ISO 45001"].map((c) => (
-              <span
-                key={c}
-                className="rounded-full border border-[var(--border)] px-3 py-1 text-xs font-medium text-muted"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-
           <div data-reveal className="mt-8 flex items-center gap-4">
             <NodeSeparator />
             <span className="font-display text-lg font-semibold text-[var(--text)]">
