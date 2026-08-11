@@ -2,6 +2,18 @@
    Contenido Metalandes — datos reales del sitio metalandes.net
    ============================================================ */
 
+/* Los certificados se importan como assets, no desde /public: así no quedan
+   expuestos en una URL directa y sólo se sirven optimizados por next/image.
+   Los PDF originales no se publican — los certificados son de consulta, no
+   de descarga. */
+import iso9001 from "@/assets/certificados/iso-9001.jpg";
+import iso14001 from "@/assets/certificados/iso-14001.jpg";
+import iso45001 from "@/assets/certificados/iso-45001.jpg";
+import retie0307 from "@/assets/certificados/retie-0307.png";
+import retie0308 from "@/assets/certificados/retie-0308.png";
+import retie0309 from "@/assets/certificados/retie-0309.png";
+import retie0310 from "@/assets/certificados/retie-0310.png";
+
 export type NavItem = {
   label: string;
   href: string;
@@ -99,24 +111,21 @@ export const EMPRESA = {
         name: "Sistema de Gestión de la Calidad",
         issuer: "Kiwa CQR SAS",
         validez: "Vigente hasta agosto 2027",
-        img: "/certificados/iso-9001.jpg",
-        pdf: "/certificados/iso-9001.pdf",
+        img: iso9001,
       },
       {
         code: "ISO 14001:2015",
         name: "Sistema de Gestión Ambiental",
         issuer: "Kiwa CQR SAS",
         validez: "Vigente hasta febrero 2027",
-        img: "/certificados/iso-14001.jpg",
-        pdf: "/certificados/iso-14001.pdf",
+        img: iso14001,
       },
       {
         code: "ISO 45001:2018",
         name: "Seguridad y Salud en el Trabajo",
         issuer: "Kiwa CQR SAS",
         validez: "Vigente hasta febrero 2027",
-        img: "/certificados/iso-45001.jpg",
-        pdf: "/certificados/iso-45001.pdf",
+        img: iso45001,
       },
     ],
     retie: [
@@ -125,32 +134,28 @@ export const EMPRESA = {
         name: "Envolventes vacías / tableros auto soportados",
         issuer: "Certicheck S.A.S · Esquema 5 RETIE",
         validez: "Vigente hasta diciembre 2030",
-        img: "/certificados/retie-0307.png",
-        pdf: "/certificados/retie-0307.pdf",
+        img: retie0307,
       },
       {
         code: "Cert. 0308",
         name: "Tableros de baja tensión",
         issuer: "Certicheck S.A.S · Esquema 5 RETIE",
         validez: "Vigente hasta diciembre 2030",
-        img: "/certificados/retie-0308.png",
-        pdf: "/certificados/retie-0308.pdf",
+        img: retie0308,
       },
       {
         code: "Cert. 0309",
         name: "Celdas de media tensión",
         issuer: "Certicheck S.A.S · Esquema 5 RETIE",
         validez: "Vigente hasta diciembre 2030",
-        img: "/certificados/retie-0309.png",
-        pdf: "/certificados/retie-0309.pdf",
+        img: retie0309,
       },
       {
         code: "Cert. 0310",
         name: "Tableros de transferencias automáticas de carga",
         issuer: "Certicheck S.A.S · Esquema 5 RETIE",
         validez: "Vigente hasta diciembre 2030",
-        img: "/certificados/retie-0310.png",
-        pdf: "/certificados/retie-0310.pdf",
+        img: retie0310,
       },
     ],
   },

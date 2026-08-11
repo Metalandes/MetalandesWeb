@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import { ElectricEyebrow, NodeSeparator } from "@/components/brand/BrandBits";
@@ -13,7 +13,7 @@ type Cert = {
   name: string;
   issuer: string;
   validez: string;
-  img: string;
+  img: StaticImageData;
 };
 
 /**
@@ -38,7 +38,9 @@ function CertCard({ cert, sizes }: { cert: Cert; sizes: string }) {
           alt={`Certificado ${cert.code} — ${cert.name}`}
           fill
           sizes={sizes}
-          className="object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+          draggable={false}
+          placeholder="blur"
+          className="select-none object-cover object-top transition duration-500 group-hover:scale-[1.04]"
         />
         {/* Velo + CTA que se revelan al pasar el cursor */}
         <span className="absolute inset-0 bg-gradient-to-t from-[var(--text)]/85 via-[var(--text)]/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
