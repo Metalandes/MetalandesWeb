@@ -49,7 +49,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV.filter((item) => item.href !== "/contacto").map((item) => (
             <div key={item.href} className="group relative">
               <Link
@@ -92,7 +92,7 @@ export default function Navbar() {
 
         {/* Toggle móvil */}
         <button
-          className="flex flex-col gap-1.5 md:hidden"
+          className="flex flex-col gap-1.5 lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menú"
           aria-expanded={open}
@@ -107,8 +107,8 @@ export default function Navbar() {
 
       {/* Drawer móvil */}
       <div
-        className={`glass mx-4 mt-2 overflow-hidden rounded-2xl transition-all duration-400 md:hidden ${
-          open ? "max-h-[32rem] opacity-100" : "max-h-0 border-transparent opacity-0"
+        className={`glass mx-4 mt-2 overflow-hidden rounded-2xl transition-all duration-400 lg:hidden ${
+          open ? "max-h-[44rem] opacity-100" : "max-h-0 border-transparent opacity-0"
         }`}
       >
         <nav className="flex flex-col p-3">

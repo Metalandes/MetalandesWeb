@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/productos/baja-tension",
     "/contacto",
     "/proyectos",
+    "/blog",
+    "/trabaja-con-nosotros",
   ];
   return routes.map((r) => ({
     url: `${BASE}${r}`,

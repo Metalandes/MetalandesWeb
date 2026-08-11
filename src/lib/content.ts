@@ -33,6 +33,8 @@ export const NAV: NavItem[] = [
       { label: "Subestaciones baja tensión", href: "/productos/baja-tension" },
     ],
   },
+  { label: "Blog", href: "/blog" },
+  { label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/contacto" },
 ];
 
@@ -203,6 +205,58 @@ export const PRODUCTOS_PAGE = {
     ],
     img: "/img/mantenimiento.jpg",
   },
+};
+
+/* --- Trabaja con nosotros --- */
+export const TRABAJO = {
+  intro:
+    "Somos una compañía colombiana con más de 65 años fabricando soluciones metal eléctricas desde Medellín. Buscamos personas técnicas y rigurosas que quieran construir infraestructura eléctrica que el país usa todos los días.",
+  razones: [
+    {
+      title: "Oficio real",
+      desc: "Ingeniería, diseño mecánico y eléctrico, carpintería metálica, ensamble y pruebas: se aprende haciendo, sobre producto que sale a campo.",
+    },
+    {
+      title: "Seguridad primero",
+      desc: "Sistema de Gestión de Seguridad y Salud en el Trabajo certificado bajo ISO 45001:2018, auditado por un organismo acreditado ante la ONAC.",
+    },
+    {
+      title: "Estabilidad",
+      desc: "Fundada en 1960. Seis décadas de operación continua en el sector eléctrico colombiano.",
+    },
+  ],
+  areas: [
+    "Ingeniería y diseño eléctrico",
+    "Diseño mecánico",
+    "Carpintería metálica",
+    "Ensamble y cableado",
+    "Pruebas y calidad",
+    "Mantenimiento en sitio",
+    "Logística y despacho",
+    "Comercial y servicio posventa",
+  ],
+  comoAplicar:
+    "Envíanos tu hoja de vida indicando en el asunto el área de tu interés. Revisamos todas las postulaciones y te contactamos si tu perfil corresponde a una vacante abierta.",
+};
+
+/* --- Blog --- */
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+};
+
+/**
+ * Entradas del blog. Vacío por ahora: la página muestra su estado inicial
+ * hasta que se publique el primer artículo.
+ */
+export const POSTS: Post[] = [];
+
+export const BLOG = {
+  intro:
+    "Notas técnicas sobre subestaciones, normativa RETIE, mantenimiento eléctrico y buenas prácticas de la industria metal eléctrica colombiana.",
 };
 
 /* --- Contacto --- */
