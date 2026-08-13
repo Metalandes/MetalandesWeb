@@ -7,17 +7,9 @@ import { NAV } from "@/lib/content";
 import { LogoWordmark } from "@/components/Logo";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Cierra el menú móvil al cambiar de ruta
   useEffect(() => {
@@ -28,18 +20,8 @@ export default function Navbar() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-5"
-      }`}
-    >
-      <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 ${
-          scrolled
-            ? "glass mx-4 rounded-2xl px-5 py-2.5 shadow-[0_10px_40px_-15px_var(--glow-blue)]"
-            : ""
-        }`}
-      >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
         <Link
           href="/"
           className="group flex items-center transition-opacity hover:opacity-80"
@@ -107,8 +89,8 @@ export default function Navbar() {
 
       {/* Drawer móvil */}
       <div
-        className={`glass mx-4 mt-2 overflow-hidden rounded-2xl transition-all duration-400 lg:hidden ${
-          open ? "max-h-[44rem] opacity-100" : "max-h-0 border-transparent opacity-0"
+        className={`overflow-hidden bg-white transition-[max-height] duration-300 lg:hidden ${
+          open ? "max-h-[44rem]" : "max-h-0"
         }`}
       >
         <nav className="flex flex-col p-3">
