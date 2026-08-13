@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/content";
-import { LogoWordmark } from "@/components/Logo";
+import { LogoTile } from "@/components/Logo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -22,12 +22,15 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <Link
-          href="/"
-          className="group flex items-center transition-opacity hover:opacity-80"
-          aria-label="Metalandes Electric inicio"
-        >
-          <LogoWordmark className="h-7 w-auto md:h-8" />
+        <Link href="/" className="group flex items-center gap-2.5" aria-label="Metalandes inicio">
+          <span className="relative">
+            {/* Resplandor rojo que se enciende detrás de la placa al pasar el cursor */}
+            <span className="absolute -inset-1 rounded-xl bg-gradient-to-br from-electric to-energy opacity-0 blur-md transition group-hover:opacity-60" />
+            <LogoTile className="relative h-8 w-8" />
+          </span>
+          <span className="font-display text-lg font-bold tracking-tight">
+            METAL<span className="text-electric">ANDES</span>
+          </span>
         </Link>
 
         {/* Desktop */}
