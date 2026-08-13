@@ -29,7 +29,7 @@ export default function Navbar() {
             <LogoTile className="relative h-8 w-8" />
           </span>
           <span className="font-display text-lg font-bold tracking-tight">
-            METAL<span className="text-electric">ANDES</span>
+            Metal<span className="text-electric">andes</span>
           </span>
         </Link>
 
