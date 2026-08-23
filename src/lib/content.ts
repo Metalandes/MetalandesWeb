@@ -28,6 +28,7 @@ export const NAV: NavItem[] = [
       { label: "Gestión integral", href: "/empresa/gestion-integral" },
       { label: "Certificaciones", href: "/empresa/certificaciones" },
       { label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
+      { label: "PQR", href: "/pqr" },
     ],
   },
   {
@@ -101,6 +102,25 @@ export const EMPRESA = {
       "Prevención de la contaminación ambiental y mejora continua de los procesos.",
       "Consulta y participación de los interesados.",
     ],
+    /* Nota de alcance y firma tal como los publica la empresa. */
+    alcance:
+      "Esta política tiene alcance sobre todos los centros de trabajo de la organización, en caso de que se habiliten sedes. En términos de seguridad y salud en el trabajo, su alcance cubre a todos los trabajadores independientemente de su forma de contratación y vinculación, incluyendo contratistas y subcontratistas.",
+    firma: { nombre: "Daniel Gómez Botero", cargo: "Representante legal" },
+    pilares: [
+      {
+        title: "Gestión de la calidad",
+        body: "La gestión de la calidad es la herramienta que garantiza que los bienes y servicios ofrecidos a nuestros clientes satisfacen sus necesidades. Se aplican cuatro componentes básicos: planeación, control, aseguramiento y mejora en la calidad de procesos, materias primas, insumos y recursos físicos y humanos.",
+      },
+      {
+        title: "Seguridad y salud en el trabajo",
+        body: "Metalandes S.A.S está comprometida con la calidad de vida laboral de su equipo. Los principales riesgos de nuestra actividad son la exposición a tensión eléctrica, posturas prolongadas y manejo de cargas, ruido, golpes y caídas. La estrategia de gestión previene accidentes y enfermedades laborales mediante programas de gestión de riesgos y vigilancia epidemiológica.",
+      },
+      {
+        title: "Gestión ambiental",
+        body: "Controlamos aspectos ambientales como el uso y consumo de agua, el consumo de energía y la generación de residuos, con acciones de prevención y mitigación, campañas de sensibilización y mejora continua del desempeño ambiental.",
+      },
+    ],
+    raee: "Cuando las subestaciones eléctricas de media o baja tensión que hemos suministrado cumplan su vida útil, deben entregarse a una empresa especializada en el manejo de residuos de aparatos eléctricos y electrónicos, con licencia ambiental vigente, que separe los materiales para que las piezas aprovechables se reincorporen a los procesos productivos y las no aprovechables se destruyan adecuadamente.",
   },
   certificaciones: {
     title: "Certificaciones",
@@ -161,8 +181,41 @@ export const EMPRESA = {
   },
   datos: {
     title: "Tratamiento de datos",
-    body: "Metalúrgica de los Andes S.A.S, como responsable del tratamiento de datos personales para el desarrollo de su actividad económica, establece directrices para el manejo de datos según la Sección 3, artículo 2.2.2.25.3.1 del Decreto 1074 de 2015. Ponemos a disposición nuestra Política de Tratamiento de Datos Personales para consulta y descarga.",
+    body: "Metalúrgica de los Andes S.A.S, como responsable del tratamiento de ciertos datos personales para el normal desarrollo de su actividad económica y en el marco de la relación que la vincula con clientes, proveedores, contratistas y demás personas relacionadas con las actividades industriales y comerciales, manifiesta su compromiso de establecer directrices para el manejo de datos personales según lo requerido en la Sección 3, artículo 2.2.2.25.3.1 del Decreto 1074 de 2015.",
+    /* Documento oficial PE-DB-006 Rev. 4 (26/08/2025), publicado por la empresa. */
+    pdf: "/documentos/politica-tratamiento-datos.pdf",
+    pdfLabel: "Política de Tratamiento de Datos Personales",
   },
+};
+
+/* --- PQR — peticiones, quejas y reclamos --- */
+export const PQR = {
+  lead: "Peticiones, quejas y reclamos",
+  intro:
+    "Buscamos una comunicación fluida y eficaz con clientes y demás grupos de interés para la recepción y atención de sugerencias, peticiones, quejas y reclamos. Puedes comunicarte por correo electrónico, por teléfono, por correspondencia o personalmente en nuestras instalaciones.",
+  email: "calidad@metalandes.com",
+  /* Formato oficial que la empresa publica para radicar la PQR. */
+  formato: "/documentos/formulario-pqr.xlsx",
+  formatoLabel: "Formato de reporte de PQR (Excel)",
+  pasos: [
+    {
+      n: "01",
+      title: "Descarga el formato",
+      desc: "Usa el formato de reporte de PQR para que quede registrada toda la información que necesitamos para atenderte.",
+    },
+    {
+      n: "02",
+      title: "Diligéncialo",
+      desc: "Describe la petición, queja o reclamo e incluye tus datos de contacto para poder responderte.",
+    },
+    {
+      n: "03",
+      title: "Envíalo",
+      desc: "Remítelo al correo de calidad o entrégalo personalmente en nuestras instalaciones en Medellín.",
+    },
+  ],
+  datosPersonales:
+    "Si tu petición, queja o reclamo se relaciona con el tratamiento de tus datos personales, utiliza este mismo formato y envíalo al correo de calidad o entrégalo personalmente en las instalaciones de la empresa.",
 };
 
 /* --- Servicios --- */

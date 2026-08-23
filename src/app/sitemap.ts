@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/proyectos",
     "/blog",
     "/trabaja-con-nosotros",
+    "/pqr",
   ];
   return routes.map((r) => ({
     url: `${BASE}${r}`,
