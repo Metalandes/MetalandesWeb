@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SubPage from "@/components/SubPage";
+import ProductCatalog from "@/components/ProductCatalog";
 import { PRODUCTOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -40,6 +41,10 @@ export default function Page() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-20">
+        <ProductCatalog title={baja.catalogoTitle} items={baja.catalogo} />
       </div>
     </SubPage>
   );

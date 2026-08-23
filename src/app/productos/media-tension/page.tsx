@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SubPage from "@/components/SubPage";
+import ProductCatalog from "@/components/ProductCatalog";
 import { PRODUCTOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -40,6 +41,10 @@ export default function Page() {
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-transparent to-transparent" />
           <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
         </div>
+      </div>
+
+      <div className="mt-20">
+        <ProductCatalog title={media.catalogoTitle} items={media.catalogo} />
       </div>
     </SubPage>
   );

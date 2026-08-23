@@ -185,6 +185,25 @@ export const SERVICIOS_PAGE = {
 };
 
 /* --- Productos --- */
+
+/**
+ * Producto del catálogo de una subestación.
+ *
+ * Pensado para que el módulo de edición lo administre sin tocar código: se
+ * pueden agregar, quitar, reordenar y renombrar ítems, y cargarles foto.
+ * - `id` es estable y no debe cambiar aunque se renombre el producto: es lo
+ *   que permitirá referenciarlo (foto asociada, orden, enlace) sin romper nada.
+ * - `img: null` significa "sin foto todavía": la tarjeta reserva el espacio y
+ *   muestra un marcador neutro hasta que se cargue la imagen.
+ * - `desc` es opcional; hoy solo se usa para desplegar siglas.
+ */
+export type ProductoItem = {
+  id: string;
+  title: string;
+  desc?: string;
+  img?: string | null;
+};
+
 export const PRODUCTOS_PAGE = {
   intro:
     "Somos fabricantes de subestaciones eléctricas de media y baja tensión, con amplia oferta de tableros y gabinetes para uso interior y exterior, ajustados a la medida del cliente. Certificación RETIE.",
@@ -198,6 +217,13 @@ export const PRODUCTOS_PAGE = {
       "Diseño a la medida",
     ],
     img: "/img/subestaciones.jpg",
+    catalogoTitle: "Gabinetes de media tensión",
+    catalogo: [
+      { id: "celdas-transformador", title: "Celdas de transformador", img: null },
+      { id: "medida-condensada", title: "Medida condensada", img: null },
+      { id: "seccionador", title: "Seccionador", img: null },
+      { id: "switchgear", title: "Switchgear", img: null },
+    ] as ProductoItem[],
   },
   baja: {
     title: "Subestaciones de baja tensión",
@@ -209,6 +235,16 @@ export const PRODUCTOS_PAGE = {
       "Certificación RETIE (Cert. 0308)",
     ],
     img: "/img/mantenimiento.jpg",
+    catalogoTitle: "Tableros y equipos de baja tensión",
+    catalogo: [
+      { id: "banco-capacitores", title: "Banco de capacitores", img: null },
+      { id: "bombeos-480", title: "Bombeos de 480 V", img: null },
+      { id: "ccm", title: "CCM", desc: "Centro de control de motores", img: null },
+      { id: "tablero-agrupador", title: "Tablero agrupador", img: null },
+      { id: "tablero-rack", title: "Tablero rack", img: null },
+      { id: "tablero-intemperie", title: "Tableros tipo intemperie", img: null },
+      { id: "racks-distribucion", title: "Racks y distribución", img: null },
+    ] as ProductoItem[],
   },
 };
 
