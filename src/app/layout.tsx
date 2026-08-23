@@ -1,10 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Anybody } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 // Tipografía oficial de marca (manual Sensorial): familia Anybody.
 // Medium para títulos, Light/Regular para texto corrido.
@@ -58,18 +54,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${display.variable} ${sans.variable}`}>
-      <body className="min-h-dvh">
-        <a href="#main" className="skip-link">
-          Saltar al contenido
-        </a>
-        <div className="noise" aria-hidden />
-        <SmoothScroll>
-          <Navbar />
-          {children}
-          <Footer />
-        </SmoothScroll>
-        <WhatsAppButton />
-      </body>
+      {/* El navbar, el footer y el scroll suave viven en (site): el Studio de
+          contenido se sirve fuera de ese envoltorio para no heredarlos. */}
+      <body className="min-h-dvh">{children}</body>
     </html>
   );
 }
