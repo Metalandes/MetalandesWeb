@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import { getFaqs } from "@/sanity/queries";
+import { getFaqs, getPortada, getServicios } from "@/sanity/queries";
 import Empresa from "@/components/Empresa";
 import VideoShowcase from "@/components/VideoShowcase";
 import Certificaciones from "@/components/Certificaciones";
@@ -11,17 +11,21 @@ import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
 
 export default async function Home() {
-  const faqs = await getFaqs();
+  const [faqs, portada, servicios] = await Promise.all([
+    getFaqs(),
+    getPortada(),
+    getServicios(),
+  ]);
   return (
     <main id="main" className="relative z-[2]">
       <Hero />
-      <Empresa />
+      <Empresa portada={portada} />
       <VideoShowcase />
       <Certificaciones />
-      <Aliados />
-      <Servicios />
+      <Aliados aliados={portada.aliados} titulo={portada.aliadosTitulo} />
+      <Servicios servicios={servicios} titulo={portada.tituloServicios} />
       <Productos />
-      <Stats />
+      <Stats cifras={portada.cifras} />
       <FAQ items={faqs} />
       <Contacto />
     </main>

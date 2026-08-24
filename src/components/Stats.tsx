@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { STATS } from "@/lib/content";
+import type { PortadaDoc } from "@/sanity/queries";
 
-export default function Stats() {
+export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc["cifras"]> }) {
   const root = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -42,18 +42,18 @@ export default function Stats() {
           ref={root}
           className="glass grid grid-cols-2 gap-px overflow-hidden rounded-3xl lg:grid-cols-4"
         >
-          {STATS.map((s) => (
+          {cifras.map((s) => (
             <div
-              key={s.label}
+              key={s._key}
               className="stat-cell relative flex flex-col items-center justify-center gap-2 p-8 text-center md:p-12"
             >
               <div className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold leading-none tracking-tight">
-                <span className="stat-num text-gradient" data-value={s.value}>
+                <span className="stat-num text-gradient" data-value={s.valor}>
                   <span>0</span>
                 </span>
-                <span className="text-gradient">{s.suffix}</span>
+                <span className="text-gradient">{s.sufijo}</span>
               </div>
-              <p className="text-sm text-muted">{s.label}</p>
+              <p className="text-sm text-muted">{s.etiqueta}</p>
             </div>
           ))}
         </div>

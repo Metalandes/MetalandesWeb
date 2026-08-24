@@ -157,3 +157,100 @@ export async function getPost(slug: string): Promise<PostDoc | null> {
     { next: { revalidate: 60, tags: ["post"] } }
   );
 }
+
+/* --- Portada --- */
+
+export type PortadaDoc = {
+  heroTitulo?: string;
+  heroDestacado?: string;
+  heroSubtitulo?: string;
+  heroCta?: string;
+  marquee?: string[];
+  empresaTitulo?: string;
+  empresaDestacado?: string;
+  empresaTexto?: string;
+  valores?: { _key: string; titulo: string; texto: string }[];
+  cifras?: { _key: string; valor: number; sufijo?: string; etiqueta: string }[];
+  aliadosTitulo?: string;
+  aliados?: string[];
+  tituloServicios?: string;
+  tituloProductos?: string;
+  tituloCertificaciones?: string;
+  tituloFaq?: string;
+};
+
+export async function getPortada(): Promise<PortadaDoc> {
+  const doc = await client.fetch<PortadaDoc | null>(
+    `*[_type == "portada"][0]`,
+    {},
+    { next: { revalidate: 60, tags: ["portada"] } }
+  );
+  return doc ?? {};
+}
+
+/* --- Servicios --- */
+
+export type ServicioDoc = {
+  _id: string;
+  titulo: string;
+  descripcion?: string;
+  etiquetas?: string[];
+  enlace?: string;
+  imagen?: Image;
+  items?: string[];
+  detalle?: PortableTextBlock[];
+};
+
+export async function getServicios(): Promise<ServicioDoc[]> {
+  return client.fetch(
+    `*[_type == "servicio"] | order(orden asc){
+      _id, titulo, descripcion, etiquetas, enlace, imagen, items, detalle
+    }`,
+    {},
+    { next: { revalidate: 60, tags: ["servicio"] } }
+  );
+}
+
+/* --- Proyectos --- */
+
+export type ProyectoDoc = {
+  _id: string;
+  titulo: string;
+  lugar?: string;
+  anio?: string;
+  categoria?: string;
+  imagen?: Image;
+};
+
+export async function getProyectos(): Promise<ProyectoDoc[]> {
+  return client.fetch(
+    `*[_type == "proyecto"] | order(orden asc){ _id, titulo, lugar, anio, categoria, imagen }`,
+    {},
+    { next: { revalidate: 60, tags: ["proyecto"] } }
+  );
+}
+
+/* --- Páginas de productos --- */
+
+export type PaginaProductosDoc = {
+  intro?: string;
+  mediaTitulo?: string;
+  mediaTexto?: string;
+  mediaSpecs?: string[];
+  mediaCatalogoTitulo?: string;
+  mediaImagen?: Image;
+  bajaTitulo?: string;
+  bajaTexto?: string;
+  bajaSpecs?: string[];
+  bajaCatalogoTitulo?: string;
+  bajaImagen?: Image;
+};
+
+export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
+  const doc = await client.fetch<PaginaProductosDoc | null>(
+    `*[_type == "paginaProductos"][0]`,
+    {},
+    { next: { revalidate: 60, tags: ["paginaProductos"] } }
+  );
+  return doc ?? {};
+}

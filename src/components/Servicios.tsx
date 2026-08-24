@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
-import { SERVICES } from "@/lib/content";
+import { urlFor } from "@/sanity/image";
+import type { ServicioDoc } from "@/sanity/queries";
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
 
-export default function Servicios() {
+export default function Servicios({ servicios = [], titulo }: { servicios?: ServicioDoc[]; titulo?: string }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -28,19 +29,19 @@ export default function Servicios() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {SERVICES.map((s) => (
+          {servicios.map((s, i) => (
             <article
-              key={s.n}
+              key={s._id}
               data-reveal
               className="group glass clip-proto-lg relative flex flex-col overflow-hidden transition duration-300 hover:-translate-y-2"
             >
               <div className="absolute inset-x-0 -top-px z-20 h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
 
-              {s.img ? (
+              {s.imagen ? (
                 <div className="relative h-56 w-full overflow-hidden md:h-64">
                   <Image
-                    src={s.img}
-                    alt={s.title}
+                    src={urlFor(s.imagen).width(900).url()}
+                    alt={s.titulo}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="scale-105 object-cover opacity-70 grayscale-[0.2] transition duration-500 group-hover:scale-100 group-hover:opacity-90"
@@ -56,11 +57,11 @@ export default function Servicios() {
               )}
 
               <div className="flex flex-1 flex-col p-8 pt-6">
-              <span className="font-display text-sm text-faint">{s.n}</span>
-              <h3 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{s.title}</h3>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">{s.desc}</p>
+              <span className="font-display text-sm text-faint">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{s.titulo}</h3>
+              <p className="mt-3 flex-1 leading-relaxed text-muted">{s.descripcion}</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {s.tags.map((t) => (
+                {(s.etiquetas ?? []).map((t) => (
                   <span
                     key={t}
                     className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-muted"
@@ -70,7 +71,7 @@ export default function Servicios() {
                 ))}
               </div>
               <Link
-                href={s.href}
+                href={s.enlace ?? "/"}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3"
               >
                 Ver más <span aria-hidden>→</span>

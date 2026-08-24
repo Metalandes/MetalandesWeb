@@ -3,14 +3,9 @@
 import { useReveal } from "@/hooks/useReveal";
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
+import type { PortadaDoc } from "@/sanity/queries";
 
-const VALUES = [
-  { title: "Compromiso", desc: "Respondemos por cada proyecto de principio a fin." },
-  { title: "Confianza", desc: "Relaciones que se sostienen en el tiempo y en resultados." },
-  { title: "Innovación", desc: "Ingeniería que evoluciona con la energía del país." },
-];
-
-export default function Empresa() {
+export default function Empresa({ portada = {} }: { portada?: PortadaDoc }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -26,13 +21,15 @@ export default function Empresa() {
               data-reveal
               className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
             >
-              Una empresa colombiana que{" "}
-              <span className="text-gradient">produce energía y confianza</span>.
+              {portada.empresaTitulo ?? "Una empresa colombiana que"}{" "}
+              <span className="text-gradient">
+                {portada.empresaDestacado ?? "produce energía y confianza"}
+              </span>
+              .
             </h2>
             <p data-reveal className="mt-8 max-w-lg text-lg leading-relaxed text-muted">
-              Producimos bienes y servicios en el ramo eléctrico para atender las necesidades
-              crecientes del mercado colombiano e internacional. Crecemos junto a los clientes que
-              creen en nuestras capacidades.
+              {portada.empresaTexto ??
+                "Producimos bienes y servicios en el ramo eléctrico para atender las necesidades crecientes del mercado colombiano e internacional."}
             </p>
 
             <div data-reveal className="mt-10 flex items-center gap-6">
@@ -44,9 +41,9 @@ export default function Empresa() {
           </div>
 
           <div className="flex flex-col gap-4">
-            {VALUES.map((v, i) => (
+            {(portada.valores ?? []).map((v, i) => (
               <div
-                key={v.title}
+                key={v._key}
                 data-reveal
                 className="group glass clip-proto relative overflow-hidden p-7 transition duration-300 hover:-translate-y-1"
               >
@@ -54,8 +51,8 @@ export default function Empresa() {
                   0{i + 1}
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(140px_140px_at_92%_8%,var(--glow-blue),transparent_70%)] opacity-0 transition duration-300 group-hover:opacity-100" />
-                <h3 className="font-display text-2xl font-semibold text-[var(--text)]">{v.title}</h3>
-                <p className="mt-2 max-w-sm text-muted">{v.desc}</p>
+                <h3 className="font-display text-2xl font-semibold text-[var(--text)]">{v.titulo}</h3>
+                <p className="mt-2 max-w-sm text-muted">{v.texto}</p>
               </div>
             ))}
           </div>
