@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import SubPage from "@/components/SubPage";
 import ProductCatalog from "@/components/ProductCatalog";
+import { getProductos } from "@/sanity/queries";
 import { PRODUCTOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
     "Celdas de media tensión 13.2–34.5 kV, diseño y fabricación bajo norma con certificación RETIE (Cert. 0309).",
 };
 
-export default function Page() {
+export default async function Page() {
   const { media } = PRODUCTOS_PAGE;
+  const productos = await getProductos("media");
   return (
     <SubPage
       parent="Productos"
@@ -44,7 +46,7 @@ export default function Page() {
       </div>
 
       <div className="mt-20">
-        <ProductCatalog title={media.catalogoTitle} items={media.catalogo} />
+        <ProductCatalog title={media.catalogoTitle} items={productos} />
       </div>
     </SubPage>
   );

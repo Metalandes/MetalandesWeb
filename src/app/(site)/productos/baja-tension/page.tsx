@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import SubPage from "@/components/SubPage";
 import ProductCatalog from "@/components/ProductCatalog";
+import { getProductos } from "@/sanity/queries";
 import { PRODUCTOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
     "Tableros y gabinetes de baja tensión en lámina Cold Rolled, galvanizada o inox. Pintura RAL 7032, certificación RETIE (Cert. 0308).",
 };
 
-export default function Page() {
+export default async function Page() {
   const { baja } = PRODUCTOS_PAGE;
+  const productos = await getProductos("baja");
   return (
     <SubPage
       parent="Productos"
@@ -44,7 +46,7 @@ export default function Page() {
       </div>
 
       <div className="mt-20">
-        <ProductCatalog title={baja.catalogoTitle} items={baja.catalogo} />
+        <ProductCatalog title={baja.catalogoTitle} items={productos} />
       </div>
     </SubPage>
   );
