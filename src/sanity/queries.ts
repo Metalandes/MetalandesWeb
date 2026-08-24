@@ -1,4 +1,4 @@
-import type { Image } from "sanity";
+import type { Image, PortableTextBlock } from "sanity";
 import { client } from "./client";
 
 export type ProductoDoc = {
@@ -27,5 +27,39 @@ export async function getProductos(categoria: "media" | "baja"): Promise<Product
     { categoria },
     // Etiqueta de caché: al publicar en el Studio se revalida sólo esto.
     { next: { revalidate: 60, tags: ["producto"] } }
+  );
+}
+
+/* --- Blog --- */
+
+export type PostDoc = {
+  _id: string;
+  titulo: string;
+  slug: string;
+  fecha: string;
+  categoria?: string;
+  extracto?: string;
+  portada?: Image;
+  contenido?: PortableTextBlock[];
+};
+
+const CAMPOS_POST = `
+  _id, titulo, "slug": slug.current, fecha, categoria, extracto, portada
+`;
+
+/** Artículos publicados, del más reciente al más antiguo. */
+export async function getPosts(): Promise<PostDoc[]> {
+  return client.fetch(
+    `*[_type == "post" && defined(slug.current)] | order(fecha desc){ ${CAMPOS_POST} }`,
+    {},
+    { next: { revalidate: 60, tags: ["post"] } }
+  );
+}
+
+export async function getPost(slug: string): Promise<PostDoc | null> {
+  return client.fetch(
+    `*[_type == "post" && slug.current == $slug][0]{ ${CAMPOS_POST}, contenido }`,
+    { slug },
+    { next: { revalidate: 60, tags: ["post"] } }
   );
 }

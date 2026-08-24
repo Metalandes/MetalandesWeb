@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BlogContent from "@/components/pages/BlogContent";
+import { getPosts } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
     "Notas técnicas de Metalandes sobre subestaciones, normativa RETIE, mantenimiento eléctrico y la industria metal eléctrica en Colombia.",
 };
 
-export default function Page() {
-  return <BlogContent />;
+export default async function Page() {
+  const posts = await getPosts();
+  return <BlogContent posts={posts} />;
 }

@@ -185,3 +185,42 @@ html.lenis body {
   [data-reveal] { opacity: 1 !important; transform: none !important; }
   .hero-video { display: none; } /* muestra solo el poster */
 }
+
+/* Cuerpo de los artículos del blog, escritos desde el Studio. */
+.prose-metalandes {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.prose-metalandes > * + * {
+  margin-top: 1.25rem;
+}
+.prose-metalandes h2,
+.prose-metalandes h3,
+.prose-metalandes h4 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 2.5rem;
+  line-height: 1.25;
+}
+.prose-metalandes h2 { font-size: 1.75rem; }
+.prose-metalandes h3 { font-size: 1.375rem; }
+.prose-metalandes h4 { font-size: 1.125rem; }
+.prose-metalandes strong { color: var(--text); font-weight: 600; }
+.prose-metalandes a {
+  color: var(--electric);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-metalandes ul,
+.prose-metalandes ol {
+  padding-left: 1.5rem;
+}
+.prose-metalandes ul { list-style: disc; }
+.prose-metalandes ol { list-style: decimal; }
+.prose-metalandes li + li { margin-top: 0.5rem; }
+.prose-metalandes blockquote {
+  border-left: 2px solid var(--electric);
+  padding-left: 1.25rem;
+  font-style: italic;
+}
