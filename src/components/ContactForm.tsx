@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CONTACT } from "@/lib/content";
+import { useContacto } from "@/components/ContactoProvider";
 
 type Status = "idle" | "sending" | "sent";
 
@@ -9,6 +9,7 @@ const FIELD =
   "w-full rounded-xl border border-[var(--border)] bg-black/[0.02] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-faint focus:border-cyan focus:bg-black/[0.04]";
 
 export default function ContactForm() {
+  const CONTACT = useContacto();
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
 

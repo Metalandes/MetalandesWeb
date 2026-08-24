@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SubPage from "@/components/SubPage";
 import CertGallery from "@/components/CertGallery";
 import { EMPRESA } from "@/lib/content";
+import { getCertificaciones } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Certificaciones",
@@ -9,8 +10,11 @@ export const metadata: Metadata = {
     "Certificaciones de Metalandes: ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 (Kiwa CQR) y certificados de producto RETIE 0307–0310 (Certicheck).",
 };
 
-export default function Page() {
+export default async function Page() {
   const { certificaciones } = EMPRESA;
+  const certs = await getCertificaciones();
+  const iso = certs.filter((c) => c.tipo === "iso");
+  const retie = certs.filter((c) => c.tipo === "retie");
 
   return (
     <SubPage
@@ -31,7 +35,7 @@ export default function Page() {
         Sistemas de gestión
       </h2>
       <div className="mt-6">
-        <CertGallery certs={certificaciones.iso} badge="ISO · KIWA CQR" />
+        <CertGallery certs={iso} badge="ISO · KIWA CQR" />
       </div>
 
       <h2 data-reveal className="mt-16 font-display text-2xl font-bold">
@@ -42,7 +46,7 @@ export default function Page() {
         Minas y Energía.
       </p>
       <div className="mt-6">
-        <CertGallery certs={certificaciones.retie} badge="RETIE · CERTICHECK" />
+        <CertGallery certs={retie} badge="RETIE · CERTICHECK" />
       </div>
 
       <p data-reveal className="mt-10 text-sm text-faint">

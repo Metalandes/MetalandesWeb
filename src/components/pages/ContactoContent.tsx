@@ -3,18 +3,18 @@
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT } from "@/lib/content";
-
-const SOCIAL = [
-  { label: "Instagram", href: CONTACT.instagram },
-  { label: "Facebook", href: CONTACT.facebook },
-  { label: "LinkedIn", href: CONTACT.linkedin },
-  { label: "YouTube", href: CONTACT.youtube },
-  { label: "Webmail", href: CONTACT.webmail },
-];
+import { useContacto } from "@/components/ContactoProvider";
 
 export default function ContactoContent() {
+  const CONTACT = useContacto();
   const scope = useReveal<HTMLDivElement>();
+  const SOCIAL = [
+    { label: "Instagram", href: CONTACT.instagram },
+    { label: "Facebook", href: CONTACT.facebook },
+    { label: "LinkedIn", href: CONTACT.linkedin },
+    { label: "YouTube", href: CONTACT.youtube },
+    { label: "Webmail", href: CONTACT.webmail },
+  ];
 
   return (
     <main id="main" ref={scope} className="relative z-[2]">

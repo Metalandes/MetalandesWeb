@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { NAV, CONTACT } from "@/lib/content";
+import type { Contacto } from "@/lib/contacto";
 import { LogoWordmark } from "@/components/Logo";
 
-const SOCIAL = [
-  { label: "Instagram", href: CONTACT.instagram },
-  { label: "Facebook", href: CONTACT.facebook },
-  { label: "LinkedIn", href: CONTACT.linkedin },
-  { label: "YouTube", href: CONTACT.youtube },
-  { label: "Webmail", href: CONTACT.webmail },
-];
+export default function Footer({ contacto = CONTACT }: { contacto?: Contacto }) {
+  const CONTACT = contacto;
+  const SOCIAL = [
+    { label: "Instagram", href: CONTACT.instagram },
+    { label: "Facebook", href: CONTACT.facebook },
+    { label: "LinkedIn", href: CONTACT.linkedin },
+    { label: "YouTube", href: CONTACT.youtube },
+    { label: "Webmail", href: CONTACT.webmail },
+  ];
 
-export default function Footer() {
   return (
     <footer className="relative border-t border-[var(--border)] bg-[#f4f6fa] py-14">
       <div className="mx-auto max-w-7xl px-5">

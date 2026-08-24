@@ -1,12 +1,13 @@
 "use client";
 
 import { useReveal } from "@/hooks/useReveal";
-import { CONTACT } from "@/lib/content";
+import { useContacto } from "@/components/ContactoProvider";
 import ContactForm from "@/components/ContactForm";
 import { ElectricEyebrow, NodeSeparator } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
 
 export default function Contacto() {
+  const CONTACT = useContacto();
   const scope = useReveal<HTMLDivElement>();
 
   return (

@@ -1,8 +1,11 @@
-import { CONTACT } from "@/lib/content";
+"use client";
+
+import { useContacto } from "@/components/ContactoProvider";
 
 const MESSAGE = "Hola Metalandes, quisiera más información.";
 
 export default function WhatsAppButton() {
+  const CONTACT = useContacto();
   const href = `https://wa.me/${CONTACT.whatsappHref}?text=${encodeURIComponent(MESSAGE)}`;
 
   return (

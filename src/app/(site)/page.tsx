@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import { getFaqs } from "@/sanity/queries";
 import Empresa from "@/components/Empresa";
 import VideoShowcase from "@/components/VideoShowcase";
 import Certificaciones from "@/components/Certificaciones";
@@ -9,7 +10,8 @@ import Stats from "@/components/Stats";
 import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
 
-export default function Home() {
+export default async function Home() {
+  const faqs = await getFaqs();
   return (
     <main id="main" className="relative z-[2]">
       <Hero />
@@ -20,7 +22,7 @@ export default function Home() {
       <Servicios />
       <Productos />
       <Stats />
-      <FAQ />
+      <FAQ items={faqs} />
       <Contacto />
     </main>
   );

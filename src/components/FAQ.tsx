@@ -3,25 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/hooks/useReveal";
-
-const ITEMS = [
-  {
-    q: "¿Qué tipo de subestaciones fabrican?",
-    a: "Diseñamos y construimos subestaciones de media y baja tensión bajo modalidad llave en mano, adaptadas a la capacidad y ubicación de cada proyecto.",
-  },
-  {
-    q: "¿Atienden proyectos fuera de Antioquia?",
-    a: "Sí. Operamos en todo el territorio colombiano y atendemos requerimientos del mercado internacional.",
-  },
-  {
-    q: "¿Ofrecen mantenimiento a infraestructura existente?",
-    a: "Contamos con planes de mantenimiento predictivo, preventivo y correctivo con disponibilidad de respuesta para asegurar la continuidad operativa.",
-  },
-  {
-    q: "¿Cómo solicito una cotización?",
-    a: "Escríbenos por WhatsApp o al correo info@metalandes.com con el alcance del proyecto. Nuestro equipo de ingeniería responde con una propuesta a la medida.",
-  },
-];
+import type { FaqDoc } from "@/sanity/queries";
 
 function Row({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -62,7 +44,7 @@ function Row({ q, a }: { q: string; a: string }) {
   );
 }
 
-export default function FAQ() {
+export default function FAQ({ items }: { items: FaqDoc[] }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -79,8 +61,8 @@ export default function FAQ() {
         </h2>
 
         <div className="flex flex-col gap-3">
-          {ITEMS.map((it) => (
-            <Row key={it.q} {...it} />
+          {items.map((it) => (
+            <Row key={it._id} q={it.pregunta} a={it.respuesta} />
           ))}
         </div>
       </div>

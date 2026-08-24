@@ -1,21 +1,21 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Image, { type StaticImageData } from "next/image";
-
-export type Cert = {
-  code: string;
-  name: string;
-  issuer: string;
-  validez: string;
-  img: StaticImageData;
-};
+import Image from "next/image";
+import { urlFor } from "@/sanity/image";
+import type { CertificacionDoc } from "@/sanity/queries";
 
 /**
  * Galería de certificados de consulta. Los documentos se visualizan dentro
  * del sitio — no se ofrece descarga ni enlace al archivo original.
  */
-export default function CertGallery({ certs, badge }: { certs: Cert[]; badge: string }) {
+export default function CertGallery({
+  certs,
+  badge,
+}: {
+  certs: CertificacionDoc[];
+  badge: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const open = openIndex !== null ? certs[openIndex] : null;
 
@@ -41,24 +41,23 @@ export default function CertGallery({ certs, badge }: { certs: Cert[]; badge: st
       <div className="grid gap-5 lg:grid-cols-2">
         {certs.map((cert, i) => (
           <div
-            key={cert.code}
+            key={cert._id}
             data-reveal
             className="glass clip-proto grid gap-6 p-6 sm:grid-cols-[minmax(0,180px)_1fr] sm:items-center"
           >
             <button
               type="button"
               onClick={() => setOpenIndex(i)}
-              aria-label={`Ampliar certificado ${cert.code}`}
+              aria-label={`Ampliar certificado ${cert.codigo}`}
               className="group relative block aspect-[3/4] overflow-hidden rounded-lg bg-white ring-1 ring-[var(--border)] transition hover:ring-electric"
             >
               <Image
-                src={cert.img}
-                alt={`Certificado ${cert.code} — ${cert.name}`}
+                src={urlFor(cert.imagen!).width(400).url()}
+                alt={`Certificado ${cert.codigo} — ${cert.nombre}`}
                 fill
                 sizes="180px"
                 draggable={false}
-                placeholder="blur"
-                className="select-none object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+                  className="select-none object-cover object-top transition duration-500 group-hover:scale-[1.04]"
               />
               <span className="absolute inset-0 bg-gradient-to-t from-[var(--text)]/85 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
               <span className="absolute inset-x-0 bottom-0 p-3 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
@@ -69,14 +68,14 @@ export default function CertGallery({ certs, badge }: { certs: Cert[]; badge: st
             <div>
               <div className="text-xs font-semibold tracking-widest text-electric">{badge}</div>
               <h3 className="mt-2 font-display text-2xl font-bold text-[var(--text)]">
-                {cert.code}
+                {cert.codigo}
               </h3>
-              <p className="mt-2 leading-relaxed text-muted">{cert.name}</p>
+              <p className="mt-2 leading-relaxed text-muted">{cert.nombre}</p>
 
               <dl className="mt-5 space-y-1 text-sm">
                 <div className="flex gap-2">
                   <dt className="text-faint">Emitido por:</dt>
-                  <dd className="text-muted">{cert.issuer}</dd>
+                  <dd className="text-muted">{cert.emisor}</dd>
                 </div>
                 <div className="flex gap-2">
                   <dt className="text-faint">Vigencia:</dt>
@@ -104,7 +103,7 @@ export default function CertGallery({ certs, badge }: { certs: Cert[]; badge: st
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Certificado ${open.code}`}
+          aria-label={`Certificado ${open.codigo}`}
           onClick={close}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--text)]/80 p-4 backdrop-blur-sm md:p-10"
         >
@@ -113,10 +112,11 @@ export default function CertGallery({ certs, badge }: { certs: Cert[]; badge: st
             className="relative max-h-full w-full max-w-4xl overflow-auto rounded-2xl bg-white p-3 shadow-2xl"
           >
             <Image
-              src={open.img}
-              alt={`Certificado ${open.code} — ${open.name}`}
+              src={urlFor(open.imagen!).width(1400).url()}
+              alt={`Certificado ${open.codigo} — ${open.nombre}`}
+              width={open.ancho ?? 1400}
+              height={open.alto ?? 1000}
               draggable={false}
-              placeholder="blur"
               className="h-auto w-full select-none rounded-lg"
               sizes="(max-width: 896px) 100vw, 896px"
             />
