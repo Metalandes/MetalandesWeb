@@ -44,3 +44,7 @@ next-env.d.ts
 # cargar en Sanity; el sitio las consume desde la CDN de Sanity, no de aquí.
 /MEDIA_TENSION
 /BAJA_TENSION
+
+# Configuración local de Claude Code
+CLAUDE.md
+.claude/
