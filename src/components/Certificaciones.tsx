@@ -1,5 +1,6 @@
 "use client";
 
+import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import { ElectricEyebrow, NodeSeparator } from "@/components/brand/BrandBits";
@@ -12,7 +13,7 @@ const HREF = "/empresa/certificaciones";
  * respaldo normativo y manda a /empresa/certificaciones, donde están los
  * documentos. La landing no debe cargar con ese detalle.
  */
-export default function Certificaciones() {
+export default function Certificaciones({ titulo }: { titulo?: Titulo }) {
   const scope = useReveal<HTMLDivElement>();
   const { iso, retie } = EMPRESA.certificaciones;
 
@@ -25,12 +26,7 @@ export default function Certificaciones() {
           <div data-reveal className="mb-5">
             <ElectricEyebrow>CERTIFICACIONES</ElectricEyebrow>
           </div>
-          <h2
-            data-reveal
-            className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
-          >
-            Respaldados por <span className="text-gradient">norma</span>.
-          </h2>
+          <TituloSeccion titulo={titulo} fallback={{ texto: "Respaldados por", destacado: "norma" }} />
           <p data-reveal className="mt-6 text-lg leading-relaxed text-muted">
             Sistemas de gestión certificados y certificados de producto RETIE vigentes, emitidos
             por organismos acreditados ante la ONAC.

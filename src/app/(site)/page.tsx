@@ -18,15 +18,15 @@ export default async function Home() {
   ]);
   return (
     <main id="main" className="relative z-[2]">
-      <Hero />
+      <Hero portada={portada} />
       <Empresa portada={portada} />
       <VideoShowcase />
-      <Certificaciones />
+      <Certificaciones titulo={portada.tituloCertificaciones} />
       <Aliados aliados={portada.aliados} titulo={portada.aliadosTitulo} />
       <Servicios servicios={servicios} titulo={portada.tituloServicios} />
-      <Productos />
+      <Productos titulo={portada.tituloProductos} />
       <Stats cifras={portada.cifras} />
-      <FAQ items={faqs} />
+      <FAQ items={faqs} titulo={portada.tituloFaq} />
       <Contacto />
     </main>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
 import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
@@ -8,7 +9,7 @@ import type { ServicioDoc } from "@/sanity/queries";
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
 
-export default function Servicios({ servicios = [], titulo }: { servicios?: ServicioDoc[]; titulo?: string }) {
+export default function Servicios({ servicios = [], titulo }: { servicios?: ServicioDoc[]; titulo?: Titulo }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -20,12 +21,10 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
             <SectionIcon name="servicios" className="h-12 w-12" />
             <ElectricEyebrow>SERVICIOS</ElectricEyebrow>
           </div>
-          <h2
-            data-reveal
-            className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
-          >
-            Soluciones eléctricas <span className="text-gradient">llave en mano</span>.
-          </h2>
+          <TituloSeccion
+            titulo={titulo}
+            fallback={{ texto: "Soluciones eléctricas", destacado: "llave en mano" }}
+          />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">

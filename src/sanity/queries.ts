@@ -160,6 +160,8 @@ export async function getPost(slug: string): Promise<PostDoc | null> {
 
 /* --- Portada --- */
 
+export type TituloSeccionDoc = { texto?: string; destacado?: string };
+
 export type PortadaDoc = {
   heroTitulo?: string;
   heroDestacado?: string;
@@ -173,10 +175,10 @@ export type PortadaDoc = {
   cifras?: { _key: string; valor: number; sufijo?: string; etiqueta: string }[];
   aliadosTitulo?: string;
   aliados?: string[];
-  tituloServicios?: string;
-  tituloProductos?: string;
-  tituloCertificaciones?: string;
-  tituloFaq?: string;
+  tituloServicios?: TituloSeccionDoc;
+  tituloProductos?: TituloSeccionDoc;
+  tituloCertificaciones?: TituloSeccionDoc;
+  tituloFaq?: TituloSeccionDoc;
 };
 
 export async function getPortada(): Promise<PortadaDoc> {

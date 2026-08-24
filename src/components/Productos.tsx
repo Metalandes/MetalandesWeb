@@ -1,5 +1,6 @@
 "use client";
 
+import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/hooks/useReveal";
@@ -15,7 +16,7 @@ const HUES = [
   "from-cyan/30",
 ];
 
-export default function Productos() {
+export default function Productos({ titulo }: { titulo?: Titulo }) {
   const scope = useReveal<HTMLDivElement>();
   const panel = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
@@ -43,12 +44,7 @@ export default function Productos() {
             <SectionIcon name="productos" className="h-12 w-12" />
             <ElectricEyebrow>PRODUCTOS</ElectricEyebrow>
           </div>
-          <h2
-            data-reveal
-            className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
-          >
-            Fabricación <span className="text-gradient">de precisión</span>.
-          </h2>
+          <TituloSeccion titulo={titulo} fallback={{ texto: "Fabricación", destacado: "de precisión" }} />
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-14">

@@ -4,9 +4,8 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { LogoWordmark } from "@/components/Logo";
 import HeroVideo from "@/components/HeroVideo";
+import type { PortadaDoc } from "@/sanity/queries";
 
-const LINE_1 = "Energía que";
-const LINE_2 = "enciende Colombia";
 
 function SplitWords({ text, delay }: { text: string; delay: number }) {
   return (
@@ -20,7 +19,12 @@ function SplitWords({ text, delay }: { text: string; delay: number }) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
+  const LINE_1 = portada.heroTitulo ?? "Energía que";
+  const LINE_2 = portada.heroDestacado ?? "enciende Colombia";
+  const MARQUEE = portada.marquee?.length
+    ? portada.marquee
+    : ["SUBESTACIONES", "MEDIA TENSIÓN", "BAJA TENSIÓN", "TABLEROS", "MANTENIMIENTO", "INGENIERÍA"];
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -95,9 +99,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero-sub mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          Más de 65 años diseñando, fabricando y manteniendo{" "}
-          <span className="text-[var(--text)]">subestaciones e infraestructura eléctrica</span> con
-          compromiso, confianza e innovación.
+          {portada.heroSubtitulo ??
+            "Más de 65 años diseñando, fabricando y manteniendo subestaciones e infraestructura eléctrica con compromiso, confianza e innovación."}
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -105,7 +108,7 @@ export default function Hero() {
             href="#contacto"
             className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 font-semibold text-white transition"
           >
-            <span className="relative z-10">Solicitar cotización</span>
+            <span className="relative z-10">{portada.heroCta ?? "Solicitar cotización"}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
           </a>
           <a
@@ -123,7 +126,7 @@ export default function Hero() {
           <div className="marquee-track flex shrink-0 items-center gap-10 whitespace-nowrap pr-10 text-sm font-medium tracking-widest text-faint">
             {Array.from({ length: 2 }).map((_, r) => (
               <span key={r} className="flex items-center gap-10">
-                {["SUBESTACIONES", "MEDIA TENSIÓN", "BAJA TENSIÓN", "TABLEROS", "MANTENIMIENTO", "INGENIERÍA"].map(
+                {MARQUEE.map(
                   (t) => (
                     <span key={t} className="flex items-center gap-10">
                       {t} <span className="text-cyan">◆</span>

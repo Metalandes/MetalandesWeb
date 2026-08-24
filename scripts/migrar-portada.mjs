@@ -67,10 +67,10 @@ async function main() {
     ],
     aliadosTitulo: "Nos respaldan",
     aliados: ["EPM", "ISA", "Celsia", "XM", "Air-e", "Enel", "Ecopetrol", "Grupo Argos"],
-    tituloServicios: "Lo que hacemos",
-    tituloProductos: "Fabricación de precisión",
-    tituloCertificaciones: "Respaldados por norma",
-    tituloFaq: "Todo lo que necesitas saber",
+    tituloServicios: { texto: "Lo que", destacado: "hacemos" },
+    tituloProductos: { texto: "Fabricación", destacado: "de precisión" },
+    tituloCertificaciones: { texto: "Respaldados por", destacado: "norma" },
+    tituloFaq: { texto: "Todo lo que", destacado: "necesitas saber" },
   });
   console.log("  ✓ portada");
 

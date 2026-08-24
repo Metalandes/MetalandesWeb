@@ -101,25 +101,24 @@ export const portada = defineType({
     }),
 
     /* Títulos de sección */
-    defineField({
-      name: "tituloServicios",
-      title: "Servicios",
-      type: "string",
-      group: "secciones",
-    }),
-    defineField({
-      name: "tituloProductos",
-      title: "Productos",
-      type: "string",
-      group: "secciones",
-    }),
-    defineField({
-      name: "tituloCertificaciones",
-      title: "Certificaciones",
-      type: "string",
-      group: "secciones",
-    }),
-    defineField({ name: "tituloFaq", title: "Preguntas frecuentes", type: "string", group: "secciones" }),
+    ...["Servicios", "Productos", "Certificaciones", "Faq"].map((seccion) =>
+      defineField({
+        name: `titulo${seccion}`,
+        title: seccion === "Faq" ? "Preguntas frecuentes" : seccion,
+        type: "object",
+        group: "secciones",
+        options: { columns: 2 },
+        fields: [
+          { name: "texto", title: "Texto", type: "string" },
+          {
+            name: "destacado",
+            title: "Parte destacada",
+            type: "string",
+            description: "Se pinta con el degradado rojo, al final del título.",
+          },
+        ],
+      })
+    ),
   ],
   preview: { prepare: () => ({ title: "Portada" }) },
 });

@@ -1,5 +1,6 @@
 "use client";
 
+import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/hooks/useReveal";
@@ -44,7 +45,7 @@ function Row({ q, a }: { q: string; a: string }) {
   );
 }
 
-export default function FAQ({ items }: { items: FaqDoc[] }) {
+export default function FAQ({ items, titulo }: { items: FaqDoc[]; titulo?: Titulo }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -53,12 +54,7 @@ export default function FAQ({ items }: { items: FaqDoc[] }) {
         <p data-reveal className="mb-4 text-center text-sm font-medium tracking-widest text-cyan">
           / PREGUNTAS FRECUENTES
         </p>
-        <h2
-          data-reveal
-          className="mb-12 text-center font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.05] tracking-tight"
-        >
-          Todo lo que <span className="text-gradient">necesitas saber</span>.
-        </h2>
+        <TituloSeccion titulo={titulo} fallback={{ texto: "Todo lo que", destacado: "necesitas saber" }} />
 
         <div className="flex flex-col gap-3">
           {items.map((it) => (
