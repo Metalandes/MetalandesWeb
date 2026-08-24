@@ -3,17 +3,9 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import type { ServicioDoc } from "@/sanity/queries";
 
-const CARDS = [
-  {
-    n: "01",
-    title: "Mantenimiento",
-    desc: "Media y baja tensión, certificado ISO 45001. Operación 24/7 en todo el territorio nacional.",
-    href: "/servicios/mantenimiento",
-  },
-];
-
-export default function ServiciosContent() {
+export default function ServiciosContent({ servicios = [] }: { servicios?: ServicioDoc[] }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -28,17 +20,17 @@ export default function ServiciosContent() {
 
       <div className="mx-auto max-w-3xl px-5 pb-28">
         <div className="grid gap-5">
-          {CARDS.map((c) => (
+          {servicios.map((c, i) => (
             <Link
-              key={c.href}
-              href={c.href}
+              key={c._id}
+              href={c.enlace ?? "/"}
               data-reveal
               className="group glass clip-proto relative flex flex-col overflow-hidden p-8 transition duration-300 hover:-translate-y-2"
             >
               <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
-              <span className="font-display text-sm text-faint">{c.n}</span>
-              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{c.title}</h2>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.desc}</p>
+              <span className="font-display text-sm text-faint">{String(i + 1).padStart(2, "0")}</span>
+              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{c.titulo}</h2>
+              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.descripcion}</p>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
                 Ver más <span aria-hidden>→</span>
               </span>

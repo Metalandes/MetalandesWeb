@@ -9,10 +9,12 @@ import { portada } from "./portada";
 import { servicio } from "./servicio";
 import { proyecto } from "./proyecto";
 import { paginaProductos } from "./paginaProductos";
+import { navegacion } from "./navegacion";
 
 /** Tipos de contenido editables desde el Studio. */
 export const schemaTypes: SchemaTypeDefinition[] = [
   portada,
+  navegacion,
   producto,
   paginaProductos,
   servicio,

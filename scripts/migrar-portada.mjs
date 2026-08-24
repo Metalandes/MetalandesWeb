@@ -74,6 +74,44 @@ async function main() {
   });
   console.log("  ✓ portada");
 
+  console.log("Navegación");
+  await client.createOrReplace({
+    _id: "navegacion",
+    _type: "navegacion",
+    items: [
+      {
+        _key: "n1",
+        label: "Empresa",
+        href: "/empresa",
+        children: [
+          { _key: "c1", label: "Gestión integral", href: "/empresa/gestion-integral" },
+          { _key: "c2", label: "Certificaciones", href: "/empresa/certificaciones" },
+          { _key: "c3", label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
+          { _key: "c4", label: "PQR", href: "/pqr" },
+        ],
+      },
+      {
+        _key: "n2",
+        label: "Servicios",
+        href: "/servicios",
+        children: [{ _key: "c5", label: "Mantenimiento", href: "/servicios/mantenimiento" }],
+      },
+      {
+        _key: "n3",
+        label: "Productos",
+        href: "/productos",
+        children: [
+          { _key: "c6", label: "Subestaciones media tensión", href: "/productos/media-tension" },
+          { _key: "c7", label: "Subestaciones baja tensión", href: "/productos/baja-tension" },
+        ],
+      },
+      { _key: "n4", label: "Blog", href: "/blog" },
+      { _key: "n5", label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
+      { _key: "n6", label: "Contacto", href: "/contacto" },
+    ],
+  });
+  console.log("  ✓ navegación");
+
   console.log("Servicios");
   const SERVICIOS = [
     {

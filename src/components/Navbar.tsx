@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/content";
+import type { NavItemDoc } from "@/sanity/queries";
 import { LogoTile } from "@/components/Logo";
 
-export default function Navbar() {
+export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
+  const NAV_ITEMS: NavItemDoc[] = nav ?? NAV;
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const pathname = usePathname();
@@ -35,7 +37,7 @@ export default function Navbar() {
 
         {/* Desktop */}
         <nav className="hidden items-center gap-1 lg:flex">
-          {NAV.filter((item) => item.href !== "/contacto").map((item) => (
+          {NAV_ITEMS.filter((item) => item.href !== "/contacto").map((item) => (
             <div key={item.href} className="group relative">
               <Link
                 href={item.href}
@@ -97,7 +99,7 @@ export default function Navbar() {
         }`}
       >
         <nav className="flex flex-col p-3">
-          {NAV.filter((item) => item.href !== "/contacto").map((item) => (
+          {NAV_ITEMS.filter((item) => item.href !== "/contacto").map((item) => (
             <div key={item.href} className="border-b border-[var(--border)] last:border-0">
               <div className="flex items-center justify-between">
                 <Link

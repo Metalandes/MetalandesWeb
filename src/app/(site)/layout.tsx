@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { ContactoProvider } from "@/components/ContactoProvider";
 import { resolverContacto } from "@/lib/contacto";
-import { getContacto } from "@/sanity/queries";
+import { getContacto, getNavegacion } from "@/sanity/queries";
 
 /**
  * Envoltorio del sitio público. Agrupa la navegación, el pie y el scroll
@@ -15,7 +15,8 @@ import { getContacto } from "@/sanity/queries";
  * para que el pie, el botón de WhatsApp y el formulario lean siempre lo mismo.
  */
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  const contacto = resolverContacto(await getContacto());
+  const [contactoDoc, nav] = await Promise.all([getContacto(), getNavegacion()]);
+  const contacto = resolverContacto(contactoDoc);
 
   return (
     <ContactoProvider value={contacto}>
@@ -24,9 +25,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       </a>
       <div className="noise" aria-hidden />
       <SmoothScroll>
-        <Navbar />
+        <Navbar nav={nav} />
         {children}
-        <Footer contacto={contacto} />
+        <Footer contacto={contacto} nav={nav} />
       </SmoothScroll>
       <WhatsAppButton />
     </ContactoProvider>

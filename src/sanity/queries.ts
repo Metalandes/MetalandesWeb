@@ -256,3 +256,21 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
   );
   return doc ?? {};
 }
+
+/* --- Navegación --- */
+
+export type NavItemDoc = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+/** Menú del sitio. Cae al menú del código si aún no se definió en el Studio. */
+export async function getNavegacion(): Promise<NavItemDoc[] | null> {
+  const doc = await client.fetch<{ items?: NavItemDoc[] } | null>(
+    `*[_type == "navegacion"][0]{ items }`,
+    {},
+    { next: { revalidate: 60, tags: ["navegacion"] } }
+  );
+  return doc?.items?.length ? doc.items : null;
+}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import SubPage from "@/components/SubPage";
+import RichText from "@/components/RichText";
+import { getServicios } from "@/sanity/queries";
 import { SERVICIOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -8,8 +10,11 @@ export const metadata: Metadata = {
     "Mantenimiento en media y baja tensión certificado ISO 45001, 24/7 en todo Colombia. Línea de emergencia 310 668 2128.",
 };
 
-export default function Page() {
+export default async function Page() {
   const { mantenimiento } = SERVICIOS_PAGE;
+  const servicios = await getServicios();
+  const doc = servicios.find((x) => x.enlace === "/servicios/mantenimiento");
+  const items = doc?.items?.length ? doc.items : mantenimiento.items;
   return (
     <SubPage
       parent="Servicios"
@@ -17,7 +22,7 @@ export default function Page() {
       kicker="/ SERVICIOS · MANTENIMIENTO"
       title="Mantenimiento"
       highlight="24/7"
-      subtitle={mantenimiento.body}
+      subtitle={doc?.descripcion ?? mantenimiento.body}
     >
       <div
         data-reveal
@@ -36,8 +41,14 @@ export default function Page() {
       <h2 data-reveal className="mt-12 font-display text-2xl font-bold">
         Ofrecemos mantenimiento para
       </h2>
+      {doc?.detalle?.length ? (
+        <div data-reveal className="mt-8 max-w-3xl">
+          <RichText value={doc.detalle} />
+        </div>
+      ) : null}
+
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {mantenimiento.items.map((it) => (
+        {items.map((it) => (
           <div key={it} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
             <span className="mt-1 text-electric">◆</span>
             {it}

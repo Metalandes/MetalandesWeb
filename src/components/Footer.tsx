@@ -1,9 +1,17 @@
 import Link from "next/link";
 import { NAV, CONTACT } from "@/lib/content";
+import type { NavItemDoc } from "@/sanity/queries";
 import type { Contacto } from "@/lib/contacto";
 import { LogoWordmark } from "@/components/Logo";
 
-export default function Footer({ contacto = CONTACT }: { contacto?: Contacto }) {
+export default function Footer({
+  contacto = CONTACT,
+  nav,
+}: {
+  contacto?: Contacto;
+  nav?: NavItemDoc[] | null;
+}) {
+  const NAV_ITEMS: NavItemDoc[] = nav ?? NAV;
   const CONTACT = contacto;
   const SOCIAL = [
     { label: "Instagram", href: CONTACT.instagram },
@@ -36,7 +44,7 @@ export default function Footer({ contacto = CONTACT }: { contacto?: Contacto }) 
           <div className="flex flex-wrap gap-14">
             <nav className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-faint">Navegación</span>
-              {NAV.map((n) => (
+              {NAV_ITEMS.map((n) => (
                 <Link
                   key={n.href}
                   href={n.href}
