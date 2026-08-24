@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import SubPage from "@/components/SubPage";
 import ProductCatalog from "@/components/ProductCatalog";
-import { getProductos } from "@/sanity/queries";
+import { urlFor } from "@/sanity/image";
+import { getProductos, getPaginaProductos } from "@/sanity/queries";
 import { PRODUCTOS_PAGE } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const { baja } = PRODUCTOS_PAGE;
-  const productos = await getProductos("baja");
+  const [productos, pag] = await Promise.all([getProductos("baja"), getPaginaProductos()]);
+  const titulo = pag.bajaTitulo ?? baja.title;
+  const texto = pag.bajaTexto ?? baja.body;
+  const specs = pag.bajaSpecs?.length ? pag.bajaSpecs : baja.specs;
   return (
     <SubPage
       parent="Productos"
@@ -21,13 +25,13 @@ export default async function Page() {
       kicker="/ PRODUCTOS · BAJA TENSIÓN"
       title="Subestaciones de"
       highlight="baja tensión"
-      subtitle={baja.body}
+      subtitle={texto}
     >
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div data-reveal className="glass relative aspect-[4/3] overflow-hidden rounded-3xl lg:order-2">
           <Image
-            src={baja.img}
-            alt={baja.title}
+            src={pag.bajaImagen ? urlFor(pag.bajaImagen).width(1000).url() : baja.img}
+            alt={titulo}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover opacity-80"
@@ -36,7 +40,7 @@ export default async function Page() {
           <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
         </div>
         <ul className="grid gap-3 sm:grid-cols-2 lg:order-1">
-          {baja.specs.map((s) => (
+          {specs.map((s) => (
             <li key={s} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
               <span className="mt-1 text-electric">◆</span>
               {s}
@@ -46,7 +50,7 @@ export default async function Page() {
       </div>
 
       <div className="mt-20">
-        <ProductCatalog title={baja.catalogoTitle} items={productos} />
+        <ProductCatalog title={pag.bajaCatalogoTitulo ?? baja.catalogoTitle} items={productos} />
       </div>
     </SubPage>
   );

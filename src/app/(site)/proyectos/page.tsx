@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProjectsGrid from "@/components/ProjectsGrid";
+import { getProyectos } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Proyectos",
@@ -7,7 +8,8 @@ export const metadata: Metadata = {
     "Selección de proyectos de subestaciones, fabricación y mantenimiento eléctrico ejecutados por Metalandes en Colombia.",
 };
 
-export default function ProyectosPage() {
+export default async function ProyectosPage() {
+  const proyectos = await getProyectos();
   return (
     <main id="main" className="relative z-[2] min-h-dvh px-5 pt-36 pb-24">
         <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 rounded-full bg-electric/10 blur-[140px]" />
@@ -22,7 +24,7 @@ export default function ProyectosPage() {
           </p>
 
           <div className="mt-14">
-            <ProjectsGrid />
+            <ProjectsGrid proyectos={proyectos} />
           </div>
         </div>
     </main>
