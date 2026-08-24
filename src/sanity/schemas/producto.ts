@@ -34,18 +34,20 @@ export const producto = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
-      name: "imagen",
-      title: "Foto",
-      type: "image",
+      name: "galeria",
+      title: "Fotos",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
       description:
-        "Arrastra la foto aquí. Se optimiza sola, no hace falta prepararla. Usa el recuadro para elegir qué parte se ve en las tarjetas.",
-      options: { hotspot: true },
+        "Arrastra las fotos aquí; se optimizan solas. La primera es la que se ve en la tarjeta del catálogo — arrástralas para cambiar el orden. Usa el recuadro de recorte para elegir qué parte se muestra.",
+      options: { layout: "grid" },
     }),
     defineField({
       name: "descripcion",
-      title: "Descripción corta",
-      type: "string",
-      description: "Opcional. Una línea bajo el nombre, por ejemplo para desplegar una sigla.",
+      title: "Descripción",
+      type: "text",
+      rows: 4,
+      description: "Se muestra en la ficha del producto. Opcional.",
     }),
     defineField({
       name: "orden",
@@ -66,7 +68,7 @@ export const producto = defineType({
     },
   ],
   preview: {
-    select: { title: "nombre", subtitle: "categoria", media: "imagen" },
+    select: { title: "nombre", subtitle: "categoria", media: "galeria.0" },
     prepare({ title, subtitle, media }) {
       const etiqueta = subtitle === "media" ? "Media tensión" : "Baja tensión";
       return { title, subtitle: etiqueta, media };

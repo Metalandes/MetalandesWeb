@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Fotos originales de productos (217 MB). Son el material de origen para
+# cargar en Sanity; el sitio las consume desde la CDN de Sanity, no de aquí.
+/MEDIA_TENSION
+/BAJA_TENSION
