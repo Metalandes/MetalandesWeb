@@ -3,37 +3,44 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import RichText from "@/components/RichText";
 import { NodeSeparator } from "@/components/brand/BrandBits";
-import { PQR, CONTACT } from "@/lib/content";
+import { useContacto } from "@/components/ContactoProvider";
+import type { PoliticaDoc } from "@/sanity/queries";
+import { PQR } from "@/lib/content";
 
-export default function PqrContent() {
+export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
   const scope = useReveal<HTMLDivElement>();
+  const CONTACT = useContacto();
+  const email = PQR.email;
 
   return (
     <main id="main" ref={scope} className="relative z-[2]">
       <PageHero
         kicker="/ PQR"
-        title="Peticiones, quejas"
-        highlight="y reclamos"
-        subtitle={PQR.intro}
+        title={pagina?.titulo ?? "Peticiones, quejas"}
+        highlight={pagina?.titulo ? undefined : "y reclamos"}
+        subtitle={pagina?.intro ?? PQR.intro}
         icon="contacto"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
-        {/* Cómo radicar */}
-        <div className="grid gap-5 md:grid-cols-3">
-          {PQR.pasos.map((p) => (
-            <div key={p.n} data-reveal className="glass clip-proto p-8">
-              <span className="font-display text-sm text-faint">{p.n}</span>
-              <h2 className="mt-5 font-display text-xl font-semibold text-[var(--text)]">
-                {p.title}
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted">{p.desc}</p>
-            </div>
-          ))}
-        </div>
+        {pagina?.tarjetas?.length ? (
+          <div className="grid gap-5 md:grid-cols-3">
+            {pagina.tarjetas.map((t, i) => (
+              <div key={t._key} data-reveal className="glass clip-proto p-8">
+                <span className="font-display text-sm text-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="mt-5 font-display text-xl font-semibold text-[var(--text)]">
+                  {t.titulo}
+                </h2>
+                <p className="mt-3 leading-relaxed text-muted">{t.texto}</p>
+              </div>
+            ))}
+          </div>
+        ) : null}
 
-        {/* Formato y canales */}
         <div
           data-reveal
           className="glass clip-proto-lg relative mt-16 overflow-hidden p-10 md:p-14"
@@ -45,20 +52,26 @@ export default function PqrContent() {
               Radica tu <span className="text-gradient">PQR</span>.
             </h2>
 
+            <div className="mt-6 max-w-3xl">
+              <RichText value={pagina?.cuerpo} />
+            </div>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
+              {pagina?.documentoUrl && (
+                <a
+                  href={pagina.documentoUrl}
+                  download
+                  className="inline-flex items-center gap-2 rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition hover:opacity-90"
+                >
+                  Descargar formato
+                  <span aria-hidden>↓</span>
+                </a>
+              )}
               <a
-                href={PQR.formato}
-                download
-                className="inline-flex items-center gap-2 rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition hover:opacity-90"
-              >
-                Descargar formato
-                <span aria-hidden>↓</span>
-              </a>
-              <a
-                href={`mailto:${PQR.email}?subject=${encodeURIComponent("Reporte de PQR")}`}
+                href={`mailto:${email}?subject=${encodeURIComponent("Reporte de PQR")}`}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--text)] transition hover:text-electric"
               >
-                Enviar a {PQR.email}
+                Enviar a {email}
                 <span aria-hidden>→</span>
               </a>
             </div>
@@ -66,23 +79,20 @@ export default function PqrContent() {
             <dl className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div>
                 <dt className="text-xs font-semibold tracking-widest text-electric">CORREO</dt>
-                <dd className="mt-2 text-muted">{PQR.email}</dd>
+                <dd className="mt-2 text-muted">{email}</dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold tracking-widest text-electric">TELÉFONO</dt>
                 <dd className="mt-2 text-muted">{CONTACT.phone}</dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold tracking-widest text-electric">
-                  PRESENCIAL
-                </dt>
+                <dt className="text-xs font-semibold tracking-widest text-electric">PRESENCIAL</dt>
                 <dd className="mt-2 text-muted">{CONTACT.address}</dd>
               </div>
             </dl>
           </div>
         </div>
 
-        {/* PQR sobre datos personales */}
         <div data-reveal className="glass clip-proto mt-8 p-8 md:p-10">
           <h2 className="font-display text-xl font-semibold text-[var(--text)]">
             PQR sobre tratamiento de datos personales

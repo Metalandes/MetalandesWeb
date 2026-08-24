@@ -42,6 +42,37 @@ export const politica = defineType({
       description: "Texto principal. Admite títulos, listas, negritas y enlaces.",
     }),
     defineField({
+      name: "tarjetas",
+      title: "Tarjetas",
+      type: "array",
+      description:
+        "Bloques destacados que se muestran en fila (pasos para radicar una PQR, razones para postularse, pilares del sistema de gestión).",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "titulo", title: "Título", type: "string" },
+            { name: "texto", title: "Texto", type: "text", rows: 3 },
+          ],
+          preview: { select: { title: "titulo", subtitle: "texto" } },
+        },
+      ],
+    }),
+    defineField({
+      name: "lista",
+      title: "Lista de puntos",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Viñetas simples: compromisos, áreas de trabajo, requisitos.",
+    }),
+    defineField({
+      name: "cierre",
+      title: "Texto de cierre",
+      type: "text",
+      rows: 3,
+      description: "Nota final: alcance de la política, firma, aviso legal.",
+    }),
+    defineField({
       name: "documento",
       title: "Documento adjunto",
       type: "file",

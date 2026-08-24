@@ -3,13 +3,17 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import RichText from "@/components/RichText";
 import { NodeSeparator } from "@/components/brand/BrandBits";
-import { TRABAJO, CONTACT } from "@/lib/content";
+import { useContacto } from "@/components/ContactoProvider";
+import type { PoliticaDoc } from "@/sanity/queries";
+import { TRABAJO } from "@/lib/content";
 
 const ASUNTO = "Hoja de vida — Trabaja con nosotros";
 
-export default function TrabajaContent() {
+export default function TrabajaContent({ pagina }: { pagina: PoliticaDoc | null }) {
   const scope = useReveal<HTMLDivElement>();
+  const CONTACT = useContacto();
   const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(ASUNTO)}`;
 
   return (
@@ -18,47 +22,50 @@ export default function TrabajaContent() {
         kicker="/ TRABAJA CON NOSOTROS"
         title="Construye la red eléctrica"
         highlight="del país"
-        subtitle={TRABAJO.intro}
+        subtitle={pagina?.intro ?? TRABAJO.intro}
         icon="nosotros"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
-        {/* Por qué Metalandes */}
-        <div className="grid gap-5 md:grid-cols-3">
-          {TRABAJO.razones.map((r, i) => (
-            <div key={r.title} data-reveal className="glass clip-proto p-8">
-              <span className="font-display text-sm text-faint">
-                {String(i + 1).padStart(2, "0")}
+        {pagina?.tarjetas?.length ? (
+          <div className="grid gap-5 md:grid-cols-3">
+            {pagina.tarjetas.map((t, i) => (
+              <div key={t._key} data-reveal className="glass clip-proto p-8">
+                <span className="font-display text-sm text-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">
+                  {t.titulo}
+                </h2>
+                <p className="mt-3 leading-relaxed text-muted">{t.texto}</p>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {pagina?.lista?.length ? (
+          <>
+            <div data-reveal className="mt-20 flex items-center gap-4">
+              <span className="font-display text-sm font-semibold tracking-widest text-faint">
+                ÁREAS DE TRABAJO
               </span>
-              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">
-                {r.title}
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted">{r.desc}</p>
+              <span className="h-px flex-1 bg-[var(--border)]" />
             </div>
-          ))}
-        </div>
+            <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+              {pagina.lista.map((a) => (
+                <li
+                  key={a}
+                  data-reveal
+                  className="flex items-start gap-3 border-b border-[var(--border)] pb-4 text-[var(--text)]"
+                >
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric" />
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
 
-        {/* Áreas */}
-        <div data-reveal className="mt-20 flex items-center gap-4">
-          <span className="font-display text-sm font-semibold tracking-widest text-faint">
-            ÁREAS DE TRABAJO
-          </span>
-          <span className="h-px flex-1 bg-[var(--border)]" />
-        </div>
-        <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TRABAJO.areas.map((a) => (
-            <li
-              key={a}
-              data-reveal
-              className="flex items-start gap-3 border-b border-[var(--border)] pb-4 text-[var(--text)]"
-            >
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric" />
-              <span>{a}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Cómo postularse */}
         <div
           data-reveal
           className="glass clip-proto-lg relative mt-20 overflow-hidden p-10 md:p-14"
@@ -69,7 +76,10 @@ export default function TrabajaContent() {
             <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold leading-tight">
               Envíanos tu <span className="text-gradient">hoja de vida</span>.
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">{TRABAJO.comoAplicar}</p>
+
+            <div className="mt-5 text-lg">
+              <RichText value={pagina?.cuerpo} />
+            </div>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <a

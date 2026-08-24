@@ -107,13 +107,17 @@ export type PoliticaDoc = {
   titulo?: string;
   intro?: string;
   cuerpo?: PortableTextBlock[];
+  tarjetas?: { _key: string; titulo: string; texto: string }[];
+  lista?: string[];
+  cierre?: string;
   documentoUrl?: string;
 };
 
 export async function getPolitica(clave: string): Promise<PoliticaDoc | null> {
   return client.fetch(
     `*[_type == "politica" && clave == $clave][0]{
-      titulo, intro, cuerpo, "documentoUrl": documento.asset->url
+      titulo, intro, cuerpo, tarjetas, lista, cierre,
+      "documentoUrl": documento.asset->url
     }`,
     { clave },
     { next: { revalidate: 60, tags: ["politica"] } }

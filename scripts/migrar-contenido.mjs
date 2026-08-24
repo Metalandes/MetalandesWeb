@@ -143,6 +143,18 @@ async function main() {
       clave: "gestion-integral",
       titulo: "Gestión integral",
       intro: "Política del Sistema Integrado de Gestión",
+      lista: [
+        "Sistema de seguridad y salud en el trabajo: identificación de peligros, valoración de riesgos y controles que previenen accidentes y enfermedades laborales.",
+        "Cumplimiento de requisitos legales aplicables y otros suscritos voluntariamente.",
+        "Prevención de la contaminación ambiental y mejora continua de los procesos.",
+        "Consulta y participación de los interesados.",
+      ],
+      tarjetas: [
+        { _key: "t1", titulo: "Gestión de la calidad", texto: "La herramienta que garantiza que los bienes y servicios ofrecidos satisfacen las necesidades del cliente: planeación, control, aseguramiento y mejora de procesos, materias primas, insumos y recursos." },
+        { _key: "t2", titulo: "Seguridad y salud en el trabajo", texto: "Los principales riesgos de nuestra actividad son la exposición a tensión eléctrica, posturas prolongadas y manejo de cargas, ruido, golpes y caídas. Prevenimos con programas de gestión de riesgos y vigilancia epidemiológica." },
+        { _key: "t3", titulo: "Gestión ambiental", texto: "Controlamos el uso de agua, el consumo de energía y la generación de residuos, con acciones de prevención y mitigación, sensibilización y mejora continua del desempeño ambiental." },
+      ],
+      cierre: "Esta política tiene alcance sobre todos los centros de trabajo de la organización. En seguridad y salud en el trabajo cubre a todos los trabajadores, incluyendo contratistas y subcontratistas. — Daniel Gómez Botero, Representante legal",
       cuerpo: bloques([
         "Ofrecemos bienes y servicios de alta calidad en el ramo metal eléctrico, cumpliendo estándares nacionales que satisfacen a nuestros clientes, mejoran nuestra competitividad y potencializan el crecimiento empresarial sostenible.",
         "Implementar y mantener un sistema de seguridad y salud en el trabajo que proteja a los trabajadores mediante la identificación de peligros, la valoración de riesgos y controles que prevengan accidentes y enfermedades laborales.",
@@ -166,6 +178,11 @@ async function main() {
     {
       clave: "pqr",
       titulo: "Peticiones, quejas y reclamos",
+      tarjetas: [
+        { _key: "p1", titulo: "Descarga el formato", texto: "Usa el formato de reporte de PQR para que quede registrada toda la información que necesitamos para atenderte." },
+        { _key: "p2", titulo: "Diligéncialo", texto: "Describe la petición, queja o reclamo e incluye tus datos de contacto para poder responderte." },
+        { _key: "p3", titulo: "Envíalo", texto: "Remítelo al correo de calidad o entrégalo personalmente en nuestras instalaciones en Medellín." },
+      ],
       intro:
         "Buscamos una comunicación fluida y eficaz con clientes y demás grupos de interés para la recepción y atención de sugerencias, peticiones, quejas y reclamos.",
       cuerpo: bloques([
@@ -177,6 +194,21 @@ async function main() {
     {
       clave: "trabaja-con-nosotros",
       titulo: "Trabaja con nosotros",
+      tarjetas: [
+        { _key: "r1", titulo: "Oficio real", texto: "Ingeniería, diseño mecánico y eléctrico, carpintería metálica, ensamble y pruebas: se aprende haciendo, sobre producto que sale a campo." },
+        { _key: "r2", titulo: "Seguridad primero", texto: "Sistema de Gestión de Seguridad y Salud en el Trabajo certificado bajo ISO 45001:2018, auditado por un organismo acreditado ante la ONAC." },
+        { _key: "r3", titulo: "Estabilidad", texto: "Fundada en 1960. Seis décadas de operación continua en el sector eléctrico colombiano." },
+      ],
+      lista: [
+        "Ingeniería y diseño eléctrico",
+        "Diseño mecánico",
+        "Carpintería metálica",
+        "Ensamble y cableado",
+        "Pruebas y calidad",
+        "Mantenimiento en sitio",
+        "Logística y despacho",
+        "Comercial y servicio posventa",
+      ],
       intro:
         "Somos una compañía colombiana con más de 65 años fabricando soluciones metal eléctricas desde Medellín. Buscamos personas técnicas y rigurosas.",
       cuerpo: bloques([
