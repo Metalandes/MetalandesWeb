@@ -46,7 +46,13 @@ export const certificacion = defineType({
       type: "image",
       description: "Se muestra solo para consulta; el sitio no ofrece descarga.",
     }),
-    defineField({ name: "orden", title: "Orden", type: "number", initialValue: 100 }),
+    defineField({
+      name: "orden",
+      title: "Orden",
+      type: "number",
+      description: "Menor número aparece primero en el sitio.",
+      initialValue: 100,
+    }),
   ],
   preview: {
     select: { title: "codigo", subtitle: "nombre", media: "imagen" },

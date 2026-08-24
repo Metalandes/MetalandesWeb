@@ -5,6 +5,7 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { schemaTypes } from "@/sanity/schemas";
+import { structure, TIPOS_UNICOS } from "@/sanity/structure";
 
 /**
  * Studio embebido en el propio sitio, servido en /studio.
@@ -20,5 +21,13 @@ export default defineConfig({
   projectId,
   dataset,
   schema: { types: schemaTypes },
-  plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],
+  plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  document: {
+    /* En los documentos únicos no ofrecemos duplicar ni borrar: son piezas
+       fijas del sitio y perderlas dejaría páginas sin contenido. */
+    actions: (prev, { schemaType }) =>
+      TIPOS_UNICOS.includes(schemaType)
+        ? prev.filter(({ action }) => action !== "duplicate" && action !== "delete")
+        : prev,
+  },
 });

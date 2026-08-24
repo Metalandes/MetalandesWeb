@@ -16,7 +16,13 @@ export const proyecto = defineType({
       description: "Ej: Media tensión, Mantenimiento, Fabricación",
     }),
     defineField({ name: "imagen", title: "Foto", type: "image", options: { hotspot: true } }),
-    defineField({ name: "orden", title: "Orden", type: "number", initialValue: 100 }),
+    defineField({
+      name: "orden",
+      title: "Orden",
+      type: "number",
+      description: "Menor número aparece primero en el sitio.",
+      initialValue: 100,
+    }),
   ],
   orderings: [{ title: "Orden", name: "orden", by: [{ field: "orden", direction: "asc" }] }],
   preview: {
