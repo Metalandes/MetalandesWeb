@@ -24,6 +24,18 @@ const CARDS = [
     desc: "Política de manejo de datos personales según Decreto 1074 de 2015.",
     href: "/empresa/tratamiento-datos",
   },
+  {
+    n: "04",
+    title: "PQR",
+    desc: "Canal de peticiones, quejas y reclamos, con el formato oficial para radicarlas.",
+    href: "/pqr",
+  },
+  {
+    n: "05",
+    title: "Trabaja con nosotros",
+    desc: "Áreas de trabajo y cómo postularse a nuestro equipo en Medellín.",
+    href: "/trabaja-con-nosotros",
+  },
 ];
 
 export default function EmpresaContent() {

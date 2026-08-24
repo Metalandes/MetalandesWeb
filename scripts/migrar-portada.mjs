@@ -88,16 +88,11 @@ async function main() {
           { _key: "c2", label: "Certificaciones", href: "/empresa/certificaciones" },
           { _key: "c3", label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
           { _key: "c4", label: "PQR", href: "/pqr" },
+          { _key: "c5", label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
         ],
       },
       {
         _key: "n2",
-        label: "Servicios",
-        href: "/servicios",
-        children: [{ _key: "c5", label: "Mantenimiento", href: "/servicios/mantenimiento" }],
-      },
-      {
-        _key: "n3",
         label: "Productos",
         href: "/productos",
         children: [
@@ -105,8 +100,14 @@ async function main() {
           { _key: "c7", label: "Subestaciones baja tensión", href: "/productos/baja-tension" },
         ],
       },
-      { _key: "n4", label: "Blog", href: "/blog" },
-      { _key: "n5", label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
+      {
+        _key: "n3",
+        label: "Servicios",
+        href: "/servicios",
+        children: [{ _key: "c8", label: "Mantenimiento", href: "/servicios/mantenimiento" }],
+      },
+      { _key: "n4", label: "Proyectos", href: "/proyectos" },
+      { _key: "n5", label: "Blog", href: "/blog" },
       { _key: "n6", label: "Contacto", href: "/contacto" },
     ],
   });

@@ -29,13 +29,7 @@ export const NAV: NavItem[] = [
       { label: "Certificaciones", href: "/empresa/certificaciones" },
       { label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
       { label: "PQR", href: "/pqr" },
-    ],
-  },
-  {
-    label: "Servicios",
-    href: "/servicios",
-    children: [
-      { label: "Mantenimiento", href: "/servicios/mantenimiento" },
+      { label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
     ],
   },
   {
@@ -46,8 +40,15 @@ export const NAV: NavItem[] = [
       { label: "Subestaciones baja tensión", href: "/productos/baja-tension" },
     ],
   },
+  {
+    label: "Servicios",
+    href: "/servicios",
+    children: [
+      { label: "Mantenimiento", href: "/servicios/mantenimiento" },
+    ],
+  },
+  { label: "Proyectos", href: "/proyectos" },
   { label: "Blog", href: "/blog" },
-  { label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/contacto" },
 ];
 
