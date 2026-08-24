@@ -6,7 +6,8 @@ export type ProductoDoc = {
   nombre: string;
   categoria: "media" | "baja";
   descripcion?: string;
-  imagen?: Image;
+  /** La primera foto es la que representa al producto en el catálogo. */
+  galeria?: Image[];
 };
 
 /**
@@ -16,7 +17,7 @@ export type ProductoDoc = {
 const PRODUCTOS_POR_CATEGORIA = `
   *[_type == "producto" && categoria == $categoria]
   | order(orden asc, nombre asc){
-    _id, nombre, categoria, descripcion, imagen
+    _id, nombre, categoria, descripcion, galeria
   }
 `;
 

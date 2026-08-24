@@ -27,37 +27,47 @@ export default function ProductCatalog({
       </div>
 
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((item) => (
-          <li
-            key={item._id}
-            data-reveal
-            className="group glass clip-proto overflow-hidden p-3 transition duration-300 hover:-translate-y-1.5"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--surface-2)]">
-              {item.imagen ? (
-                <Image
-                  src={urlFor(item.imagen).width(600).height(450).url()}
-                  alt={item.nombre}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-              ) : (
-                // Espacio reservado hasta que se cargue la foto en el Studio
-                <div className="brand-pattern absolute inset-0 opacity-[0.15]" />
-              )}
-            </div>
+        {items.map((item) => {
+          const portada = item.galeria?.[0];
+          const extras = (item.galeria?.length ?? 0) - 1;
 
-            <div className="px-1 pb-1 pt-4">
-              <h3 className="font-display font-semibold leading-snug text-[var(--text)]">
-                {item.nombre}
-              </h3>
-              {item.descripcion && (
-                <p className="mt-1 text-xs leading-snug text-muted">{item.descripcion}</p>
-              )}
-            </div>
-          </li>
-        ))}
+          return (
+            <li
+              key={item._id}
+              data-reveal
+              className="group glass clip-proto overflow-hidden p-3 transition duration-300 hover:-translate-y-1.5"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--surface-2)]">
+                {portada ? (
+                  <Image
+                    src={urlFor(portada).width(600).height(450).url()}
+                    alt={item.nombre}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  // Espacio reservado hasta que se cargue la foto en el Studio
+                  <div className="brand-pattern absolute inset-0 opacity-[0.15]" />
+                )}
+                {extras > 0 && (
+                  <span className="absolute bottom-2 right-2 rounded-full bg-[var(--text)]/75 px-2 py-0.5 text-[11px] font-medium text-white">
+                    +{extras}
+                  </span>
+                )}
+              </div>
+
+              <div className="px-1 pb-1 pt-4">
+                <h3 className="font-display font-semibold leading-snug text-[var(--text)]">
+                  {item.nombre}
+                </h3>
+                {item.descripcion && (
+                  <p className="mt-1 text-xs leading-snug text-muted">{item.descripcion}</p>
+                )}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
