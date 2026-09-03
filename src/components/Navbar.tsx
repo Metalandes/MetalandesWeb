@@ -38,7 +38,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
         {/* Desktop */}
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.filter((item) => item.href !== "/contacto").map((item) => (
-            <div key={item.href} className="group relative">
+            <div key={item._key ?? item.href} className="group relative">
               <Link
                 href={item.href}
                 className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm transition-colors ${
@@ -57,7 +57,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
                   <div className="glass flex flex-col rounded-xl p-2">
                     {item.children.map((c) => (
                       <Link
-                        key={c.href}
+                        key={c._key ?? c.href}
                         href={c.href}
                         className="rounded-lg px-3 py-2 text-sm text-muted transition hover:bg-black/[0.03] hover:text-[var(--text)]"
                       >
@@ -100,7 +100,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
       >
         <nav className="flex flex-col p-3">
           {NAV_ITEMS.filter((item) => item.href !== "/contacto").map((item) => (
-            <div key={item.href} className="border-b border-[var(--border)] last:border-0">
+            <div key={item._key ?? item.href} className="border-b border-[var(--border)] last:border-0">
               <div className="flex items-center justify-between">
                 <Link
                   href={item.href}
@@ -128,7 +128,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
                 >
                   {item.children.map((c) => (
                     <Link
-                      key={c.href}
+                      key={c._key ?? c.href}
                       href={c.href}
                       className="block px-8 py-2.5 text-sm text-faint transition hover:text-[var(--text)]"
                     >

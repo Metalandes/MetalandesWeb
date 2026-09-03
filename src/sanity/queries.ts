@@ -260,10 +260,17 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
 /* --- Navegación --- */
 
 export type NavItemDoc = {
+  _key?: string;
   label: string;
   href: string;
-  children?: { label: string; href: string }[];
+  children?: { _key?: string; label: string; href: string }[];
 };
+
+/** Una entrada sólo sirve si tiene texto y destino: sin uno de los dos no se
+ *  puede pintar ni enlazar. Se descartan en vez de romper el menú entero,
+ *  porque se editan a mano desde el Studio y quedan a medias con facilidad. */
+const entradaUsable = (n: Partial<NavItemDoc> | undefined): n is NavItemDoc =>
+  Boolean(n?.label?.trim() && n?.href?.trim());
 
 /** Menú del sitio. Cae al menú del código si aún no se definió en el Studio. */
 export async function getNavegacion(): Promise<NavItemDoc[] | null> {
@@ -272,5 +279,11 @@ export async function getNavegacion(): Promise<NavItemDoc[] | null> {
     {},
     { next: { revalidate: 60, tags: ["navegacion"] } }
   );
-  return doc?.items?.length ? doc.items : null;
+  const items = (doc?.items ?? []).filter(entradaUsable).map((item) => ({
+    ...item,
+    href: item.href.trim(),
+    label: item.label.trim(),
+    children: item.children?.filter(entradaUsable),
+  }));
+  return items.length ? items : null;
 }
