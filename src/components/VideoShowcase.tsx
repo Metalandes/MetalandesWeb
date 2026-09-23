@@ -23,8 +23,7 @@ export default function VideoShowcase() {
   };
 
   return (
-    <section id="conocenos" className="relative overflow-hidden py-20 md:py-40">
-      <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-[45%] transform-gpu rounded-full bg-electric/10 blur-[120px]" />
+    <section id="conocenos" className="relative overflow-hidden py-20 md:py-32">
       <div
         ref={scope}
         className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"

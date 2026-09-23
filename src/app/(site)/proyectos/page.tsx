@@ -12,7 +12,6 @@ export default async function ProyectosPage() {
   const proyectos = await getProyectos();
   return (
     <main id="main" className="relative z-[2] min-h-dvh px-5 pt-36 pb-24">
-        <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 rounded-full bg-electric/10 blur-[140px]" />
         <div className="relative mx-auto max-w-7xl">
           <p className="mb-4 text-sm font-medium tracking-widest text-electric">/ PORTAFOLIO</p>
           <h1 className="max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.03] tracking-tight">

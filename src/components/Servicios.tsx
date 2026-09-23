@@ -13,8 +13,7 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="servicios" className="relative py-20 md:py-40">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 transform-gpu rounded-full bg-electric/10 blur-[120px]" />
+    <section id="servicios" className="relative py-20 md:py-32">
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-10 max-w-2xl md:mb-16">
           <div data-reveal className="mb-5 flex items-center gap-4">

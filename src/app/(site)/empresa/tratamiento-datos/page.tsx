@@ -23,7 +23,6 @@ export default async function Page() {
       title={p?.titulo ?? datos.title}
     >
       <div className="glass relative overflow-hidden rounded-3xl p-8 md:p-12">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-electric/15 blur-3xl" />
 
         <p data-reveal className="max-w-3xl text-lg leading-relaxed text-muted">
           {p?.intro ?? datos.body}

@@ -46,7 +46,6 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
           data-reveal
           className="glass clip-proto-lg relative mt-16 overflow-hidden p-10 md:p-14"
         >
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 transform-gpu rounded-full bg-electric/10 blur-[90px]" />
           <div className="relative">
             <NodeSeparator />
             <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold leading-tight">

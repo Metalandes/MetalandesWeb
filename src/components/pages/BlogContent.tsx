@@ -83,7 +83,6 @@ export default function BlogContent({ posts }: { posts: PostDoc[] }) {
             data-reveal
             className="glass clip-proto-lg relative overflow-hidden p-10 text-center md:p-16"
           >
-            <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 transform-gpu rounded-full bg-electric/10 blur-[90px]" />
             <div className="relative mx-auto max-w-xl">
               <div className="flex justify-center">
                 <NodeSeparator />
