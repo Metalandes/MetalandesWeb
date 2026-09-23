@@ -18,7 +18,7 @@ export default function Certificaciones({ titulo }: { titulo?: Titulo }) {
   const { iso, retie } = EMPRESA.certificaciones;
 
   return (
-    <section id="certificaciones" className="relative overflow-hidden py-28 md:py-40">
+    <section id="certificaciones" className="relative overflow-hidden py-20 md:py-40">
       <div className="pointer-events-none absolute -right-24 top-1/3 h-96 w-[45%] transform-gpu rounded-full bg-electric/10 blur-[120px]" />
 
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">

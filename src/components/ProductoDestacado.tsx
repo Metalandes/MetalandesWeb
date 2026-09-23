@@ -24,7 +24,7 @@ export default function ProductoDestacado() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="bancos-capacitores" className="relative overflow-hidden py-28 md:py-40">
+    <section id="bancos-capacitores" className="relative overflow-hidden py-20 md:py-40">
       <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[45%] transform-gpu rounded-full bg-electric/10 blur-[120px]" />
       <div
         ref={scope}

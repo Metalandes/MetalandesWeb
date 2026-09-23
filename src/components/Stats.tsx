@@ -42,7 +42,7 @@ export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc
   );
 
   return (
-    <section className="relative py-24 md:py-32">
+    <section className="relative py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-5">
         <div
           ref={root}
@@ -51,7 +51,7 @@ export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc
           {cifras.filter((s) => typeof s.valor === "number").map((s) => (
             <div
               key={s._key}
-              className="stat-cell relative flex flex-col items-center justify-center gap-2 p-8 text-center md:p-12"
+              className="stat-cell relative flex flex-col items-center justify-start gap-2 p-6 text-center sm:p-8 md:p-12"
             >
               <div className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold leading-none tracking-tight">
                 <span className="stat-num text-gradient" data-value={s.valor}>

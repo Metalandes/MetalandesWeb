@@ -13,10 +13,10 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="servicios" className="relative py-28 md:py-40">
+    <section id="servicios" className="relative py-20 md:py-40">
       <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[80%] -translate-x-1/2 transform-gpu rounded-full bg-electric/10 blur-[120px]" />
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-10 max-w-2xl md:mb-16">
           <div data-reveal className="mb-5 flex items-center gap-4">
             <SectionIcon name="servicios" className="h-12 w-12" />
             <ElectricEyebrow>SERVICIOS</ElectricEyebrow>
@@ -43,10 +43,11 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
                     alt={s.titulo}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="scale-105 object-cover opacity-70 grayscale-[0.2] transition duration-500 group-hover:scale-100 group-hover:opacity-90"
+                    className="object-cover transition duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/40 to-transparent" />
-                  <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
+                  {/* Sólo el borde inferior se funde con la tarjeta: la foto que
+                      sube marketing se ve con sus colores reales. */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--surface)] to-transparent" />
                 </div>
               ) : (
                 <div className="relative h-56 w-full overflow-hidden bg-gradient-to-br from-[var(--electric)]/20 to-transparent md:h-64">

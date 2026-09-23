@@ -53,9 +53,6 @@ export default function Footer({
                   {n.label}
                 </Link>
               ))}
-              <Link href="/proyectos" className="text-sm text-muted transition hover:text-[var(--text)]">
-                Proyectos
-              </Link>
             </nav>
             <nav className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-faint">Redes</span>

@@ -31,7 +31,7 @@ function Row({ q, a }: { q: string; a: string }) {
       >
         <span className="font-display text-lg font-medium text-[var(--text)]">{q}</span>
         <span
-          className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-[var(--border)] text-cyan transition-transform duration-300 ${
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[var(--border)] text-lg leading-none text-electric transition-transform duration-300 ${
             open ? "rotate-45" : ""
           }`}
         >
@@ -49,7 +49,7 @@ export default function FAQ({ items, titulo }: { items: FaqDoc[]; titulo?: Titul
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="faq" className="relative py-24 md:py-32">
+    <section id="faq" className="relative py-16 md:py-32">
       <div ref={scope} className="mx-auto max-w-3xl px-5">
         <p data-reveal className="mb-4 text-center text-sm font-medium tracking-widest text-cyan">
           / PREGUNTAS FRECUENTES

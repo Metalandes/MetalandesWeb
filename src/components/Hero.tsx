@@ -97,17 +97,17 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
             "Más de 65 años diseñando, fabricando y manteniendo subestaciones e infraestructura eléctrica con compromiso, confianza e innovación."}
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <div className="mt-10 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
           <a
             href="#contacto"
-            className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 font-semibold text-white"
+            className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 text-center font-semibold text-white"
           >
             <span className="relative z-10">{portada.heroCta ?? "Solicitar cotización"}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
           </a>
           <a
             href="#servicios"
-            className="hero-cta rounded-xl border border-[var(--border)] bg-white/70 px-7 py-3.5 font-semibold text-[var(--text)] backdrop-blur transition-colors hover:bg-white"
+            className="hero-cta rounded-xl border border-[var(--border)] bg-white/70 px-7 py-3.5 text-center font-semibold text-[var(--text)] backdrop-blur transition-colors hover:bg-white"
           >
             Ver servicios
           </a>

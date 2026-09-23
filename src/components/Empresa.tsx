@@ -9,9 +9,9 @@ export default function Empresa({ portada = {} }: { portada?: PortadaDoc }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="empresa" className="relative py-28 md:py-40">
+    <section id="empresa" className="relative py-20 md:py-40">
       <div ref={scope} className="mx-auto max-w-7xl px-5">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
+        <div className="grid gap-10 md:gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
           <div>
             <div data-reveal className="mb-5 flex items-center gap-4">
               <SectionIcon name="nosotros" className="h-12 w-12" />

@@ -11,7 +11,7 @@ export default function Contacto() {
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="contacto" className="relative overflow-hidden py-28 md:py-40">
+    <section id="contacto" className="relative overflow-hidden py-20 md:py-40">
       <div className="pointer-events-none absolute inset-0">
         {/* Glow como radial-gradient (sin filtro blur) — no re-pinta al scrollear */}
         <div className="absolute inset-0 bg-[radial-gradient(38%_45%_at_50%_45%,rgba(227,3,44,0.14),transparent_70%)]" />

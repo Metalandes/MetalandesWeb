@@ -36,7 +36,7 @@ export default function Productos({ titulo }: { titulo?: Titulo }) {
   const p = PRODUCTS[active];
 
   return (
-    <section id="productos" className="relative py-28 md:py-40">
+    <section id="productos" className="relative py-20 md:py-40">
       <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-[60%] transform-gpu rounded-full bg-electric/10 blur-[120px]" />
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-14 max-w-2xl">
@@ -61,14 +61,14 @@ export default function Productos({ titulo }: { titulo?: Titulo }) {
                     className="group flex w-full items-center gap-5 border-b border-[var(--border)] py-6 text-left transition"
                   >
                     <span
-                      className={`font-display text-sm tabular-nums transition ${
+                      className={`w-6 shrink-0 font-display text-sm tabular-nums transition ${
                         on ? "text-electric" : "text-faint"
                       }`}
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className={`font-display text-xl font-semibold transition md:text-2xl ${
+                      className={`min-w-0 flex-1 font-display text-xl font-semibold transition md:text-2xl ${
                         on ? "text-[var(--text)]" : "text-muted group-hover:text-[var(--text)]"
                       }`}
                     >

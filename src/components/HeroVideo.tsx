@@ -63,6 +63,9 @@ export default function HeroVideo() {
       {/* Overlay legibilidad */}
       <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 to-white/5" />
       <div className="absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-white/5" />
+      {/* En celular el texto ocupa todo el ancho: el degradado lateral no
+          alcanza a cubrirlo a la derecha, así que se aclara la foto entera. */}
+      <div className="absolute inset-0 bg-white/55 md:hidden" />
       <div className="grid-bg absolute inset-0 opacity-35" />
     </div>
   );
