@@ -70,14 +70,6 @@ export const SERVICES = [
   },
 ] as const;
 
-export const PRODUCTS = [
-  { title: "Celdas de media tensión", spec: "13.2 kV – 34.5 kV · RETIE" },
-  { title: "Tableros de baja tensión", spec: "Auto soportados / adosables" },
-  { title: "Envolventes y gabinetes", spec: "Uso interior y exterior" },
-  { title: "Transferencias automáticas", spec: "Baja y media tensión" },
-  { title: "Estructuras metálicas", spec: "Cold Rolled · Galvanizado · Inox" },
-] as const;
-
 export const STATS = [
   { value: 1960, suffix: "", label: "Fundada en" },
   { value: 65, suffix: "+", label: "Años de trayectoria" },
