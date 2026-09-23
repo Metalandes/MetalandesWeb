@@ -54,6 +54,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Textos que llegan del Studio: una palabra o un enlace larguísimo sin
+   espacios se corta en vez de empujar la página hacia el costado en celular. */
+main :where(h1, h2, h3, h4, p, li, dd, blockquote, a) {
+  overflow-wrap: anywhere;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
