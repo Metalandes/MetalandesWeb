@@ -23,7 +23,7 @@ export default function VideoShowcase() {
   };
 
   return (
-    <section id="conocenos" className="relative overflow-hidden py-20 md:py-32">
+    <section id="conocenos" className="relative overflow-hidden bg-[var(--tint)] py-16 md:py-24">
       <div
         ref={scope}
         className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"

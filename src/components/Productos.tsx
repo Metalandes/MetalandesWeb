@@ -63,7 +63,7 @@ export default function Productos({
   const total = String(productos.length).padStart(2, "0");
 
   return (
-    <section id="productos" className="relative py-20 md:py-32">
+    <section id="productos" className="relative py-16 md:py-24">
       <div ref={scope} className="relative mx-auto max-w-7xl px-5">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 md:mb-14">
           <div className="max-w-2xl">

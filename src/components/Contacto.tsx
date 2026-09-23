@@ -23,7 +23,7 @@ export default function Contacto() {
   ];
 
   return (
-    <section id="contacto" className="relative overflow-hidden border-t border-[var(--border)] bg-[var(--surface)] py-20 md:py-32">
+    <section id="contacto" className="relative overflow-hidden border-t border-[var(--border)] bg-[var(--tint)] py-16 md:py-24">
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-40" />
 
       <div

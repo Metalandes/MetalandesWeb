@@ -54,7 +54,7 @@ export default function FAQ({ items, titulo }: { items: FaqDoc[]; titulo?: Titul
   const scope = useReveal<HTMLDivElement>();
 
   return (
-    <section id="faq" className="relative py-16 md:py-32">
+    <section id="faq" className="relative py-16 md:py-24">
       <div ref={scope} className="mx-auto max-w-3xl px-5">
         <div data-reveal className="mb-5 flex justify-center">
           <ElectricEyebrow>PREGUNTAS FRECUENTES</ElectricEyebrow>

@@ -9,6 +9,8 @@
   --bg-2: #f4f6fa;
   --surface: #ffffff;
   --surface-2: #f2f5f9;
+  /* Fondo alterno de secciones: separa sin bordes ni decoración. */
+  --tint: #f6f7fa;
   --border: rgba(43, 49, 60, 0.1);
 
   --text: #2b313c; /* navy oficial (Pantone 7546C) */

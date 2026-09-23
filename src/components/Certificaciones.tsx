@@ -31,7 +31,7 @@ export default function Certificaciones({
   const retie = certs.filter((c) => c.tipo === "retie");
 
   return (
-    <section id="certificaciones" className="relative py-20 md:py-32">
+    <section id="certificaciones" className="relative py-16 md:py-24">
       <div ref={scope} className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-20">
         <div>
           <div data-reveal className="mb-5">
