@@ -50,6 +50,14 @@ export const portada = defineType({
     defineField({ name: "empresaDestacado", title: "Parte destacada", type: "string", group: "empresa" }),
     defineField({ name: "empresaTexto", title: "Texto", type: "text", rows: 5, group: "empresa" }),
     defineField({
+      name: "empresaImagen",
+      title: "Foto",
+      type: "image",
+      group: "empresa",
+      options: { hotspot: true },
+      description: "Horizontal (16:10). Va sobre los valores Compromiso, Confianza e Innovación. Opcional.",
+    }),
+    defineField({
       name: "valores",
       title: "Valores",
       type: "array",

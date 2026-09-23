@@ -32,6 +32,14 @@ export const textosPaginas = defineType({
       description: "Párrafo antes de las tarjetas de Gestión integral, Certificaciones, etc.",
     }),
     defineField({
+      name: "empresaImagen",
+      title: "Empresa — foto",
+      type: "image",
+      group: "empresa",
+      options: { hotspot: true },
+      description: "Foto ancha (21:9) entre el texto y las tarjetas. Opcional.",
+    }),
+    defineField({
       name: "certificacionesIntro",
       title: "Certificaciones — introducción",
       type: "text",
@@ -48,6 +56,14 @@ export const textosPaginas = defineType({
     defineField({ name: "serviciosIntro", title: "Servicios — introducción", type: "text", rows: 3, group: "otras" }),
     defineField({ name: "proyectosIntro", title: "Proyectos — introducción", type: "text", rows: 3, group: "otras" }),
     defineField({ name: "blogIntro", title: "Blog — introducción", type: "text", rows: 3, group: "otras" }),
+    defineField({
+      name: "trabajaImagen",
+      title: "Trabaja con nosotros — foto",
+      type: "image",
+      group: "otras",
+      options: { hotspot: true },
+      description: "Foto ancha (21:9) bajo el título de la página. Opcional.",
+    }),
   ],
   preview: { prepare: () => ({ title: "Introducciones de páginas" }) },
 });

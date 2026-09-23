@@ -194,6 +194,7 @@ export type PortadaDoc = {
   empresaTitulo?: string;
   empresaDestacado?: string;
   empresaTexto?: string;
+  empresaImagen?: Image;
   valores?: { _key: string; titulo: string; texto: string }[];
   cifras?: { _key: string; valor: number; sufijo?: string; etiqueta: string }[];
   aliadosTitulo?: string;
@@ -206,7 +207,7 @@ export type PortadaDoc = {
 
 export async function getPortada(): Promise<PortadaDoc> {
   const doc = await client.fetch<PortadaDoc | null>(
-    `*[_type == "portada"][0]`,
+    `*[_type == "portada"][0]{ ..., ${imagen("empresaImagen")} }`,
     {},
     { next: { revalidate: REFRESCO, tags: ["portada"] } }
   );
@@ -340,18 +341,27 @@ export type TextosPaginasDoc = {
   serviciosIntro?: string;
   proyectosIntro?: string;
   blogIntro?: string;
+  empresaImagen?: Image;
+  trabajaImagen?: Image;
 };
 
 /** Documento único; campos vacíos quedan en undefined y cada página usa su texto original. */
 export async function getTextosPaginas(): Promise<TextosPaginasDoc> {
   const doc = await client.fetch<TextosPaginasDoc | null>(
-    `*[_id == "textosPaginas"][0]`,
+    `*[_id == "textosPaginas"][0]{
+      ...,
+      ${imagen("empresaImagen")},
+      ${imagen("trabajaImagen")}
+    }`,
     {},
     { next: { revalidate: REFRESCO, tags: ["textosPaginas"] } }
   );
   if (!doc) return {};
+  // Textos vacíos y fotos sin archivo se descartan: la página usa su respaldo.
   return Object.fromEntries(
-    Object.entries(doc).filter(([, v]) => typeof v === "string" && v.trim() !== "")
+    Object.entries(doc).filter(([k, v]) =>
+      !k.startsWith("_") && (typeof v === "string" ? v.trim() !== "" : v != null)
+    )
   ) as TextosPaginasDoc;
 }
 
