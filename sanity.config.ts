@@ -22,6 +22,12 @@ export default defineConfig({
   dataset,
   schema: { types: schemaTypes },
   plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  /* Funciones de los planes pagos que este proyecto no usa. Apagadas, el
+     Studio deja de consultar por ellas (cada consulta devolvía 403 en la
+     consola) y no muestra botones que no harían nada en el plan gratuito. */
+  releases: { enabled: false },
+  scheduledDrafts: { enabled: false },
+  tasks: { enabled: false },
   document: {
     /* En los documentos únicos no ofrecemos duplicar ni borrar: son piezas
        fijas del sitio y perderlas dejaría páginas sin contenido. */
