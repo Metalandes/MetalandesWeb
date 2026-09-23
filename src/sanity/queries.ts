@@ -1,6 +1,13 @@
 import type { Image, PortableTextBlock } from "sanity";
 import { client } from "./client";
 
+/**
+ * Una imagen cuya foto se borró en el Studio queda guardada como `{_type:
+ * "image"}` sin archivo. Pedirle la URL a eso rompe la página, así que las
+ * consultas sólo devuelven imágenes que de verdad tienen archivo.
+ */
+const imagen = (campo: string) => `"${campo}": select(defined(${campo}.asset) => ${campo})`;
+
 export type ProductoDoc = {
   _id: string;
   nombre: string;
@@ -17,7 +24,7 @@ export type ProductoDoc = {
 const PRODUCTOS_POR_CATEGORIA = `
   *[_type == "producto" && categoria == $categoria]
   | order(orden asc, nombre asc){
-    _id, nombre, categoria, descripcion, galeria
+    _id, nombre, categoria, descripcion, "galeria": galeria[defined(asset)]
   }
 `;
 
@@ -47,7 +54,7 @@ export type CertificacionDoc = {
 
 export async function getCertificaciones(): Promise<CertificacionDoc[]> {
   return client.fetch(
-    `*[_type == "certificacion"] | order(orden asc){
+    `*[_type == "certificacion" && defined(imagen.asset)] | order(orden asc){
       _id, codigo, nombre, tipo, emisor, validez, imagen,
       "ancho": imagen.asset->metadata.dimensions.width,
       "alto": imagen.asset->metadata.dimensions.height
@@ -138,7 +145,7 @@ export type PostDoc = {
 };
 
 const CAMPOS_POST = `
-  _id, titulo, "slug": slug.current, fecha, categoria, extracto, portada
+  _id, titulo, "slug": slug.current, fecha, categoria, extracto, ${imagen("portada")}
 `;
 
 /** Artículos publicados, del más reciente al más antiguo. */
@@ -152,7 +159,10 @@ export async function getPosts(): Promise<PostDoc[]> {
 
 export async function getPost(slug: string): Promise<PostDoc | null> {
   return client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]{ ${CAMPOS_POST}, contenido }`,
+    `*[_type == "post" && slug.current == $slug][0]{
+      ${CAMPOS_POST},
+      "contenido": contenido[_type != "image" || defined(asset)]
+    }`,
     { slug },
     { next: { revalidate: 60, tags: ["post"] } }
   );
@@ -206,7 +216,7 @@ export type ServicioDoc = {
 export async function getServicios(): Promise<ServicioDoc[]> {
   return client.fetch(
     `*[_type == "servicio"] | order(orden asc){
-      _id, titulo, descripcion, etiquetas, enlace, imagen, items, detalle
+      _id, titulo, descripcion, etiquetas, enlace, ${imagen("imagen")}, items, detalle
     }`,
     {},
     { next: { revalidate: 60, tags: ["servicio"] } }
@@ -226,7 +236,9 @@ export type ProyectoDoc = {
 
 export async function getProyectos(): Promise<ProyectoDoc[]> {
   return client.fetch(
-    `*[_type == "proyecto"] | order(orden asc){ _id, titulo, lugar, anio, categoria, imagen }`,
+    `*[_type == "proyecto"] | order(orden asc){
+      _id, titulo, lugar, anio, categoria, ${imagen("imagen")}
+    }`,
     {},
     { next: { revalidate: 60, tags: ["proyecto"] } }
   );
@@ -250,7 +262,11 @@ export type PaginaProductosDoc = {
 
 export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
   const doc = await client.fetch<PaginaProductosDoc | null>(
-    `*[_type == "paginaProductos"][0]`,
+    `*[_type == "paginaProductos"][0]{
+      ...,
+      ${imagen("mediaImagen")},
+      ${imagen("bajaImagen")}
+    }`,
     {},
     { next: { revalidate: 60, tags: ["paginaProductos"] } }
   );
