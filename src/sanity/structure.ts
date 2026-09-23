@@ -59,6 +59,15 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Páginas")
             .items([
+              S.listItem()
+                .title("Introducciones de páginas")
+                .id("textosPaginas")
+                .child(
+                  S.document()
+                    .schemaType("textosPaginas")
+                    .documentId("textosPaginas")
+                    .title("Introducciones de páginas")
+                ),
               S.documentTypeListItem("politica").title("Páginas institucionales"),
               S.documentTypeListItem("certificacion").title("Certificaciones"),
               S.documentTypeListItem("faq").title("Preguntas frecuentes"),
@@ -78,4 +87,4 @@ export const structure: StructureResolver = (S) =>
     ]);
 
 /** Tipos con un único documento: no se listan aparte ni se pueden duplicar. */
-export const TIPOS_UNICOS = ["portada", "navegacion", "paginaProductos", "contacto"];
+export const TIPOS_UNICOS = ["portada", "navegacion", "paginaProductos", "contacto", "textosPaginas"];

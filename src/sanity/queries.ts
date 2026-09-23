@@ -330,6 +330,31 @@ export async function getConteoProductos(): Promise<{ media: number; baja: numbe
   );
 }
 
+/* --- Introducciones de páginas --- */
+
+export type TextosPaginasDoc = {
+  empresaIntro?: string;
+  empresaTexto?: string;
+  certificacionesIntro?: string;
+  certificacionesTexto?: string;
+  serviciosIntro?: string;
+  proyectosIntro?: string;
+  blogIntro?: string;
+};
+
+/** Documento único; campos vacíos quedan en undefined y cada página usa su texto original. */
+export async function getTextosPaginas(): Promise<TextosPaginasDoc> {
+  const doc = await client.fetch<TextosPaginasDoc | null>(
+    `*[_id == "textosPaginas"][0]`,
+    {},
+    { next: { revalidate: REFRESCO, tags: ["textosPaginas"] } }
+  );
+  if (!doc) return {};
+  return Object.fromEntries(
+    Object.entries(doc).filter(([, v]) => typeof v === "string" && v.trim() !== "")
+  ) as TextosPaginasDoc;
+}
+
 /* --- Navegación --- */
 
 export type NavItemDoc = {
