@@ -12,7 +12,8 @@ import { PQR } from "@/lib/content";
 export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
   const scope = useReveal<HTMLDivElement>();
   const CONTACT = useContacto();
-  const email = PQR.email;
+  // Correo de calidad editable en el Studio (Datos de contacto).
+  const email = CONTACT.emailCalidad;
 
   return (
     <main id="main" ref={scope} className="relative z-[2]">

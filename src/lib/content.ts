@@ -330,6 +330,7 @@ export const CONTACT = {
   whatsapp: "+57 324 351 5023",
   whatsappHref: "573243515023",
   waLink: "https://wa.me/573243515023",
+  emailCalidad: "calidad@metalandes.com",
   email: "info@metalandes.com",
   emergencia: "310 668 2128",
   emergenciaHref: "+573106682128",

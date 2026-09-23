@@ -22,6 +22,7 @@ export function resolverContacto(doc: ContactoDoc | null | undefined): Contacto 
     whatsappHref,
     waLink: `https://wa.me/${whatsappHref}`,
     email: doc.email || CONTACT.email,
+    emailCalidad: doc.emailCalidad || CONTACT.emailCalidad,
     emergencia: doc.emergencia || CONTACT.emergencia,
     emergenciaHref: doc.emergenciaHref || CONTACT.emergenciaHref,
     extensiones: doc.extensiones?.length
