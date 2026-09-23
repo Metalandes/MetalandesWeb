@@ -71,7 +71,7 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
                 ))}
               </div>
               <Link
-                href={s.enlace ?? "/"}
+                href={s.enlace || "/contacto"}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3"
               >
                 Ver más <span aria-hidden>→</span>

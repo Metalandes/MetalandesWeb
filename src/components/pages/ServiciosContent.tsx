@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import { urlFor } from "@/sanity/image";
 import type { ServicioDoc } from "@/sanity/queries";
 
 export default function ServiciosContent({ servicios = [] }: { servicios?: ServicioDoc[] }) {
@@ -18,22 +20,59 @@ export default function ServiciosContent({ servicios = [] }: { servicios?: Servi
         icon="servicios"
       />
 
-      <div className="mx-auto max-w-3xl px-5 pb-28">
-        <div className="grid gap-5">
+      <div className="mx-auto max-w-7xl px-5 pb-28">
+        <div className="grid gap-6">
           {servicios.map((c, i) => (
             <Link
               key={c._id}
-              href={c.enlace ?? "/"}
+              href={c.enlace || "/contacto"}
               data-reveal
-              className="group glass clip-proto relative flex flex-col overflow-hidden p-8 transition duration-300 hover:-translate-y-2"
+              className="group glass clip-proto-lg relative grid overflow-hidden transition duration-300 hover:-translate-y-1 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]"
             >
-              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
-              <span className="font-display text-sm text-faint">{String(i + 1).padStart(2, "0")}</span>
-              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{c.titulo}</h2>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.descripcion}</p>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
-                Ver más <span aria-hidden>→</span>
-              </span>
+              {/* Foto del servicio (se cambia en el Studio); sin foto, placa de marca. */}
+              <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[20rem]">
+                {c.imagen ? (
+                  <Image
+                    src={urlFor(c.imagen).width(1100).url()}
+                    alt={c.titulo}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-[var(--text)]">
+                    <div className="brand-pattern absolute inset-0 opacity-[0.18]" />
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col p-7 md:p-10">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-sm tabular-nums text-electric">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="h-px w-8 bg-electric/60" />
+                </div>
+                <h2 className="mt-5 font-display text-[clamp(1.75rem,3vw,2.25rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
+                  {c.titulo}
+                </h2>
+                {c.descripcion && <p className="mt-4 leading-relaxed text-muted">{c.descripcion}</p>}
+                {!!c.etiquetas?.length && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {c.etiquetas.map((t, j) => (
+                      <span
+                        key={`${j}-${t}`}
+                        className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-muted"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-electric transition group-hover:gap-3">
+                  Ver más <span aria-hidden>→</span>
+                </span>
+              </div>
             </Link>
           ))}
         </div>
