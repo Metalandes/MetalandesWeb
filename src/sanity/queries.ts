@@ -289,6 +289,35 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
   return { ...doc, mediaSpecs: sinVacios(doc.mediaSpecs), bajaSpecs: sinVacios(doc.bajaSpecs) };
 }
 
+export type ProductoDestacadoDoc = {
+  _id: string;
+  nombre: string;
+  categoria: "media" | "baja";
+  descripcion?: string;
+  foto?: Image;
+};
+
+/**
+ * Productos para la portada: los marcados «Mostrar en la portada» en el
+ * Studio. Si nadie marcó ninguno, los primeros con foto, para que la sección
+ * nunca quede vacía.
+ */
+export async function getProductosDestacados(): Promise<ProductoDestacadoDoc[]> {
+  const campos = `_id, nombre, categoria, descripcion, "foto": galeria[defined(asset)][0]`;
+  const { marcados, respaldo } = await client.fetch<{
+    marcados: ProductoDestacadoDoc[];
+    respaldo: ProductoDestacadoDoc[];
+  }>(
+    `{
+      "marcados": *[_type == "producto" && destacado == true] | order(orden asc, nombre asc)[0...8]{ ${campos} },
+      "respaldo": *[_type == "producto" && defined(galeria[0].asset)] | order(categoria desc, orden asc)[0...5]{ ${campos} }
+    }`,
+    {},
+    { next: { revalidate: REFRESCO, tags: ["producto"] } }
+  );
+  return marcados.length ? marcados : respaldo;
+}
+
 /** Cuántos productos hay publicados en cada tipo de subestación. */
 export async function getConteoProductos(): Promise<{ media: number; baja: number }> {
   return client.fetch(

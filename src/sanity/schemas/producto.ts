@@ -50,6 +50,14 @@ export const producto = defineType({
       description: "Se muestra en la ficha del producto. Opcional.",
     }),
     defineField({
+      name: "destacado",
+      title: "Mostrar en la portada",
+      type: "boolean",
+      description:
+        "Actívalo en 4 o 5 productos con buena foto: aparecen en la sección «Fabricación de precisión» de la portada.",
+      initialValue: false,
+    }),
+    defineField({
       name: "orden",
       title: "Orden",
       type: "number",
@@ -68,10 +76,10 @@ export const producto = defineType({
     },
   ],
   preview: {
-    select: { title: "nombre", subtitle: "categoria", media: "galeria.0" },
-    prepare({ title, subtitle, media }) {
+    select: { title: "nombre", subtitle: "categoria", media: "galeria.0", destacado: "destacado" },
+    prepare({ title, subtitle, media, destacado }) {
       const etiqueta = subtitle === "media" ? "Media tensión" : "Baja tensión";
-      return { title, subtitle: etiqueta, media };
+      return { title, subtitle: destacado ? `${etiqueta} · en la portada` : etiqueta, media };
     },
   },
 });
