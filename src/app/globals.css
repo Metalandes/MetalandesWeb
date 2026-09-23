@@ -159,10 +159,6 @@ html.lenis body {
   box-shadow: 0 0 0 1px var(--border), 0 24px 60px -24px var(--glow-blue);
 }
 
-[data-reveal] {
-  will-change: transform, opacity;
-}
-
 /* Contenedor "protoboard": esquina superior-derecha achaflanada (angular)
    mientras el resto queda recto — guiño a las placas del manual de marca. */
 .clip-proto {

@@ -18,19 +18,25 @@ export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc
           ease: "power2.out",
           scrollTrigger: { trigger: el, start: "top 90%", once: true },
           onUpdate: () => {
-            el.firstChild!.textContent = Math.round(obj.v).toLocaleString("es-CO");
+            const v = Math.round(obj.v);
+            // 1960 es un año: sin punto de miles. Sólo se agrupan cifras grandes.
+            el.firstChild!.textContent = v < 10000 ? String(v) : v.toLocaleString("es-CO");
           },
         });
       });
 
-      gsap.from(".stat-cell", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: { trigger: root.current, start: "top 80%" },
-      });
+      gsap.fromTo(
+        ".stat-cell",
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: { trigger: root.current, start: "top 80%", once: true },
+        }
+      );
     },
     { scope: root }
   );
