@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import PageHero from "@/components/PageHero";
+import { marcasTexto } from "@/components/RichText";
 import { urlFor } from "@/sanity/image";
 import { getPost, getPosts } from "@/sanity/queries";
 
@@ -81,6 +82,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <PortableText
               value={post.contenido}
               components={{
+                marks: marcasTexto,
                 types: {
                   image: ({ value }) => (
                     <span className="clip-proto relative my-8 block aspect-[16/10] overflow-hidden bg-[var(--surface-2)]">
