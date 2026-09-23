@@ -4,6 +4,7 @@ import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/hooks/useReveal";
+import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import type { FaqDoc } from "@/sanity/queries";
 
 function Row({ q, a }: { q: string; a: string }) {
@@ -55,9 +56,9 @@ export default function FAQ({ items, titulo }: { items: FaqDoc[]; titulo?: Titul
   return (
     <section id="faq" className="relative py-16 md:py-32">
       <div ref={scope} className="mx-auto max-w-3xl px-5">
-        <p data-reveal className="mb-4 text-center text-sm font-medium tracking-widest text-cyan">
-          / PREGUNTAS FRECUENTES
-        </p>
+        <div data-reveal className="mb-5 flex justify-center">
+          <ElectricEyebrow>PREGUNTAS FRECUENTES</ElectricEyebrow>
+        </div>
         <TituloSeccion
           titulo={titulo}
           fallback={{ texto: "Todo lo que", destacado: "necesitas saber" }}
