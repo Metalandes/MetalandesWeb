@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/PageHero";
 import ProjectsGrid from "@/components/ProjectsGrid";
-import { getProyectos } from "@/sanity/queries";
+import { getProyectos, getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Proyectos",
@@ -9,23 +10,22 @@ export const metadata: Metadata = {
 };
 
 export default async function ProyectosPage() {
-  const proyectos = await getProyectos();
+  const [proyectos, textos] = await Promise.all([getProyectos(), getTextosPaginas()]);
   return (
-    <main id="main" className="relative z-[2] min-h-dvh px-5 pt-36 pb-24">
-        <div className="relative mx-auto max-w-7xl">
-          <p className="mb-4 text-sm font-medium tracking-widest text-electric">/ PORTAFOLIO</p>
-          <h1 className="max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.03] tracking-tight">
-            Proyectos que <span className="text-gradient">energizan Colombia</span>.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted">
-            Una muestra de la ingeniería que hemos entregado en más de 65 años: subestaciones, fabricación
-            y mantenimiento a lo largo del país.
-          </p>
-
-          <div className="mt-14">
-            <ProjectsGrid proyectos={proyectos} />
-          </div>
-        </div>
+    <main id="main" className="relative z-[2]">
+      <PageHero
+        kicker="/ PORTAFOLIO"
+        title="Proyectos que"
+        highlight="energizan Colombia"
+        subtitle={
+          textos.proyectosIntro ??
+          "Una muestra de la ingeniería que hemos entregado en más de 65 años: subestaciones, fabricación y mantenimiento a lo largo del país."
+        }
+        icon="productos"
+      />
+      <div className="mx-auto max-w-7xl px-5 pb-28">
+        <ProjectsGrid proyectos={proyectos} />
+      </div>
     </main>
   );
 }

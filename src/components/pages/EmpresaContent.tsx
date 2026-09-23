@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
 import { EMPRESA } from "@/lib/content";
+import type { TextosPaginasDoc } from "@/sanity/queries";
 
 const CARDS = [
   {
@@ -38,7 +39,7 @@ const CARDS = [
   },
 ];
 
-export default function EmpresaContent() {
+export default function EmpresaContent({ textos = {} }: { textos?: TextosPaginasDoc }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -47,13 +48,13 @@ export default function EmpresaContent() {
         kicker="/ EMPRESA"
         title="Ingeniería metal eléctrica"
         highlight="desde 1960"
-        subtitle={EMPRESA.intro}
+        subtitle={textos.empresaIntro ?? EMPRESA.intro}
         icon="nosotros"
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
         <p data-reveal className="max-w-3xl text-lg leading-relaxed text-muted">
-          {EMPRESA.fortaleza}
+          {textos.empresaTexto ?? EMPRESA.fortaleza}
         </p>
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">

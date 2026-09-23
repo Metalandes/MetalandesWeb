@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import BlogContent from "@/components/pages/BlogContent";
-import { getPosts } from "@/sanity/queries";
+import { getPosts, getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const posts = await getPosts();
-  return <BlogContent posts={posts} />;
+  const [posts, textos] = await Promise.all([getPosts(), getTextosPaginas()]);
+  return <BlogContent posts={posts} intro={textos.blogIntro} />;
 }

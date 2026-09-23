@@ -18,7 +18,7 @@ function fechaLarga(iso: string) {
   });
 }
 
-export default function BlogContent({ posts }: { posts: PostDoc[] }) {
+export default function BlogContent({ posts, intro }: { posts: PostDoc[]; intro?: string }) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -27,7 +27,7 @@ export default function BlogContent({ posts }: { posts: PostDoc[] }) {
         kicker="/ BLOG"
         title="Notas del taller"
         highlight="eléctrico"
-        subtitle={BLOG.intro}
+        subtitle={intro ?? BLOG.intro}
         icon="servicios"
       />
 

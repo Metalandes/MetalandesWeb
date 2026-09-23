@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SubPage from "@/components/SubPage";
 import CertGallery from "@/components/CertGallery";
 import { EMPRESA } from "@/lib/content";
-import { getCertificaciones } from "@/sanity/queries";
+import { getCertificaciones, getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Certificaciones",
@@ -10,9 +10,12 @@ export const metadata: Metadata = {
     "Certificaciones de Metalandes: ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 (Kiwa CQR) y certificados de producto RETIE 0307–0310 (Certicheck).",
 };
 
+const CERT_TEXTO =
+  "Nuestros sistemas de gestión están certificados por Kiwa CQR SAS y nuestros productos cuentan con certificado de conformidad RETIE emitido por Certicheck S.A.S, ambos organismos acreditados ante la ONAC. Los documentos se publican únicamente para consulta.";
+
 export default async function Page() {
   const { certificaciones } = EMPRESA;
-  const certs = await getCertificaciones();
+  const [certs, textos] = await Promise.all([getCertificaciones(), getTextosPaginas()]);
   const iso = certs.filter((c) => c.tipo === "iso");
   const retie = certs.filter((c) => c.tipo === "retie");
   const sellos = certs.filter((c) => c.tipo === "sello");
@@ -23,13 +26,10 @@ export default async function Page() {
       parentHref="/empresa"
       kicker="/ EMPRESA · CERTIFICACIONES"
       title="Certificaciones"
-      subtitle={certificaciones.lead}
+      subtitle={textos.certificacionesIntro ?? certificaciones.lead}
     >
       <p data-reveal className="max-w-3xl text-lg leading-relaxed text-muted">
-        Nuestros sistemas de gestión están certificados por Kiwa CQR SAS y nuestros productos
-        cuentan con certificado de conformidad RETIE emitido por Certicheck S.A.S, ambos
-        organismos acreditados ante la ONAC. Los documentos se publican únicamente para
-        consulta.
+        {textos.certificacionesTexto ?? CERT_TEXTO}
       </p>
 
       {sellos.length > 0 && (

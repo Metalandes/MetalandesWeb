@@ -7,7 +7,13 @@ import PageHero from "@/components/PageHero";
 import { urlFor } from "@/sanity/image";
 import type { ServicioDoc } from "@/sanity/queries";
 
-export default function ServiciosContent({ servicios = [] }: { servicios?: ServicioDoc[] }) {
+export default function ServiciosContent({
+  servicios = [],
+  intro,
+}: {
+  servicios?: ServicioDoc[];
+  intro?: string;
+}) {
   const scope = useReveal<HTMLDivElement>();
 
   return (
@@ -16,7 +22,7 @@ export default function ServiciosContent({ servicios = [] }: { servicios?: Servi
         kicker="/ SERVICIOS"
         title="Soluciones eléctricas"
         highlight="integrales"
-        subtitle="Mantenimiento en media y baja tensión, con respaldo técnico y cobertura nacional."
+        subtitle={intro ?? "Mantenimiento en media y baja tensión, con respaldo técnico y cobertura nacional."}
         icon="servicios"
       />
 

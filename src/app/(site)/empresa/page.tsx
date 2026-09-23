@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmpresaContent from "@/components/pages/EmpresaContent";
+import { getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Empresa",
@@ -7,6 +8,6 @@ export const metadata: Metadata = {
     "Metalandes S.A.S — ramo metal eléctrico desde 1960. Gestión integral, certificaciones ISO y RETIE, y política de tratamiento de datos.",
 };
 
-export default function EmpresaPage() {
-  return <EmpresaContent />;
+export default async function EmpresaPage() {
+  return <EmpresaContent textos={await getTextosPaginas()} />;
 }

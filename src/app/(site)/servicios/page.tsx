@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ServiciosContent from "@/components/pages/ServiciosContent";
-import { getServicios } from "@/sanity/queries";
+import { getServicios, getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Servicios",
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ServiciosPage() {
-  const servicios = await getServicios();
-  return <ServiciosContent servicios={servicios} />;
+  const [servicios, textos] = await Promise.all([getServicios(), getTextosPaginas()]);
+  return <ServiciosContent servicios={servicios} intro={textos.serviciosIntro} />;
 }
