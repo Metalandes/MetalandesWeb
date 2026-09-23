@@ -9,12 +9,18 @@ import type { CertificacionDoc } from "@/sanity/queries";
  * Galería de certificados de consulta. Los documentos se visualizan dentro
  * del sitio — no se ofrece descarga ni enlace al archivo original.
  */
+/** Bloquea el menú del clic derecho ("Guardar imagen como…") sobre los certificados. */
+const sinMenu = (e: React.MouseEvent) => e.preventDefault();
+
 export default function CertGallery({
   certs,
   badge,
+  formato = "documento",
 }: {
   certs: CertificacionDoc[];
   badge: string;
+  /** "documento": certificado vertical con ficha. "sello": logo horizontal del certificador. */
+  formato?: "documento" | "sello";
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const open = openIndex !== null ? certs[openIndex] : null;
@@ -36,8 +42,39 @@ export default function CertGallery({
     };
   }, [open, close]);
 
+  const esSello = formato === "sello";
+
   return (
     <>
+      {esSello ? (
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {certs.map((cert, i) => (
+            <button
+              key={cert._id}
+              type="button"
+              data-reveal
+              onClick={() => setOpenIndex(i)}
+              onContextMenu={sinMenu}
+              aria-label={`Ampliar sello ${cert.codigo}`}
+              className="group glass clip-proto flex flex-col p-4 text-left transition duration-300 hover:-translate-y-1"
+            >
+              <span className="relative block aspect-[23/10] w-full overflow-hidden rounded-lg bg-white">
+                <Image
+                  src={urlFor(cert.imagen!).width(900).url()}
+                  alt={`Sello ${cert.codigo} — ${cert.emisor ?? ""}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  draggable={false}
+                  className="pointer-events-none select-none object-contain"
+                />
+              </span>
+              <span className="mt-4 text-xs font-semibold tracking-widest text-electric">{badge}</span>
+              <span className="mt-1 font-display text-lg font-bold text-[var(--text)]">{cert.codigo}</span>
+              {cert.nombre && <span className="mt-1 text-sm text-muted">{cert.nombre}</span>}
+            </button>
+          ))}
+        </div>
+      ) : (
       <div className="grid gap-5 lg:grid-cols-2">
         {certs.map((cert, i) => (
           <div
@@ -48,6 +85,7 @@ export default function CertGallery({
             <button
               type="button"
               onClick={() => setOpenIndex(i)}
+              onContextMenu={sinMenu}
               aria-label={`Ampliar certificado ${cert.codigo}`}
               className="group relative block aspect-[3/4] overflow-hidden rounded-lg bg-white ring-1 ring-[var(--border)] transition hover:ring-electric"
             >
@@ -98,6 +136,8 @@ export default function CertGallery({
         ))}
       </div>
 
+      )}
+
       {/* Visor */}
       {open && (
         <div
@@ -109,6 +149,7 @@ export default function CertGallery({
         >
           <div
             onClick={(e) => e.stopPropagation()}
+            onContextMenu={sinMenu}
             className="relative max-h-full w-full max-w-4xl overflow-auto rounded-2xl bg-white p-3 shadow-2xl"
           >
             <Image

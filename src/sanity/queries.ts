@@ -51,7 +51,7 @@ export type CertificacionDoc = {
   _id: string;
   codigo: string;
   nombre: string;
-  tipo: "iso" | "retie";
+  tipo: "iso" | "retie" | "sello";
   emisor?: string;
   validez?: string;
   imagen?: Image;

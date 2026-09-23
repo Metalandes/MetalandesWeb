@@ -15,6 +15,7 @@ export default async function Page() {
   const certs = await getCertificaciones();
   const iso = certs.filter((c) => c.tipo === "iso");
   const retie = certs.filter((c) => c.tipo === "retie");
+  const sellos = certs.filter((c) => c.tipo === "sello");
 
   return (
     <SubPage
@@ -30,6 +31,21 @@ export default async function Page() {
         organismos acreditados ante la ONAC. Los documentos se publican únicamente para
         consulta.
       </p>
+
+      {sellos.length > 0 && (
+        <>
+          <h2 data-reveal className="mt-14 font-display text-2xl font-bold">
+            Sellos de certificación
+          </h2>
+          <p data-reveal className="mt-3 max-w-3xl text-muted">
+            Sellos otorgados por Kiwa CQR SAS, organismo acreditado por la ONAC con código
+            09-CSG-003 bajo la norma ISO/IEC 17021-1:2015.
+          </p>
+          <div className="mt-6">
+            <CertGallery certs={sellos} badge="SELLO · KIWA CQR" formato="sello" />
+          </div>
+        </>
+      )}
 
       <h2 data-reveal className="mt-14 font-display text-2xl font-bold">
         Sistemas de gestión

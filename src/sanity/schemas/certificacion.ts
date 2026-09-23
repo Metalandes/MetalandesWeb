@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-/** Certificado ISO o de producto RETIE. Solo de consulta: no se descarga. */
+/** Certificado ISO, de producto RETIE o sello del certificador. Solo de consulta: no se descarga. */
 export const certificacion = defineType({
   name: "certificacion",
   title: "Certificación",
@@ -28,6 +28,7 @@ export const certificacion = defineType({
         list: [
           { title: "Sistema de gestión (ISO)", value: "iso" },
           { title: "Producto (RETIE)", value: "retie" },
+          { title: "Sello de certificación (logo horizontal)", value: "sello" },
         ],
         layout: "radio",
       },
