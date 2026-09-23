@@ -29,7 +29,6 @@ export const NAV: NavItem[] = [
       { label: "Certificaciones", href: "/empresa/certificaciones" },
       { label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
       { label: "PQR", href: "/pqr" },
-      { label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
     ],
   },
   {
@@ -49,6 +48,7 @@ export const NAV: NavItem[] = [
   },
   { label: "Proyectos", href: "/proyectos" },
   { label: "Blog", href: "/blog" },
+  { label: "Trabaja con nosotros", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/contacto" },
 ];
 
