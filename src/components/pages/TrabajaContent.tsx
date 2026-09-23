@@ -52,9 +52,9 @@ export default function TrabajaContent({ pagina }: { pagina: PoliticaDoc | null 
               <span className="h-px flex-1 bg-[var(--border)]" />
             </div>
             <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
-              {pagina.lista.map((a) => (
+              {pagina.lista.map((a, i) => (
                 <li
-                  key={a}
+                  key={`${i}-${a}`}
                   data-reveal
                   className="flex items-start gap-3 border-b border-[var(--border)] pb-4 text-[var(--text)]"
                 >

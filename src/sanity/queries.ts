@@ -14,6 +14,10 @@ const REFRESCO = process.env.SANITY_REVALIDATE_SECRET ? 3600 : 60;
  * "image"}` sin archivo. Pedirle la URL a eso rompe la página, así que las
  * consultas sólo devuelven imágenes que de verdad tienen archivo.
  */
+/** Lista de textos sin los renglones que quedaron vacíos en el Studio. */
+const sinVacios = (lista?: (string | null)[]) =>
+  lista?.filter((t): t is string => typeof t === "string" && t.trim() !== "");
+
 const imagen = (campo: string) => `"${campo}": select(defined(${campo}.asset) => ${campo})`;
 
 export type ProductoDoc = {
@@ -129,7 +133,7 @@ export type PoliticaDoc = {
 };
 
 export async function getPolitica(clave: string): Promise<PoliticaDoc | null> {
-  return client.fetch(
+  const doc = await client.fetch<PoliticaDoc | null>(
     `*[_type == "politica" && clave == $clave][0]{
       titulo, intro, cuerpo, tarjetas, lista, cierre,
       "documentoUrl": documento.asset->url
@@ -137,6 +141,7 @@ export async function getPolitica(clave: string): Promise<PoliticaDoc | null> {
     { clave },
     { next: { revalidate: REFRESCO, tags: ["politica"] } }
   );
+  return doc && { ...doc, lista: sinVacios(doc.lista) };
 }
 
 /* --- Blog --- */
@@ -205,7 +210,8 @@ export async function getPortada(): Promise<PortadaDoc> {
     {},
     { next: { revalidate: REFRESCO, tags: ["portada"] } }
   );
-  return doc ?? {};
+  if (!doc) return {};
+  return { ...doc, aliados: sinVacios(doc.aliados), marquee: sinVacios(doc.marquee) };
 }
 
 /* --- Servicios --- */
@@ -222,13 +228,14 @@ export type ServicioDoc = {
 };
 
 export async function getServicios(): Promise<ServicioDoc[]> {
-  return client.fetch(
+  const docs = await client.fetch<ServicioDoc[]>(
     `*[_type == "servicio"] | order(orden asc){
       _id, titulo, descripcion, etiquetas, enlace, ${imagen("imagen")}, items, detalle
     }`,
     {},
     { next: { revalidate: REFRESCO, tags: ["servicio"] } }
   );
+  return docs.map((d) => ({ ...d, etiquetas: sinVacios(d.etiquetas), items: sinVacios(d.items) }));
 }
 
 /* --- Proyectos --- */
@@ -278,7 +285,8 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
     {},
     { next: { revalidate: REFRESCO, tags: ["paginaProductos"] } }
   );
-  return doc ?? {};
+  if (!doc) return {};
+  return { ...doc, mediaSpecs: sinVacios(doc.mediaSpecs), bajaSpecs: sinVacios(doc.bajaSpecs) };
 }
 
 /* --- Navegación --- */
