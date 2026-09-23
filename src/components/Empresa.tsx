@@ -41,22 +41,28 @@ export default function Empresa({ portada = {} }: { portada?: PortadaDoc }) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <FotoSeccion imagen={portada.empresaImagen} alt="Metalandes" className="mb-2" />
-            {(portada.valores ?? []).map((v, i) => (
-              <div
-                key={v._key}
-                data-reveal
-                className="group glass clip-proto relative overflow-hidden p-7 transition duration-300 hover:-translate-y-1"
-              >
-                <div className="absolute right-6 top-6 font-display text-sm text-faint">
-                  0{i + 1}
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(140px_140px_at_92%_8%,var(--glow-blue),transparent_70%)] opacity-0 transition duration-300 group-hover:opacity-100" />
-                <h3 className="font-display text-2xl font-semibold text-[var(--text)]">{v.titulo}</h3>
-                <p className="mt-2 max-w-sm text-muted">{v.texto}</p>
-              </div>
-            ))}
+          <div className="flex flex-col lg:pt-2">
+            <FotoSeccion imagen={portada.empresaImagen} alt="Metalandes" className="mb-8" />
+            {/* Valores en lista editorial (antes, otra tanda de tarjetas). */}
+            <ol className="border-t border-[var(--border)]">
+              {(portada.valores ?? []).map((v, i) => (
+                <li
+                  key={v._key}
+                  data-reveal
+                  className="group grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 border-b border-[var(--border)] py-7 md:grid-cols-[3.5rem_minmax(0,1fr)]"
+                >
+                  <span className="pt-1 font-display text-sm tabular-nums text-electric">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold text-[var(--text)] transition group-hover:text-electric md:text-[1.75rem]">
+                      {v.titulo}
+                    </h3>
+                    {v.texto && <p className="mt-2 max-w-md leading-relaxed text-muted">{v.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </div>
