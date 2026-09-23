@@ -5,8 +5,6 @@ import { useReveal } from "@/hooks/useReveal";
 import { urlFor } from "@/sanity/image";
 import type { ProyectoDoc } from "@/sanity/queries";
 
-const HUES = ["from-electric/30", "from-cyan/25", "from-energy/25"];
-
 export default function ProjectsGrid({ proyectos = [] }: { proyectos?: ProyectoDoc[] }) {
   const scope = useReveal<HTMLDivElement>();
 
@@ -19,7 +17,7 @@ export default function ProjectsGrid({ proyectos = [] }: { proyectos?: ProyectoD
           className="group glass relative overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-2 hover:glow-ring"
         >
           <div
-            className={`relative flex h-44 items-end overflow-hidden bg-gradient-to-br ${HUES[i % HUES.length]} to-transparent p-5`}
+            className="relative flex h-44 items-end overflow-hidden p-5"
           >
             {p.imagen ? (
               <>
@@ -33,16 +31,27 @@ export default function ProjectsGrid({ proyectos = [] }: { proyectos?: ProyectoD
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               </>
             ) : (
-              <div className="grid-bg absolute inset-0 opacity-40" />
+              /* Sin foto: placa de marca con el número del proyecto, en vez de
+                 un bloque de color vacío que se ve sin terminar. */
+              <>
+                <div className="absolute inset-0 bg-[var(--text)]" />
+                <div className="brand-pattern absolute inset-0 opacity-[0.18]" />
+                <span
+                  aria-hidden
+                  className="absolute right-5 top-3 font-display text-7xl font-bold leading-none text-white/[0.08]"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </>
             )}
             {p.categoria && (
-              <span className="relative rounded-full border border-[var(--border)] bg-black/55 px-3 py-1 text-xs text-white backdrop-blur">
+              <span className="relative rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs text-white backdrop-blur">
                 {p.categoria}
               </span>
             )}
           </div>
           <div className="p-6">
-            <h3 className="font-display text-xl font-semibold text-[var(--text)]">{p.titulo}</h3>
+            <h2 className="font-display text-xl font-semibold text-[var(--text)]">{p.titulo}</h2>
             {(p.lugar || p.anio) && (
               <p className="mt-1 text-sm text-muted">
                 {[p.lugar, p.anio].filter(Boolean).join(" · ")}
