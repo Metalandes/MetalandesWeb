@@ -3,84 +3,76 @@
 import { useReveal } from "@/hooks/useReveal";
 import { useContacto } from "@/components/ContactoProvider";
 import ContactForm from "@/components/ContactForm";
-import { ElectricEyebrow, NodeSeparator } from "@/components/brand/BrandBits";
+import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
 
+/**
+ * Cierre de la portada. En escritorio, dos columnas: a la izquierda el
+ * mensaje y los canales directos, a la derecha el formulario. Todos los
+ * datos salen de «Datos de contacto» en el Studio.
+ */
 export default function Contacto() {
   const CONTACT = useContacto();
   const scope = useReveal<HTMLDivElement>();
 
+  const canales = [
+    { label: "WhatsApp", value: CONTACT.whatsapp, href: `https://wa.me/${CONTACT.whatsappHref}`, externo: true },
+    { label: "Teléfono", value: CONTACT.phone, href: `tel:${CONTACT.phoneHref}` },
+    { label: "Correo", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
+    { label: "Dirección", value: CONTACT.address },
+  ];
+
   return (
-    <section id="contacto" className="relative overflow-hidden py-20 md:py-40">
-      <div className="pointer-events-none absolute inset-0">
-        {/* Glow como radial-gradient (sin filtro blur) — no re-pinta al scrollear */}
-        <div className="absolute inset-0 bg-[radial-gradient(38%_45%_at_50%_45%,rgba(227,3,44,0.14),transparent_70%)]" />
-        <div className="grid-bg absolute inset-0 opacity-60" />
-      </div>
+    <section id="contacto" className="relative overflow-hidden border-t border-[var(--border)] bg-[var(--surface)] py-20 md:py-32">
+      <div className="grid-bg pointer-events-none absolute inset-0 opacity-40" />
 
-      <div ref={scope} className="relative mx-auto max-w-5xl px-5 text-center">
-        <div data-reveal className="mb-5 flex flex-col items-center gap-4">
-          <SectionIcon name="contacto" className="h-14 w-14" />
-          <ElectricEyebrow>CONTACTO</ElectricEyebrow>
+      <div
+        ref={scope}
+        className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20"
+      >
+        <div>
+          <div data-reveal className="mb-5 flex items-center gap-4">
+            <SectionIcon name="contacto" className="h-12 w-12" />
+            <ElectricEyebrow>CONTACTO</ElectricEyebrow>
+          </div>
+          <h2
+            data-reveal
+            className="font-display text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.02] tracking-tight"
+          >
+            Hablemos de tu <span className="text-gradient">próximo proyecto</span>.
+          </h2>
+          <p data-reveal className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+            Cuéntanos qué necesitas. Nuestro equipo de ingeniería responde con una propuesta a la
+            medida.
+          </p>
+
+          <dl data-reveal className="mt-10 border-t border-[var(--border)]">
+            {canales.map((c) => (
+              <div
+                key={c.label}
+                className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-baseline gap-4 border-b border-[var(--border)] py-4"
+              >
+                <dt className="text-xs font-semibold uppercase tracking-widest text-faint">{c.label}</dt>
+                <dd className="text-[var(--text)]">
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      {...(c.externo ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="font-medium underline-offset-4 transition hover:text-electric hover:underline"
+                    >
+                      {c.value}
+                    </a>
+                  ) : (
+                    c.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        <h2
-          data-reveal
-          className="mx-auto max-w-3xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold leading-[1.02] tracking-tight"
-        >
-          Hablemos de tu <span className="text-gradient">próximo proyecto</span>.
-        </h2>
-        <p data-reveal className="mx-auto mt-6 max-w-xl text-lg text-muted">
-          Cuéntanos qué necesitas. Nuestro equipo de ingeniería responde con una propuesta a la
-          medida.
-        </p>
 
-        <div data-reveal className="mx-auto mt-12 max-w-2xl">
+        <div data-reveal className="lg:pt-4">
           <ContactForm />
-        </div>
-
-        <div className="my-8 flex flex-col items-center gap-3 text-xs text-faint">
-          <NodeSeparator />
-          <span>o contáctanos directo</span>
-        </div>
-
-        <div data-reveal className="flex flex-wrap justify-center gap-4">
-          <a
-            href={`https://wa.me/${CONTACT.whatsappHref}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative overflow-hidden rounded-xl bg-electric px-8 py-4 font-semibold text-white"
-          >
-            <span className="relative z-10">Escríbenos por WhatsApp</span>
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
-          </a>
-          <a
-            href={`mailto:${CONTACT.email}`}
-            className="rounded-xl border border-[var(--border)] px-8 py-4 font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
-          >
-            {CONTACT.email}
-          </a>
-        </div>
-
-        <div
-          data-reveal
-          className="mx-auto mt-16 grid max-w-3xl gap-4 text-left sm:grid-cols-3"
-        >
-          {[
-            { label: "Dirección", value: CONTACT.address },
-            { label: "Teléfono", value: CONTACT.phone, href: `tel:${CONTACT.phoneHref}` },
-            { label: "WhatsApp", value: CONTACT.whatsapp, href: `https://wa.me/${CONTACT.whatsappHref}` },
-          ].map((c) => (
-            <div key={c.label} className="glass clip-proto p-5">
-              <p className="text-xs uppercase tracking-widest text-faint">{c.label}</p>
-              {c.href ? (
-                <a href={c.href} className="mt-2 block text-sm text-[var(--text)] transition hover:text-electric">
-                  {c.value}
-                </a>
-              ) : (
-                <p className="mt-2 text-sm text-[var(--text)]">{c.value}</p>
-              )}
-            </div>
-          ))}
         </div>
       </div>
     </section>
