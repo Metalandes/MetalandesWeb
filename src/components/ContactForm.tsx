@@ -6,7 +6,7 @@ import { useContacto } from "@/components/ContactoProvider";
 type Campo = "nombre" | "email" | "mensaje";
 
 const FIELD =
-  "w-full rounded-xl border bg-black/[0.02] px-4 py-3 text-base text-[var(--text)] outline-none transition placeholder:text-faint focus:border-cyan focus:bg-black/[0.04] sm:text-sm";
+  "w-full rounded-xl border bg-black/[0.02] px-4 py-3 text-base text-[var(--text)] outline-none transition placeholder:text-faint focus:border-electric focus:bg-white focus:ring-4 focus:ring-electric/10 sm:text-sm";
 
 const VALIDAR: Record<Campo, (v: string) => string | null> = {
   nombre: (v) => (v.trim().length > 1 ? null : "Escribe tu nombre."),

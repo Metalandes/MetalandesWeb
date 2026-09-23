@@ -167,6 +167,12 @@ html.lenis body {
 .clip-proto-lg {
   clip-path: polygon(0 0, calc(100% - 42px) 0, 100% 42px, 100% 100%, 0 100%);
 }
+/* El recorte esconde el contorno de foco dibujado por fuera: en estas
+   placas se dibuja por dentro para que al navegar con teclado se vea. */
+.clip-proto:focus-visible,
+.clip-proto-lg:focus-visible {
+  outline-offset: -3px;
+}
 
 /* Patrón de fondo con marca "T" (conector) — muy sutil, decorativo. */
 .brand-pattern {

@@ -44,7 +44,7 @@ export default function SubPage({
         {/* Breadcrumb */}
         <nav
           data-reveal
-          className="mb-12 flex items-center gap-2 text-sm text-faint"
+          className="mb-12 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-faint"
           aria-label="Ruta"
         >
           <Link href="/" className="transition hover:text-[var(--text)]">

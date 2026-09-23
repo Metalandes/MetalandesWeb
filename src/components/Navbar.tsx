@@ -79,7 +79,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
 
         {/* Toggle móvil */}
         <button
-          className="flex flex-col gap-1.5 lg:hidden"
+          className="-mr-2.5 flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menú"
           aria-expanded={open}
