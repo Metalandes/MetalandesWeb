@@ -17,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const slug = slugDe((await params).slug);
   const post = await getPost(slug);
   if (!post) return { title: "Artículo no encontrado" };
   return {
@@ -29,6 +29,15 @@ export async function generateMetadata({
   };
 }
 
+/** Una dirección con tildes puede llegar codificada ("%C3%B1"); se busca tal como se guardó. */
+function slugDe(crudo: string) {
+  try {
+    return decodeURIComponent(crudo);
+  } catch {
+    return crudo;
+  }
+}
+
 function fechaLarga(iso: string) {
   return new Date(`${iso}T12:00:00`).toLocaleDateString("es-CO", {
     day: "numeric",
@@ -38,7 +47,7 @@ function fechaLarga(iso: string) {
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+  const slug = slugDe((await params).slug);
   const post = await getPost(slug);
   if (!post) notFound();
 

@@ -16,9 +16,28 @@ export const post = defineType({
       name: "slug",
       title: "Dirección web",
       type: "slug",
-      description: "Se genera del título. Es la parte final de la URL del artículo.",
-      options: { source: "titulo", maxLength: 80 },
-      validation: (r) => r.required(),
+      description:
+        "Parte final de la dirección del artículo. Escribí el título y tocá «Generate»: se arma sola, sin tildes ni espacios.",
+      options: {
+        source: "titulo",
+        maxLength: 80,
+        /* "Media y Baja Tensión: claves" → "media-y-baja-tension-claves".
+           Tildes, ñ y signos en una dirección web se rompen al compartirla. */
+        slugify: (texto: string) =>
+          texto
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 80),
+      },
+      validation: (r) =>
+        r.required().custom((valor?: { current?: string }) =>
+          !valor?.current || /^[a-z0-9]+(-[a-z0-9]+)*$/.test(valor.current)
+            ? true
+            : "Sólo minúsculas sin tilde, números y guiones. Tocá «Generate» para corregirla."
+        ),
     }),
     defineField({
       name: "fecha",
