@@ -40,8 +40,8 @@ export default async function Page() {
           <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
         </div>
         <ul className="grid gap-3 sm:grid-cols-2 lg:order-1">
-          {specs.map((s) => (
-            <li key={s} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
+          {specs.map((s, i) => (
+            <li key={`${i}-${s}`} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
               <span className="mt-1 text-electric">◆</span>
               {s}
             </li>

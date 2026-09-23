@@ -60,9 +60,9 @@ export default function Servicios({ servicios = [], titulo }: { servicios?: Serv
               <h3 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{s.titulo}</h3>
               <p className="mt-3 flex-1 leading-relaxed text-muted">{s.descripcion}</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {(s.etiquetas ?? []).map((t) => (
+                {(s.etiquetas ?? []).map((t, j) => (
                   <span
-                    key={t}
+                    key={`${j}-${t}`}
                     className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-muted"
                   >
                     {t}

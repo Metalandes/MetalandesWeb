@@ -29,8 +29,8 @@ export default async function Page() {
 
       {p?.lista?.length ? (
         <ul className="mt-8 grid gap-3 md:grid-cols-2">
-          {p.lista.map((punto) => (
-            <li key={punto} data-reveal className="glass flex gap-3 rounded-xl p-5 text-muted">
+          {p.lista.map((punto, i) => (
+            <li key={`${i}-${punto}`} data-reveal className="glass flex gap-3 rounded-xl p-5 text-muted">
               <span className="mt-1 text-electric">◆</span>
               {punto}
             </li>

@@ -42,7 +42,7 @@ export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc
           ref={root}
           className="glass grid grid-cols-2 gap-px overflow-hidden rounded-3xl lg:grid-cols-4"
         >
-          {cifras.map((s) => (
+          {cifras.filter((s) => typeof s.valor === "number").map((s) => (
             <div
               key={s._key}
               className="stat-cell relative flex flex-col items-center justify-center gap-2 p-8 text-center md:p-12"

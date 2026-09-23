@@ -42,24 +42,10 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
         .from(".hero-cta", { y: 20, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.6")
         .from(".hero-strip", { opacity: 0, duration: 1 }, "-=0.4");
 
-      // Floating gradient blobs — subtle infinite drift
-      gsap.to(".blob-a", { x: 60, y: -40, duration: 9, yoyo: true, repeat: -1, ease: "sine.inOut" });
-      gsap.to(".blob-b", { x: -50, y: 50, duration: 11, yoyo: true, repeat: -1, ease: "sine.inOut" });
-
       // Parallax + fade on scroll out
       gsap.to(".hero-content", {
         y: -120,
         opacity: 0,
-        ease: "none",
-        scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
-      });
-      gsap.to(".blob-a", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
-      });
-      gsap.to(".blob-b", {
-        yPercent: -20,
         ease: "none",
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
       });
@@ -127,8 +113,8 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
             {Array.from({ length: 2 }).map((_, r) => (
               <span key={r} className="flex items-center gap-10">
                 {MARQUEE.map(
-                  (t) => (
-                    <span key={t} className="flex items-center gap-10">
+                  (t, i) => (
+                    <span key={`${i}-${t}`} className="flex items-center gap-10">
                       {t} <span className="text-cyan">◆</span>
                     </span>
                   )

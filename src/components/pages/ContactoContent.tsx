@@ -83,8 +83,8 @@ export default function ContactoContent() {
             <div data-reveal className="glass clip-proto p-6">
               <span className="text-xs uppercase tracking-widest text-faint">Extensiones</span>
               <ul className="mt-3 flex flex-col divide-y divide-[var(--border)]">
-                {CONTACT.extensiones.map((e) => (
-                  <li key={e.area} className="flex items-center justify-between gap-4 py-2.5 text-sm">
+                {CONTACT.extensiones.map((e, i) => (
+                  <li key={`${i}-${e.area}`} className="flex items-center justify-between gap-4 py-2.5 text-sm">
                     <span className="text-muted">{e.area}</span>
                     <span className="font-medium text-[var(--text)]">Ext. {e.ext}</span>
                   </li>

@@ -48,8 +48,8 @@ export default async function Page() {
       ) : null}
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {items.map((it) => (
-          <div key={it} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
+        {items.map((it, i) => (
+          <div key={`${i}-${it}`} data-reveal className="glass flex gap-3 rounded-xl p-4 text-sm text-muted">
             <span className="mt-1 text-electric">◆</span>
             {it}
           </div>

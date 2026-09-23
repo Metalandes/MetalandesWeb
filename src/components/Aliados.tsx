@@ -19,9 +19,9 @@ export default function Aliados({ aliados = [], titulo }: { aliados?: string[]; 
           <div className="marquee-track flex shrink-0 items-center gap-16 whitespace-nowrap pr-16">
             {Array.from({ length: 2 }).map((_, r) => (
               <span key={r} className="flex items-center gap-16">
-                {aliados.map((name) => (
+                {aliados.map((name, i) => (
                   <span
-                    key={name}
+                    key={`${i}-${name}`}
                     className="font-display text-2xl font-semibold text-muted/70 transition hover:text-[var(--text)] md:text-3xl"
                   >
                     {name}
