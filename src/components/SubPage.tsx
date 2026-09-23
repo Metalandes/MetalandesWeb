@@ -55,7 +55,7 @@ export default function SubPage({
             {parent}
           </Link>
           <span>/</span>
-          <span className="text-muted">{title}</span>
+          <span className="text-muted" aria-current="page">{highlight ? `${title} ${highlight}` : title}</span>
         </nav>
 
         {children}
