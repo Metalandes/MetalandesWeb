@@ -7,12 +7,12 @@ import HeroVideo from "@/components/HeroVideo";
 import type { PortadaDoc } from "@/sanity/queries";
 
 
-function SplitWords({ text, delay }: { text: string; delay: number }) {
+function SplitWords({ text, className = "" }: { text: string; className?: string }) {
   return (
     <>
-      {text.split(" ").map((word, i) => (
+      {text.split(" ").filter(Boolean).map((word, i) => (
         <span key={i} className="mr-[0.25em] inline-block overflow-hidden pb-[0.12em] align-bottom">
-          <span className="hero-word inline-block will-change-transform">{word}</span>
+          <span className={`hero-word inline-block will-change-transform ${className}`}>{word}</span>
         </span>
       ))}
     </>
@@ -29,18 +29,27 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
 
   useGSAP(
     () => {
+      // Sin animación de entrada para quien la desactivó en su sistema.
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      /* fromTo con destino explícito: con .from() GSAP toma como destino el
+         valor que el elemento tiene en ese instante, y si la animación se
+         arranca dos veces (remontaje, navegación) el segundo arranque lee
+         "invisible" como final y los botones se quedaban en opacidad 0. */
+      const aparecer = { opacity: 1, y: 0 };
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      tl.from(".hero-logo", { y: 24, opacity: 0, duration: 0.9 })
-        .from(".hero-eyebrow", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5")
-        .from(
+      tl.fromTo(".hero-logo", { y: 24, opacity: 0 }, { ...aparecer, duration: 0.9 })
+        .fromTo(".hero-eyebrow", { y: 20, opacity: 0 }, { ...aparecer, duration: 0.8 }, "-=0.5")
+        .fromTo(
           ".hero-word",
-          { yPercent: 120, duration: 1.1, stagger: 0.08 },
+          { yPercent: 120 },
+          { yPercent: 0, duration: 1.1, stagger: 0.08 },
           "-=0.5"
         )
-        .from(".hero-sub", { y: 24, opacity: 0, duration: 0.9 }, "-=0.7")
-        .from(".hero-cta", { y: 20, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.6")
-        .from(".hero-strip", { opacity: 0, duration: 1 }, "-=0.4");
+        .fromTo(".hero-sub", { y: 24, opacity: 0 }, { ...aparecer, duration: 0.9 }, "-=0.7")
+        .fromTo(".hero-cta", { y: 20, opacity: 0 }, { ...aparecer, duration: 0.7, stagger: 0.12 }, "-=0.6")
+        .fromTo(".hero-strip", { opacity: 0 }, { opacity: 1, duration: 1 }, "-=0.4");
 
       // Parallax + fade on scroll out
       gsap.to(".hero-content", {
@@ -71,16 +80,15 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
           Sector eléctrico · Medellín, Colombia
         </p>
 
-        <h1 className="font-display text-[clamp(2.75rem,8vw,7rem)] font-bold leading-[0.95] tracking-tight">
+        {/* El degradado va en cada palabra: aplicado al contenedor, el recorte
+            del texto no alcanza a las palabras animadas (cada una va en su
+            propia capa) y el título quedaba transparente. */}
+        <h1 className="font-display text-[clamp(2.75rem,8vw,7rem)] font-bold leading-[0.95] tracking-tight text-[var(--text)]">
           <span className="block">
-            <span className="text-gradient">
-              <SplitWords text={LINE_1} delay={0} />
-            </span>
+            <SplitWords text={LINE_1} />
           </span>
           <span className="block">
-            <span className="text-gradient">
-              <SplitWords text={LINE_2} delay={0.3} />
-            </span>
+            <SplitWords text={LINE_2} className="text-gradient" />
           </span>
         </h1>
 
@@ -92,14 +100,14 @@ export default function Hero({ portada = {} }: { portada?: PortadaDoc }) {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#contacto"
-            className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 font-semibold text-white transition"
+            className="hero-cta group relative overflow-hidden rounded-xl bg-electric px-7 py-3.5 font-semibold text-white"
           >
             <span className="relative z-10">{portada.heroCta ?? "Solicitar cotización"}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-cyan to-electric transition-transform duration-500 group-hover:translate-x-0" />
           </a>
           <a
             href="#servicios"
-            className="hero-cta rounded-xl border border-[var(--border)] px-7 py-3.5 font-semibold text-[var(--text)] transition hover:bg-black/[0.03]"
+            className="hero-cta rounded-xl border border-[var(--border)] bg-white/70 px-7 py-3.5 font-semibold text-[var(--text)] backdrop-blur transition-colors hover:bg-white"
           >
             Ver servicios
           </a>
