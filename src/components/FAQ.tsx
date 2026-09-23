@@ -31,11 +31,15 @@ function Row({ q, a }: { q: string; a: string }) {
       >
         <span className="font-display text-lg font-medium text-[var(--text)]">{q}</span>
         <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[var(--border)] text-lg leading-none text-electric transition-transform duration-300 ${
-            open ? "rotate-45" : ""
+          aria-hidden
+          className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[var(--border)] text-electric transition duration-300 ${
+            open ? "rotate-45 border-electric/40 bg-electric/[0.06]" : ""
           }`}
         >
-          +
+          {/* Dibujado: el "+" de la tipografía se veía como un punto. */}
+          <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M8 2v12M2 8h12" />
+          </svg>
         </span>
       </button>
       <div ref={panel} className="h-0 opacity-0">
@@ -54,9 +58,13 @@ export default function FAQ({ items, titulo }: { items: FaqDoc[]; titulo?: Titul
         <p data-reveal className="mb-4 text-center text-sm font-medium tracking-widest text-cyan">
           / PREGUNTAS FRECUENTES
         </p>
-        <TituloSeccion titulo={titulo} fallback={{ texto: "Todo lo que", destacado: "necesitas saber" }} />
+        <TituloSeccion
+          titulo={titulo}
+          fallback={{ texto: "Todo lo que", destacado: "necesitas saber" }}
+          className="text-center font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+        />
 
-        <div className="flex flex-col gap-3">
+        <div className="mt-10 flex flex-col gap-3 md:mt-14">
           {items.map((it) => (
             <Row key={it._id} q={it.pregunta} a={it.respuesta} />
           ))}
