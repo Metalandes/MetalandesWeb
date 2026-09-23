@@ -4,6 +4,7 @@ import { useReveal } from "@/hooks/useReveal";
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
 import { SectionIcon } from "@/components/brand/SectionIcon";
 import type { PortadaDoc } from "@/sanity/queries";
+import FotoSeccion from "@/components/brand/FotoSeccion";
 
 export default function Empresa({ portada = {} }: { portada?: PortadaDoc }) {
   const scope = useReveal<HTMLDivElement>();
@@ -41,6 +42,7 @@ export default function Empresa({ portada = {} }: { portada?: PortadaDoc }) {
           </div>
 
           <div className="flex flex-col gap-4">
+            <FotoSeccion imagen={portada.empresaImagen} alt="Metalandes" className="mb-2" />
             {(portada.valores ?? []).map((v, i) => (
               <div
                 key={v._key}

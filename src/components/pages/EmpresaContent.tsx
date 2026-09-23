@@ -5,6 +5,7 @@ import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
 import { EMPRESA } from "@/lib/content";
 import type { TextosPaginasDoc } from "@/sanity/queries";
+import FotoSeccion from "@/components/brand/FotoSeccion";
 
 const CARDS = [
   {
@@ -56,6 +57,14 @@ export default function EmpresaContent({ textos = {} }: { textos?: TextosPaginas
         <p data-reveal className="max-w-3xl text-lg leading-relaxed text-muted">
           {textos.empresaTexto ?? EMPRESA.fortaleza}
         </p>
+
+        <FotoSeccion
+          imagen={textos.empresaImagen}
+          alt="Metalandes"
+          proporcion="aspect-[16/10] md:aspect-[21/9]"
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          className="mt-12"
+        />
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {CARDS.map((c) => (

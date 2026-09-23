@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import TrabajaContent from "@/components/pages/TrabajaContent";
-import { getPolitica } from "@/sanity/queries";
+import { getPolitica, getTextosPaginas } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Trabaja con nosotros",
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const pagina = await getPolitica("trabaja-con-nosotros");
-  return <TrabajaContent pagina={pagina} />;
+  const [pagina, textos] = await Promise.all([getPolitica("trabaja-con-nosotros"), getTextosPaginas()]);
+  return <TrabajaContent pagina={pagina} imagen={textos.trabajaImagen} />;
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import FotoSeccion from "@/components/brand/FotoSeccion";
+import type { Image as SanityImage } from "sanity";
 import RichText from "@/components/RichText";
 import { NodeSeparator } from "@/components/brand/BrandBits";
 import { useContacto } from "@/components/ContactoProvider";
@@ -11,7 +13,13 @@ import { TRABAJO } from "@/lib/content";
 
 const ASUNTO = "Hoja de vida — Trabaja con nosotros";
 
-export default function TrabajaContent({ pagina }: { pagina: PoliticaDoc | null }) {
+export default function TrabajaContent({
+  pagina,
+  imagen,
+}: {
+  pagina: PoliticaDoc | null;
+  imagen?: SanityImage;
+}) {
   const scope = useReveal<HTMLDivElement>();
   const CONTACT = useContacto();
   const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(ASUNTO)}`;
@@ -27,6 +35,13 @@ export default function TrabajaContent({ pagina }: { pagina: PoliticaDoc | null 
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-28">
+        <FotoSeccion
+          imagen={imagen}
+          alt="Equipo de Metalandes"
+          proporcion="aspect-[16/10] md:aspect-[21/9]"
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          className="mb-14"
+        />
         {pagina?.tarjetas?.length ? (
           <div className="grid gap-5 md:grid-cols-3">
             {pagina.tarjetas.map((t, i) => (
