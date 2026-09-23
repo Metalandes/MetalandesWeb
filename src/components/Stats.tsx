@@ -41,25 +41,28 @@ export default function Stats({ cifras = [] }: { cifras?: NonNullable<PortadaDoc
     { scope: root }
   );
 
+  // Sin cifras en el Studio no se muestra una franja vacía.
+  if (!cifras.some((s) => typeof s.valor === "number")) return null;
+
   return (
-    <section className="relative py-16 md:py-32">
-      <div className="mx-auto max-w-7xl px-5">
-        <div
-          ref={root}
-          className="glass grid grid-cols-2 gap-px overflow-hidden rounded-3xl lg:grid-cols-4"
-        >
-          {cifras.filter((s) => typeof s.valor === "number").map((s) => (
+    <section aria-label="Metalandes en cifras" className="relative overflow-hidden bg-[var(--text)] py-16 text-white md:py-24">
+      <div className="brand-pattern pointer-events-none absolute inset-0 opacity-[0.07]" />
+      <div className="relative mx-auto max-w-7xl px-5">
+        <div ref={root} className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
+          {cifras.filter((s) => typeof s.valor === "number").map((s, i) => (
             <div
               key={s._key}
-              className="stat-cell relative flex flex-col items-center justify-start gap-2 p-6 text-center sm:p-8 md:p-12"
+              className={`stat-cell relative flex flex-col gap-3 px-2 sm:px-6 ${
+                i % 2 === 1 ? "border-l border-white/15" : ""
+              } ${i > 0 ? "lg:border-l lg:border-white/15" : ""}`}
             >
-              <div className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold leading-none tracking-tight">
-                <span className="stat-num text-gradient" data-value={s.valor}>
+              <div className="font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-bold leading-none tracking-tight">
+                <span className="stat-num tabular-nums" data-value={s.valor}>
                   <span>0</span>
                 </span>
-                <span className="text-gradient">{s.sufijo}</span>
+                <span className="text-electric">{s.sufijo}</span>
               </div>
-              <p className="text-sm text-muted">{s.etiqueta}</p>
+              <p className="max-w-[14rem] text-sm leading-snug text-white/65">{s.etiqueta}</p>
             </div>
           ))}
         </div>
