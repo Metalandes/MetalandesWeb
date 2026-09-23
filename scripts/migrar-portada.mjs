@@ -7,7 +7,6 @@
  *   node scripts/migrar-portada.mjs
  */
 import { createClient } from "@sanity/client";
-import { readFileSync, existsSync } from "node:fs";
 import { config } from "dotenv";
 
 config({ path: ".env.local" });
@@ -26,13 +25,20 @@ const client = createClient({
   useCdn: false,
 });
 
-async function subirImagen(ruta) {
-  if (!existsSync(ruta)) return undefined;
-  const asset = await client.assets.upload("image", readFileSync(ruta), {
-    filename: ruta.split("/").pop(),
-  });
-  return { _type: "image", asset: { _type: "reference", _ref: asset._id } };
+/* Carga inicial: ya se hizo. Volver a correrla reemplaza los documentos y
+   borra lo que se haya editado desde el Studio, así que sólo corre si el
+   dataset todavía no tiene portada, menú, servicios, proyectos o textos de productos o si se pide explícitamente con --forzar. */
+if (!process.argv.includes("--forzar")) {
+  const existentes = await client.fetch(`count(*[_type in ["portada", "navegacion", "servicio", "proyecto", "paginaProductos"]])`);
+  if (existentes > 0) {
+    console.error(
+      `\nYa hay ${existentes} documentos de portada, menú, servicios, proyectos o textos de productos en Sanity. Este script los reemplazaría y` +
+        `\nse perderían los cambios hechos en el Studio. Para correrlo igual: --forzar\n`
+    );
+    process.exit(1);
+  }
 }
+
 
 async function main() {
   console.log("Portada");
@@ -122,7 +128,6 @@ async function main() {
         "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
       etiquetas: ["Media tensión", "Baja tensión", "24/7"],
       enlace: "/servicios/mantenimiento",
-      img: "public/img/mantenimiento.jpg",
       items: [
         "Transferencias automáticas en baja y media tensión.",
         "Seccionadores en media tensión 13.2 kV – 34.5 kV.",
@@ -141,12 +146,10 @@ async function main() {
         "Fabricación de subestaciones eléctricas, tableros y gabinetes de media y baja tensión con certificación RETIE.",
       etiquetas: ["Tablerista", "RETIE", "A la medida"],
       enlace: "/productos",
-      img: "public/img/subestaciones.jpg",
       items: [],
     },
   ];
   for (const [i, s] of SERVICIOS.entries()) {
-    const imagen = await subirImagen(s.img);
     await client.createOrReplace({
       _id: `servicio-${s.id}`,
       _type: "servicio",
@@ -155,7 +158,6 @@ async function main() {
       etiquetas: s.etiquetas,
       enlace: s.enlace,
       items: s.items,
-      imagen,
       orden: (i + 1) * 10,
     });
     console.log(`  ✓ ${s.titulo}`);
@@ -199,7 +201,6 @@ async function main() {
       "Diseño a la medida",
     ],
     mediaCatalogoTitulo: "Gabinetes de media tensión",
-    mediaImagen: await subirImagen("public/img/subestaciones.jpg"),
     bajaTitulo: "Subestaciones de baja tensión",
     bajaTexto:
       "Tableros y gabinetes de baja tensión fabricados en lámina Cold Rolled, galvanizada o acero inoxidable. Acabado en pintura en polvo RAL 7032 y tratamiento de superficie de 5 pasos.",
@@ -210,7 +211,6 @@ async function main() {
       "Certificación RETIE (Cert. 0308)",
     ],
     bajaCatalogoTitulo: "Tableros y equipos de baja tensión",
-    bajaImagen: await subirImagen("public/img/mantenimiento.jpg"),
   });
   console.log("  ✓ páginas de productos");
 

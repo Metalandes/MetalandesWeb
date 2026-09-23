@@ -37,6 +37,20 @@ const client = createClient({
   useCdn: false,
 });
 
+/* Carga inicial: ya se hizo. Volver a correrla reemplaza los documentos y
+   borra lo que se haya editado desde el Studio, así que sólo corre si el
+   dataset todavía no tiene productos o si se pide explícitamente con --forzar. */
+if (!process.argv.includes("--forzar")) {
+  const existentes = await client.fetch(`count(*[_type in ["producto"]])`);
+  if (existentes > 0) {
+    console.error(
+      `\nYa hay ${existentes} documentos de productos en Sanity. Este script los reemplazaría y` +
+        `\nse perderían los cambios hechos en el Studio. Para correrlo igual: --forzar\n`
+    );
+    process.exit(1);
+  }
+}
+
 /**
  * Catálogo: prefijo del archivo → nombre visible.
  * El orden del arreglo es el orden en que se muestran en la web.
