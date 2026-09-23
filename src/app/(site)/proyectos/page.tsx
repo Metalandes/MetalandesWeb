@@ -23,7 +23,7 @@ export default async function ProyectosPage() {
         }
         icon="productos"
       />
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         <ProjectsGrid proyectos={proyectos} />
       </div>
     </main>

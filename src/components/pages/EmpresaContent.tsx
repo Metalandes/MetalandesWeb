@@ -53,7 +53,7 @@ export default function EmpresaContent({ textos = {} }: { textos?: TextosPaginas
         icon="nosotros"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         <p data-reveal className="max-w-3xl text-lg leading-relaxed text-muted">
           {textos.empresaTexto ?? EMPRESA.fortaleza}
         </p>

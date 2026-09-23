@@ -25,7 +25,7 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
         icon="contacto"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         {pagina?.tarjetas?.length ? (
           <div className="grid gap-5 md:grid-cols-3">
             {pagina.tarjetas.map((t, i) => (

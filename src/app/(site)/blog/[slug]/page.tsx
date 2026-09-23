@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         icon="servicios"
       />
 
-      <article className="mx-auto max-w-3xl px-5 pb-28">
+      <article className="mx-auto max-w-3xl px-5 pb-20 pt-12 md:pt-16">
         <p className="text-sm text-faint">{fechaLarga(post.fecha)}</p>
 
         {post.portada && (

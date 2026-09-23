@@ -31,7 +31,7 @@ export default function BlogContent({ posts, intro }: { posts: PostDoc[]; intro?
         icon="servicios"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         {posts.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((p) => (

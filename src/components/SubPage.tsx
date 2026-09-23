@@ -40,7 +40,7 @@ export default function SubPage({
         icon={ICON_BY_PARENT[parentHref]}
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         {/* Breadcrumb */}
         <nav
           data-reveal

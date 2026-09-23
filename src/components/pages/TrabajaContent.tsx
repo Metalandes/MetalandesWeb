@@ -34,7 +34,7 @@ export default function TrabajaContent({
         icon="nosotros"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         <FotoSeccion
           imagen={imagen}
           alt="Equipo de Metalandes"

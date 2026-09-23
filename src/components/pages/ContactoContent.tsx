@@ -26,7 +26,7 @@ export default function ContactoContent() {
         icon="contacto"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           {/* Canales */}
           <div className="flex flex-col gap-4">

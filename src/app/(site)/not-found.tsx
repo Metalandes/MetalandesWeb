@@ -14,7 +14,7 @@ export default function NoEncontrada() {
         subtitle="Puede que la dirección esté mal escrita o que el contenido se haya movido."
         icon="servicios"
       />
-      <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-5 pb-28">
+      <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-5 pb-20 pt-12">
         <Link
           href="/"
           className="rounded-lg bg-electric px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"

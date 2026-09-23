@@ -48,7 +48,7 @@ export default function ProductosContent({
         icon="productos"
       />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
         <div className="grid gap-5 md:grid-cols-2">
           {tarjetas.map((c) => (
             <Link
