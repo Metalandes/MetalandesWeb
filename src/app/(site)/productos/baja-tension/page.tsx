@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 export default async function Page() {
   const { baja } = PRODUCTOS_PAGE;
   const [productos, pag] = await Promise.all([getProductos("baja"), getPaginaProductos()]);
-  const titulo = pag.bajaTitulo ?? baja.title;
-  const texto = pag.bajaTexto ?? baja.body;
+  const titulo = pag.bajaTitulo || baja.title;
+  const texto = pag.bajaTexto || baja.body;
   const specs = pag.bajaSpecs?.length ? pag.bajaSpecs : baja.specs;
   return (
     <SubPage
@@ -29,14 +29,23 @@ export default async function Page() {
     >
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div data-reveal className="glass relative aspect-[4/3] overflow-hidden rounded-3xl lg:order-2">
-          <Image
-            src={pag.bajaImagen ? urlFor(pag.bajaImagen).width(1000).url() : baja.img}
-            alt={titulo}
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[var(--surface)]/80 to-transparent" />
+          {pag.bajaImagen ? (
+            <>
+              <Image
+                src={urlFor(pag.bajaImagen).width(1000).url()}
+                alt={titulo}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[var(--surface)]/80 to-transparent" />
+            </>
+          ) : (
+            /* Sin foto en el Studio: placa de marca, nunca una imagen vieja del código. */
+            <div className="absolute inset-0 bg-[var(--text)]">
+              <div className="brand-pattern absolute inset-0 opacity-[0.18]" />
+            </div>
+          )}
         </div>
         <ul className="grid gap-3 sm:grid-cols-2 lg:order-1">
           {specs.map((s, i) => (
@@ -49,7 +58,7 @@ export default async function Page() {
       </div>
 
       <div className="mt-20">
-        <ProductCatalog title={pag.bajaCatalogoTitulo ?? baja.catalogoTitle} items={productos} />
+        <ProductCatalog title={pag.bajaCatalogoTitulo || baja.catalogoTitle} items={productos} />
       </div>
     </SubPage>
   );

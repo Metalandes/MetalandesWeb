@@ -59,7 +59,6 @@ export const SERVICES = [
     title: "Mantenimiento",
     desc: "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
     tags: ["Media tensión", "Baja tensión", "24/7"],
-    img: "/img/mantenimiento.jpg" as string | null,
     href: "/servicios/mantenimiento",
   },
   {
@@ -67,7 +66,6 @@ export const SERVICES = [
     title: "Subestaciones",
     desc: "Fabricación de subestaciones eléctricas, tableros y gabinetes de media y baja tensión con certificación RETIE.",
     tags: ["Tablerista", "RETIE", "A la medida"],
-    img: "/img/subestaciones.jpg",
     href: "/productos",
   },
 ] as const;
@@ -253,7 +251,6 @@ export const PRODUCTOS_PAGE = {
       "Uso interior y exterior",
       "Diseño a la medida",
     ],
-    img: "/img/subestaciones.jpg",
     catalogoTitle: "Gabinetes de media tensión",
   },
   baja: {
@@ -265,7 +262,6 @@ export const PRODUCTOS_PAGE = {
       "Fosfatizado en zinc de 5 pasos",
       "Certificación RETIE (Cert. 0308)",
     ],
-    img: "/img/mantenimiento.jpg",
     catalogoTitle: "Tableros y equipos de baja tensión",
   },
 };
