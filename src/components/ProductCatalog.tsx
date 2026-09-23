@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/image";
@@ -116,118 +117,121 @@ export default function ProductCatalog({
       </ul>
 
       {/* Ficha del producto */}
-      {producto && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={producto.nombre}
-          onClick={cerrar}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--text)]/85 p-4 backdrop-blur-sm md:p-10"
-        >
+      {producto &&
+        createPortal(
           <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative grid max-h-full w-full max-w-5xl gap-6 overflow-auto rounded-2xl bg-[var(--bg)] p-4 shadow-2xl md:grid-cols-[1.4fr_1fr] md:p-6"
+            data-lenis-prevent
+            role="dialog"
+            aria-modal="true"
+            aria-label={producto.nombre}
+            onClick={cerrar}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--text)]/85 p-4 backdrop-blur-sm md:p-10"
           >
-            {/* Foto grande + miniaturas */}
-            <div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[var(--surface-2)]">
-                {fotos[foto] && (
-                  <Image
-                    src={urlFor(fotos[foto]).width(1400).url()}
-                    alt={`${producto.nombre} — foto ${foto + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 700px"
-                    className="object-contain"
-                    priority
-                  />
-                )}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative grid max-h-full w-full max-w-5xl gap-6 overflow-auto rounded-2xl bg-[var(--bg)] p-4 shadow-2xl md:grid-cols-[1.4fr_1fr] md:p-6"
+            >
+              {/* Foto grande + miniaturas */}
+              <div>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[var(--surface-2)]">
+                  {fotos[foto] && (
+                    <Image
+                      src={urlFor(fotos[foto]).width(1400).url()}
+                      alt={`${producto.nombre} — foto ${foto + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 700px"
+                      className="object-contain"
+                      priority
+                    />
+                  )}
+
+                  {fotos.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => mover(-1)}
+                        aria-label="Foto anterior"
+                        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[var(--text)] transition hover:bg-white"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => mover(1)}
+                        aria-label="Foto siguiente"
+                        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[var(--text)] transition hover:bg-white"
+                      >
+                        ›
+                      </button>
+                      <span className="absolute bottom-3 right-3 rounded-full bg-[var(--text)]/75 px-2.5 py-1 text-xs text-white">
+                        {foto + 1} / {fotos.length}
+                      </span>
+                    </>
+                  )}
+                </div>
 
                 {fotos.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => mover(-1)}
-                      aria-label="Foto anterior"
-                      className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[var(--text)] transition hover:bg-white"
-                    >
-                      ‹
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => mover(1)}
-                      aria-label="Foto siguiente"
-                      className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[var(--text)] transition hover:bg-white"
-                    >
-                      ›
-                    </button>
-                    <span className="absolute bottom-3 right-3 rounded-full bg-[var(--text)]/75 px-2.5 py-1 text-xs text-white">
-                      {foto + 1} / {fotos.length}
-                    </span>
-                  </>
+                  <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+                    {fotos.map((f, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setFoto(i)}
+                        aria-label={`Ver foto ${i + 1}`}
+                        className={`relative h-16 w-20 shrink-0 overflow-hidden rounded-lg border transition ${
+                          i === foto
+                            ? "border-electric ring-2 ring-electric/30"
+                            : "border-[var(--border)] opacity-60 hover:opacity-100"
+                        }`}
+                      >
+                        <Image
+                          src={urlFor(f).width(160).height(128).url()}
+                          alt=""
+                          fill
+                          sizes="80px"
+                          className="object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
 
-              {fotos.length > 1 && (
-                <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-                  {fotos.map((f, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setFoto(i)}
-                      aria-label={`Ver foto ${i + 1}`}
-                      className={`relative h-16 w-20 shrink-0 overflow-hidden rounded-lg border transition ${
-                        i === foto
-                          ? "border-electric ring-2 ring-electric/30"
-                          : "border-[var(--border)] opacity-60 hover:opacity-100"
-                      }`}
-                    >
-                      <Image
-                        src={urlFor(f).width(160).height(128).url()}
-                        alt=""
-                        fill
-                        sizes="80px"
-                        className="object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Datos */}
-            <div className="flex flex-col">
-              <h3 className="font-display text-2xl font-bold text-[var(--text)] md:text-3xl">
-                {producto.nombre}
-              </h3>
-              <p className="mt-2 text-sm text-faint">
-                {producto.categoria === "media" ? "Media tensión" : "Baja tensión"}
-              </p>
-
-              {producto.descripcion && (
-                <p className="mt-5 whitespace-pre-line leading-relaxed text-muted">
-                  {producto.descripcion}
+              {/* Datos */}
+              <div className="flex flex-col">
+                <h3 className="font-display text-2xl font-bold text-[var(--text)] md:text-3xl">
+                  {producto.nombre}
+                </h3>
+                <p className="mt-2 text-sm text-faint">
+                  {producto.categoria === "media" ? "Media tensión" : "Baja tensión"}
                 </p>
-              )}
 
-              <a
-                href="/contacto"
-                className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition hover:opacity-90"
-              >
-                Solicitar cotización <span aria-hidden>→</span>
-              </a>
+                {producto.descripcion && (
+                  <p className="mt-5 whitespace-pre-line leading-relaxed text-muted">
+                    {producto.descripcion}
+                  </p>
+                )}
+
+                <a
+                  href="/contacto"
+                  className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition hover:opacity-90"
+                >
+                  Solicitar cotización <span aria-hidden>→</span>
+                </a>
+              </div>
             </div>
-          </div>
 
-          <button
-            type="button"
-            onClick={cerrar}
-            aria-label="Cerrar"
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-[var(--text)] transition hover:bg-white md:right-8 md:top-8"
-          >
-            ×
-          </button>
-        </div>
-      )}
+            <button
+              type="button"
+              onClick={cerrar}
+              aria-label="Cerrar"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-[var(--text)] transition hover:bg-white md:right-8 md:top-8"
+            >
+              ×
+            </button>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

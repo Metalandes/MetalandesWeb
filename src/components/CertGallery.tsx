@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/image";
@@ -139,40 +140,43 @@ export default function CertGallery({
       )}
 
       {/* Visor */}
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Certificado ${open.codigo}`}
-          onClick={close}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--text)]/80 p-4 backdrop-blur-sm md:p-10"
-        >
+      {open &&
+        createPortal(
           <div
-            onClick={(e) => e.stopPropagation()}
-            onContextMenu={sinMenu}
-            className="relative max-h-full w-full max-w-4xl overflow-auto rounded-2xl bg-white p-3 shadow-2xl"
-          >
-            <Image
-              src={urlFor(open.imagen!).width(1400).url()}
-              alt={`Certificado ${open.codigo} — ${open.nombre}`}
-              width={open.ancho ?? 1400}
-              height={open.alto ?? 1000}
-              draggable={false}
-              className="h-auto w-full select-none rounded-lg"
-              sizes="(max-width: 896px) 100vw, 896px"
-            />
-          </div>
-
-          <button
-            type="button"
+            data-lenis-prevent
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Certificado ${open.codigo}`}
             onClick={close}
-            aria-label="Cerrar"
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-[var(--text)] transition hover:bg-white md:right-8 md:top-8"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--text)]/80 p-4 backdrop-blur-sm md:p-10"
           >
-            ×
-          </button>
-        </div>
-      )}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              onContextMenu={sinMenu}
+              className="relative max-h-full w-full max-w-4xl overflow-auto rounded-2xl bg-white p-3 shadow-2xl"
+            >
+              <Image
+                src={urlFor(open.imagen!).width(1400).url()}
+                alt={`Certificado ${open.codigo} — ${open.nombre}`}
+                width={open.ancho ?? 1400}
+                height={open.alto ?? 1000}
+                draggable={false}
+                className="h-auto w-full select-none rounded-lg"
+                sizes="(max-width: 896px) 100vw, 896px"
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Cerrar"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-[var(--text)] transition hover:bg-white md:right-8 md:top-8"
+            >
+              ×
+            </button>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
