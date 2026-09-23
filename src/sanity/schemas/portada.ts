@@ -77,7 +77,12 @@ export const portada = defineType({
         {
           type: "object",
           fields: [
-            { name: "valor", title: "Número", type: "number" },
+            {
+              name: "valor",
+              title: "Número",
+              type: "number",
+              validation: (r: import("sanity").Rule) => r.required(),
+            },
             { name: "sufijo", title: "Sufijo", type: "string", description: "Ej: +, /7" },
             { name: "etiqueta", title: "Etiqueta", type: "string" },
           ],

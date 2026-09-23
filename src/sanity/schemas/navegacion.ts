@@ -19,12 +19,23 @@ export const navegacion = defineType({
         {
           type: "object",
           fields: [
-            { name: "label", title: "Nombre", type: "string" },
+            {
+              name: "label",
+              title: "Nombre",
+              type: "string",
+              validation: (r: import("sanity").Rule) => r.required(),
+            },
             {
               name: "href",
               title: "Enlace",
               type: "string",
-              description: "Ruta interna. Ej: /productos",
+              description: "Página a la que lleva. Ej: /productos",
+              validation: (r: import("sanity").Rule) =>
+                r.required().custom((v?: string) =>
+                  !v || v.startsWith("/") || v.startsWith("https://")
+                    ? true
+                    : "Empezá con / para una página del sitio (ej: /productos) o con https:// para otro sitio."
+                ),
             },
             {
               name: "children",
@@ -34,8 +45,24 @@ export const navegacion = defineType({
                 {
                   type: "object",
                   fields: [
-                    { name: "label", title: "Nombre", type: "string" },
-                    { name: "href", title: "Enlace", type: "string" },
+                    {
+                      name: "label",
+                      title: "Nombre",
+                      type: "string",
+                      validation: (r: import("sanity").Rule) => r.required(),
+                    },
+                    {
+                      name: "href",
+                      title: "Enlace",
+                      type: "string",
+                      description: "Página a la que lleva. Ej: /empresa/certificaciones",
+                      validation: (r: import("sanity").Rule) =>
+                        r.required().custom((v?: string) =>
+                          !v || v.startsWith("/") || v.startsWith("https://")
+                            ? true
+                            : "Empezá con / para una página del sitio (ej: /productos) o con https:// para otro sitio."
+                        ),
+                    },
                   ],
                   preview: { select: { title: "label", subtitle: "href" } },
                 },
