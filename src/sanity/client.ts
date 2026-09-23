@@ -4,15 +4,16 @@ import { apiVersion, dataset, projectId } from "./env";
 /**
  * Cliente de lectura del sitio público.
  *
- * `useCdn: true` sirve el contenido desde la CDN de Sanity: las páginas siguen
- * siendo rápidas aunque el contenido ya no esté en el código. Next revalida el
- * caché cuando el contenido cambia, así que editar en el Studio se refleja en
- * el sitio sin recompilar.
+ * `useCdn: false`: el caché lo lleva Next (ver REFRESCO en queries.ts), no la
+ * CDN de Sanity. Con la CDN en medio, una publicación podía tardar un par de
+ * minutos más en verse porque Next revalidaba y recibía la respuesta vieja.
+ * Como Next sólo consulta a Sanity al revalidar, el volumen de peticiones
+ * queda muy por debajo del límite del plan gratuito.
  */
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
   perspective: "published",
 });

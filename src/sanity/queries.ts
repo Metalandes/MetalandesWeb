@@ -2,6 +2,14 @@ import type { Image, PortableTextBlock } from "sanity";
 import { client } from "./client";
 
 /**
+ * Segundos que una página puede mostrar contenido viejo antes de volver a
+ * pedirlo a Sanity. Con el webhook configurado cada publicación se refleja al
+ * instante y esto queda como red de seguridad; sin él (en local) se refresca
+ * cada minuto.
+ */
+const REFRESCO = process.env.SANITY_REVALIDATE_SECRET ? 3600 : 60;
+
+/**
  * Una imagen cuya foto se borró en el Studio queda guardada como `{_type:
  * "image"}` sin archivo. Pedirle la URL a eso rompe la página, así que las
  * consultas sólo devuelven imágenes que de verdad tienen archivo.
@@ -33,7 +41,7 @@ export async function getProductos(categoria: "media" | "baja"): Promise<Product
     PRODUCTOS_POR_CATEGORIA,
     { categoria },
     // Etiqueta de caché: al publicar en el Studio se revalida sólo esto.
-    { next: { revalidate: 60, tags: ["producto"] } }
+    { next: { revalidate: REFRESCO, tags: ["producto"] } }
   );
 }
 
@@ -60,7 +68,7 @@ export async function getCertificaciones(): Promise<CertificacionDoc[]> {
       "alto": imagen.asset->metadata.dimensions.height
     }`,
     {},
-    { next: { revalidate: 60, tags: ["certificacion"] } }
+    { next: { revalidate: REFRESCO, tags: ["certificacion"] } }
   );
 }
 
@@ -72,7 +80,7 @@ export async function getFaqs(): Promise<FaqDoc[]> {
   return client.fetch(
     `*[_type == "faq"] | order(orden asc){ _id, pregunta, respuesta }`,
     {},
-    { next: { revalidate: 60, tags: ["faq"] } }
+    { next: { revalidate: REFRESCO, tags: ["faq"] } }
   );
 }
 
@@ -103,7 +111,7 @@ export async function getContacto(): Promise<ContactoDoc> {
   const doc = await client.fetch<ContactoDoc | null>(
     `*[_type == "contacto"][0]`,
     {},
-    { next: { revalidate: 60, tags: ["contacto"] } }
+    { next: { revalidate: REFRESCO, tags: ["contacto"] } }
   );
   return doc ?? {};
 }
@@ -127,7 +135,7 @@ export async function getPolitica(clave: string): Promise<PoliticaDoc | null> {
       "documentoUrl": documento.asset->url
     }`,
     { clave },
-    { next: { revalidate: 60, tags: ["politica"] } }
+    { next: { revalidate: REFRESCO, tags: ["politica"] } }
   );
 }
 
@@ -153,7 +161,7 @@ export async function getPosts(): Promise<PostDoc[]> {
   return client.fetch(
     `*[_type == "post" && defined(slug.current)] | order(fecha desc){ ${CAMPOS_POST} }`,
     {},
-    { next: { revalidate: 60, tags: ["post"] } }
+    { next: { revalidate: REFRESCO, tags: ["post"] } }
   );
 }
 
@@ -164,7 +172,7 @@ export async function getPost(slug: string): Promise<PostDoc | null> {
       "contenido": contenido[_type != "image" || defined(asset)]
     }`,
     { slug },
-    { next: { revalidate: 60, tags: ["post"] } }
+    { next: { revalidate: REFRESCO, tags: ["post"] } }
   );
 }
 
@@ -195,7 +203,7 @@ export async function getPortada(): Promise<PortadaDoc> {
   const doc = await client.fetch<PortadaDoc | null>(
     `*[_type == "portada"][0]`,
     {},
-    { next: { revalidate: 60, tags: ["portada"] } }
+    { next: { revalidate: REFRESCO, tags: ["portada"] } }
   );
   return doc ?? {};
 }
@@ -219,7 +227,7 @@ export async function getServicios(): Promise<ServicioDoc[]> {
       _id, titulo, descripcion, etiquetas, enlace, ${imagen("imagen")}, items, detalle
     }`,
     {},
-    { next: { revalidate: 60, tags: ["servicio"] } }
+    { next: { revalidate: REFRESCO, tags: ["servicio"] } }
   );
 }
 
@@ -240,7 +248,7 @@ export async function getProyectos(): Promise<ProyectoDoc[]> {
       _id, titulo, lugar, anio, categoria, ${imagen("imagen")}
     }`,
     {},
-    { next: { revalidate: 60, tags: ["proyecto"] } }
+    { next: { revalidate: REFRESCO, tags: ["proyecto"] } }
   );
 }
 
@@ -268,7 +276,7 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
       ${imagen("bajaImagen")}
     }`,
     {},
-    { next: { revalidate: 60, tags: ["paginaProductos"] } }
+    { next: { revalidate: REFRESCO, tags: ["paginaProductos"] } }
   );
   return doc ?? {};
 }
@@ -293,7 +301,7 @@ export async function getNavegacion(): Promise<NavItemDoc[] | null> {
   const doc = await client.fetch<{ items?: NavItemDoc[] } | null>(
     `*[_type == "navegacion"][0]{ items }`,
     {},
-    { next: { revalidate: 60, tags: ["navegacion"] } }
+    { next: { revalidate: REFRESCO, tags: ["navegacion"] } }
   );
   const items = (doc?.items ?? []).filter(entradaUsable).map((item) => ({
     ...item,
