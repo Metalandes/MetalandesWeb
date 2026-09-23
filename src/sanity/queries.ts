@@ -289,6 +289,18 @@ export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
   return { ...doc, mediaSpecs: sinVacios(doc.mediaSpecs), bajaSpecs: sinVacios(doc.bajaSpecs) };
 }
 
+/** Cuántos productos hay publicados en cada tipo de subestación. */
+export async function getConteoProductos(): Promise<{ media: number; baja: number }> {
+  return client.fetch(
+    `{
+      "media": count(*[_type == "producto" && categoria == "media"]),
+      "baja": count(*[_type == "producto" && categoria == "baja"])
+    }`,
+    {},
+    { next: { revalidate: REFRESCO, tags: ["producto"] } }
+  );
+}
+
 /* --- Navegación --- */
 
 export type NavItemDoc = {
