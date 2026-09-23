@@ -34,10 +34,9 @@ export default async function Page() {
             alt={titulo}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover opacity-80"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
+          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[var(--surface)]/80 to-transparent" />
         </div>
         <ul className="grid gap-3 sm:grid-cols-2 lg:order-1">
           {specs.map((s, i) => (

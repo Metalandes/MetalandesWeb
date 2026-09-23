@@ -51,10 +51,9 @@ export default function ProductosContent() {
                   alt={c.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-90"
+                  className="object-cover transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-[var(--electric)]/10 mix-blend-overlay" />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--surface)] to-transparent" />
               </div>
               <div className="flex flex-1 flex-col p-8 pt-6">
                 <span className="font-display text-sm text-faint">{c.n}</span>
