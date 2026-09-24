@@ -53,7 +53,9 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans), system-ui, sans-serif;
-  overflow-x: hidden;
+  /* clip y no hidden: hidden convierte al body en contenedor de scroll, lo
+     que rompe position: sticky y en iPhone produce tirones al desplazarse. */
+  overflow-x: clip;
 }
 
 /* Textos que llegan del Studio: una palabra o un enlace larguísimo sin

@@ -36,9 +36,12 @@ export default function CertGallery({
     };
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // El scroll suave se pausa: si no, la página de fondo seguía moviéndose.
+    window.__lenis?.stop();
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
+      window.__lenis?.start();
       window.removeEventListener("keydown", onKey);
     };
   }, [open, close]);
