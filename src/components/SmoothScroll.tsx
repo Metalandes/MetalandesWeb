@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
@@ -15,6 +16,8 @@ declare global {
  * stays perfectly in sync (single RAF loop, no double-driving).
  */
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -40,6 +43,21 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       delete window.__lenis;
     };
   }, []);
+
+  /* Al cambiar de página: si el scroll suave venía animándose, seguía hacia
+     su destino anterior y la página nueva aparecía a mitad o al final, como
+     "trabada". Se corta en seco, se vuelve arriba y se recalculan las
+     medidas y las animaciones de aparición de la página nueva. */
+  useEffect(() => {
+    const lenis = window.__lenis;
+    if (!lenis || window.location.hash) return;
+    lenis.scrollTo(0, { immediate: true, force: true });
+    const id = requestAnimationFrame(() => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
 
   return <>{children}</>;
 }
