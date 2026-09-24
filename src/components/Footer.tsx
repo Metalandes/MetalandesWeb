@@ -34,8 +34,10 @@ export default function Footer({
       <div className="brand-pattern pointer-events-none absolute inset-0 opacity-[0.05]" />
 
       <div className="relative mx-auto max-w-7xl px-5 pt-16 md:pt-20">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))] lg:gap-10">
-          <div>
+        {/* Celular: marca y contacto a todo el ancho, navegación y redes lado a
+            lado (antes, una sola columna de casi dos pantallas). */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))] lg:gap-10">
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" aria-label="Metalandes, inicio" className="inline-block">
               <LogoWordmark className="h-10 w-auto [filter:brightness(0)_invert(1)]" />
             </Link>
@@ -63,7 +65,7 @@ export default function Footer({
             </ul>
           </nav>
 
-          <div>
+          <div className="order-last col-span-2 sm:order-none sm:col-span-1">
             <p className={titulo}>Contacto</p>
             <ul className="space-y-3 text-sm">
               <li>
