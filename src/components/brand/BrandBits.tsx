@@ -45,7 +45,8 @@ export function ElectricEyebrow({
     >
       <TMark className="h-3.5 w-9" flip />
       <span>{children}</span>
-      <TMark className="h-3.5 w-9" />
+      {/* En pantallas chicas un texto largo se parte y este conector quedaba suelto. */}
+      <TMark className="hidden h-3.5 w-9 sm:block" />
     </span>
   );
 }
