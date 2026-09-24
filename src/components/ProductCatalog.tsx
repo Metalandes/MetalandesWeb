@@ -68,7 +68,7 @@ export default function ProductCatalog({
         <span className="text-sm text-faint">{items.length}</span>
       </div>
 
-      <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-8 lg:grid-cols-3">
         {items.map((item, i) => {
           const portada = item.galeria?.[0];
           const extras = (item.galeria?.length ?? 0) - 1;
@@ -78,7 +78,7 @@ export default function ProductCatalog({
               <button
                 type="button"
                 onClick={() => abrir(i)}
-                className="group glass clip-proto-lg w-full overflow-hidden p-4 text-left transition duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_-25px_var(--glow-blue)]"
+                className="group glass clip-proto w-full overflow-hidden p-2 text-left transition duration-300 hover:-translate-y-2 sm:p-4 hover:shadow-[0_30px_60px_-25px_var(--glow-blue)]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[var(--surface-2)]">
                   {portada ? (
@@ -86,7 +86,7 @@ export default function ProductCatalog({
                       src={urlFor(portada).width(900).height(675).url()}
                       alt={item.nombre}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition duration-500 group-hover:scale-105"
                     />
                   ) : (
@@ -97,18 +97,18 @@ export default function ProductCatalog({
                     Ver producto <span aria-hidden>→</span>
                   </span>
                   {extras > 0 && (
-                    <span className="absolute right-3 top-3 rounded-full bg-[var(--text)]/75 px-2.5 py-1 text-xs font-medium text-white">
+                    <span className="absolute right-2 top-2 rounded-full bg-[var(--text)]/75 px-2 py-0.5 text-[10px] font-medium text-white sm:right-3 sm:top-3 sm:px-2.5 sm:py-1 sm:text-xs">
                       {extras + 1} fotos
                     </span>
                   )}
                 </div>
 
-                <div className="px-1 pb-1 pt-5">
-                  <h3 className="font-display text-lg font-semibold leading-snug text-[var(--text)]">
+                <div className="px-1 pb-1 pt-3 sm:pt-5">
+                  <h3 className="font-display text-[0.95rem] font-semibold leading-snug text-[var(--text)] sm:text-lg">
                     {item.nombre}
                   </h3>
                   {item.descripcion && (
-                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted max-sm:hidden">
                       {item.descripcion}
                     </p>
                   )}
