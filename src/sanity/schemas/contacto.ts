@@ -25,7 +25,19 @@ export const contacto = defineType({
       description: "Solo dígitos, con indicativo y sin el +. Ej: 573243515023",
     }),
     defineField({ name: "email", title: "Correo", type: "string" }),
-    defineField({ name: "emailCalidad", title: "Correo de calidad (PQR)", type: "string" }),
+    defineField({
+      name: "emailCalidad",
+      title: "Correo de calidad (PQRS)",
+      type: "string",
+      description: "Recibe los formularios de PQRS de la página.",
+    }),
+    defineField({ name: "telefonoPqrs", title: "Teléfono de PQRS", type: "string", description: "Como se muestra. Ej: 317 242 1531" }),
+    defineField({
+      name: "telefonoPqrsHref",
+      title: "Teléfono de PQRS para marcar",
+      type: "string",
+      description: "Con indicativo, sin espacios. Ej: +573172421531",
+    }),
     defineField({ name: "emergencia", title: "Línea de emergencia 24/7", type: "string" }),
     defineField({ name: "emergenciaHref", title: "Emergencia para marcar", type: "string" }),
     defineField({

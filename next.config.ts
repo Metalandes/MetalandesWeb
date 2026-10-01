@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     // Fotos subidas desde el Studio: viven en la CDN de Sanity.
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
+  // La sección se llama PQRS: quien escriba /pqrs llega a la página.
+  async redirects() {
+    return [{ source: "/pqrs", destination: "/pqr", permanent: true }];
+  },
 };
 
 export default nextConfig;

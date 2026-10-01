@@ -6,8 +6,8 @@ import { getContacto, getPolitica } from "@/sanity/queries";
 export async function generateMetadata(): Promise<Metadata> {
   const c = resolverContacto(await getContacto());
   return {
-    title: "PQR",
-    description: `Canal de peticiones, quejas y reclamos de Metalandes. Descarga el formato de reporte de PQR y envíalo a ${c.emailCalidad} o entrégalo en nuestras instalaciones en Medellín.`,
+    title: "PQRS",
+    description: `Canal de peticiones, quejas, reclamos y sugerencias (PQRS) de Metalandes. Radica tu PQRS en línea, descarga el formato o envíalo a ${c.emailCalidad} o entrégalo en nuestras instalaciones en Medellín.`,
   };
 }
 

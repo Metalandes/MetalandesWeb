@@ -65,7 +65,7 @@ export default async function Page() {
       <div data-reveal className="mt-8 text-sm text-faint">
         Para sugerencias, peticiones, quejas y reclamos, consulta nuestro{" "}
         <Link href="/pqr" className="text-electric underline-offset-4 hover:underline">
-          canal de PQR
+          canal de PQRS
         </Link>
         .
       </div>

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "sanity";
 
 /**
- * Páginas de texto institucional: política SIG, tratamiento de datos, PQR y
+ * Páginas de texto institucional: política SIG, tratamiento de datos, PQRS y
  * trabaja con nosotros. Se identifican por `clave`, que es lo que usa cada
  * página del sitio para encontrar su contenido — no debe cambiarse.
  */
@@ -19,7 +19,7 @@ export const politica = defineType({
         list: [
           { title: "Gestión integral (SIG)", value: "gestion-integral" },
           { title: "Tratamiento de datos", value: "tratamiento-datos" },
-          { title: "PQR", value: "pqr" },
+          { title: "PQRS", value: "pqr" },
           { title: "Trabaja con nosotros", value: "trabaja-con-nosotros" },
         ],
       },
@@ -46,7 +46,7 @@ export const politica = defineType({
       title: "Tarjetas",
       type: "array",
       description:
-        "Bloques destacados que se muestran en fila (pasos para radicar una PQR, razones para postularse, pilares del sistema de gestión).",
+        "Bloques destacados que se muestran en fila (pasos para radicar una PQRS, razones para postularse, pilares del sistema de gestión).",
       of: [
         {
           type: "object",
@@ -77,7 +77,7 @@ export const politica = defineType({
       title: "Documento adjunto",
       type: "file",
       description:
-        "Opcional. El PDF o formato que se ofrece para descargar en esa página (política de datos, formato de PQR).",
+        "Opcional. El PDF o formato que se ofrece para descargar en esa página (política de datos, formato de PQRS).",
     }),
   ],
   preview: { select: { title: "titulo", subtitle: "clave" } },

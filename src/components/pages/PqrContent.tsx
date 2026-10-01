@@ -18,9 +18,9 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
   return (
     <main id="main" ref={scope} className="relative z-[2]">
       <PageHero
-        kicker="/ PQR"
-        title={pagina?.titulo ?? "Peticiones, quejas"}
-        highlight={pagina?.titulo ? undefined : "y reclamos"}
+        kicker="/ PQRS"
+        title={pagina?.titulo || "Peticiones, quejas, reclamos"}
+        highlight={pagina?.titulo ? undefined : "y sugerencias"}
         subtitle={pagina?.intro ?? PQR.intro}
         icon="contacto"
       />
@@ -49,7 +49,7 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
           <div className="relative">
             <NodeSeparator />
             <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold leading-tight">
-              Radica tu <span className="text-gradient">PQR</span>.
+              Radica tu <span className="text-gradient">PQRS</span>.
             </h2>
 
             <div className="mt-6 max-w-3xl">
@@ -68,7 +68,7 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
                 </a>
               )}
               <a
-                href={`mailto:${email}?subject=${encodeURIComponent("Reporte de PQR")}`}
+                href={`mailto:${email}?subject=${encodeURIComponent("Reporte de PQRS")}`}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--text)] transition hover:text-electric"
               >
                 Enviar a {email}
@@ -82,8 +82,12 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
                 <dd className="mt-2 text-muted">{email}</dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold tracking-widest text-electric">TELÉFONO</dt>
-                <dd className="mt-2 text-muted">{CONTACT.phone}</dd>
+                <dt className="text-xs font-semibold tracking-widest text-electric">TELÉFONO PQRS</dt>
+                <dd className="mt-2">
+                  <a href={`tel:${CONTACT.telefonoPqrsHref}`} className="text-muted transition hover:text-electric">
+                    {CONTACT.telefonoPqrs}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold tracking-widest text-electric">PRESENCIAL</dt>
@@ -95,7 +99,7 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
 
         <div data-reveal className="glass clip-proto mt-8 p-8 md:p-10">
           <h2 className="font-display text-xl font-semibold text-[var(--text)]">
-            PQR sobre tratamiento de datos personales
+            PQRS sobre tratamiento de datos personales
           </h2>
           <p className="mt-3 max-w-3xl leading-relaxed text-muted">{PQR.datosPersonales}</p>
           <Link

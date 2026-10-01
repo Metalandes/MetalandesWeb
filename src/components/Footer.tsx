@@ -119,7 +119,7 @@ export default function Footer({
             </Link>
             <span className="mx-2">·</span>
             <Link href="/pqr" className="transition hover:text-white">
-              PQR
+              PQRS
             </Link>
           </p>
         </div>

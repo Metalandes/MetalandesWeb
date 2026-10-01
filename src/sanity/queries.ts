@@ -98,6 +98,8 @@ export type ContactoDoc = {
   whatsappHref?: string;
   email?: string;
   emailCalidad?: string;
+  telefonoPqrs?: string;
+  telefonoPqrsHref?: string;
   emergencia?: string;
   emergenciaHref?: string;
   extensiones?: { _key: string; area: string; ext: string }[];

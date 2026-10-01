@@ -49,7 +49,7 @@ export default async function Page() {
           Para peticiones, quejas o reclamos sobre el tratamiento de tus datos personales, consulta
           nuestro{" "}
           <Link href="/pqr" className="text-electric underline-offset-4 hover:underline">
-            canal de PQR
+            canal de PQRS
           </Link>
           .
         </p>
