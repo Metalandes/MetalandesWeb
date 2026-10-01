@@ -70,9 +70,6 @@ async function subirImagen(ruta, filename) {
 }
 
 const CERTIFICACIONES = [
-  ["iso-9001", "ISO 9001:2015", "Sistema de Gestión de la Calidad", "iso", "Kiwa CQR SAS", "Vigente hasta agosto 2027", "src/assets/certificados/iso-9001.jpg"],
-  ["iso-14001", "ISO 14001:2015", "Sistema de Gestión Ambiental", "iso", "Kiwa CQR SAS", "Vigente hasta febrero 2027", "src/assets/certificados/iso-14001.jpg"],
-  ["iso-45001", "ISO 45001:2018", "Seguridad y Salud en el Trabajo", "iso", "Kiwa CQR SAS", "Vigente hasta febrero 2027", "src/assets/certificados/iso-45001.jpg"],
   ["retie-0307", "Cert. 0307", "Envolventes vacías / tableros auto soportados", "retie", "Certicheck S.A.S · Esquema 5 RETIE", "Vigente hasta diciembre 2030", "src/assets/certificados/retie-0307.png"],
   ["retie-0308", "Cert. 0308", "Tableros de baja tensión", "retie", "Certicheck S.A.S · Esquema 5 RETIE", "Vigente hasta diciembre 2030", "src/assets/certificados/retie-0308.png"],
   ["retie-0309", "Cert. 0309", "Celdas de media tensión", "retie", "Certicheck S.A.S · Esquema 5 RETIE", "Vigente hasta diciembre 2030", "src/assets/certificados/retie-0309.png"],
@@ -210,7 +207,7 @@ async function main() {
       titulo: "Trabaja con nosotros",
       tarjetas: [
         { _key: "r1", titulo: "Oficio real", texto: "Ingeniería, diseño mecánico y eléctrico, carpintería metálica, ensamble y pruebas: se aprende haciendo, sobre producto que sale a campo." },
-        { _key: "r2", titulo: "Seguridad primero", texto: "Sistema de Gestión de Seguridad y Salud en el Trabajo certificado bajo ISO 45001:2018, auditado por un organismo acreditado ante la ONAC." },
+        { _key: "r2", titulo: "Seguridad primero", texto: "Trabajamos bajo un Sistema de Gestión de Seguridad y Salud en el Trabajo." },
         { _key: "r3", titulo: "Estabilidad", texto: "Fundada en 1960. Seis décadas de operación continua en el sector eléctrico colombiano." },
       ],
       lista: [

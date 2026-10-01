@@ -69,7 +69,7 @@ async function main() {
       { _key: "c1", valor: 1960, sufijo: "", etiqueta: "Fundada en" },
       { _key: "c2", valor: 65, sufijo: "+", etiqueta: "Años de trayectoria" },
       { _key: "c3", valor: 24, sufijo: "/7", etiqueta: "Línea de mantenimiento" },
-      { _key: "c4", valor: 7, sufijo: "", etiqueta: "Certificaciones ISO / RETIE" },
+      { _key: "c4", valor: 4, sufijo: "", etiqueta: "Certificados de producto RETIE" },
     ],
     aliadosTitulo: "Nos respaldan",
     aliados: ["EPM", "ISA", "Celsia", "XM", "Air-e", "Enel", "Ecopetrol", "Grupo Argos"],
@@ -125,7 +125,7 @@ async function main() {
       id: "mantenimiento",
       titulo: "Mantenimiento",
       descripcion:
-        "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
+        "Servicio de mantenimiento en media y baja tensión, 24/7 en todo el territorio nacional.",
       etiquetas: ["Media tensión", "Baja tensión", "24/7"],
       enlace: "/servicios/mantenimiento",
       items: [
