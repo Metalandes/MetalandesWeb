@@ -5,7 +5,7 @@ import { getTextosPaginas } from "@/sanity/queries";
 export const metadata: Metadata = {
   title: "Empresa",
   description:
-    "Metalandes S.A.S — ramo metal eléctrico desde 1960. Gestión integral, certificaciones ISO y RETIE, y política de tratamiento de datos.",
+    "Metalandes S.A.S — ramo metal eléctrico desde 1960. Gestión integral, certificados de producto RETIE, PQRS y política de tratamiento de datos.",
 };
 
 export default async function EmpresaPage() {

@@ -7,7 +7,7 @@ import { SERVICIOS_PAGE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Mantenimiento eléctrico",
   description:
-    "Mantenimiento en media y baja tensión certificado ISO 45001, 24/7 en todo Colombia. Línea de emergencia 310 668 2128.",
+    "Mantenimiento en media y baja tensión, 24/7 en todo Colombia. Línea de emergencia 310 668 2128.",
 };
 
 export default async function Page() {

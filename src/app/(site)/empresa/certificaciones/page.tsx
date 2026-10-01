@@ -7,11 +7,11 @@ import { getCertificaciones, getTextosPaginas } from "@/sanity/queries";
 export const metadata: Metadata = {
   title: "Certificaciones",
   description:
-    "Certificaciones de Metalandes: ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 (Kiwa CQR) y certificados de producto RETIE 0307–0310 (Certicheck).",
+    "Certificados de conformidad de producto RETIE 0307–0310 de Metalandes, emitidos por Certicheck S.A.S, organismo acreditado ante la ONAC.",
 };
 
 const CERT_TEXTO =
-  "Nuestros sistemas de gestión están certificados por Kiwa CQR SAS y nuestros productos cuentan con certificado de conformidad RETIE emitido por Certicheck S.A.S, ambos organismos acreditados ante la ONAC. Los documentos se publican únicamente para consulta.";
+  "Nuestros productos cuentan con certificado de conformidad RETIE emitido por Certicheck S.A.S, organismo acreditado ante la ONAC. Los documentos se publican únicamente para consulta.";
 
 export default async function Page() {
   const { certificaciones } = EMPRESA;
@@ -47,14 +47,19 @@ export default async function Page() {
         </>
       )}
 
-      <h2 data-reveal className="mt-14 font-display text-2xl font-bold">
-        Sistemas de gestión
-      </h2>
-      <div className="mt-6">
-        <CertGallery certs={iso} badge="ISO · KIWA CQR" />
-      </div>
+      {/* Cada grupo aparece sólo si tiene certificados publicados en el Studio. */}
+      {iso.length > 0 && (
+        <>
+          <h2 data-reveal className="mt-14 font-display text-2xl font-bold">
+            Sistemas de gestión
+          </h2>
+          <div className="mt-6">
+            <CertGallery certs={iso} badge={`ISO${iso[0]?.emisor ? " · " + iso[0].emisor.toUpperCase() : ""}`} />
+          </div>
+        </>
+      )}
 
-      <h2 data-reveal className="mt-16 font-display text-2xl font-bold">
+      <h2 data-reveal className="mt-14 font-display text-2xl font-bold">
         Certificados de producto RETIE
       </h2>
       <p data-reveal className="mt-3 max-w-3xl text-muted">

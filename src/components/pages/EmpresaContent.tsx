@@ -17,7 +17,7 @@ const CARDS = [
   {
     n: "02",
     title: "Certificaciones",
-    desc: "ISO 9001, 14001, 45001 y certificados RETIE (0307–0310).",
+    desc: "Certificados de producto RETIE (0307–0310).",
     href: "/empresa/certificaciones",
   },
   {
@@ -28,8 +28,8 @@ const CARDS = [
   },
   {
     n: "04",
-    title: "PQR",
-    desc: "Canal de peticiones, quejas y reclamos, con el formato oficial para radicarlas.",
+    title: "PQRS",
+    desc: "Peticiones, quejas, reclamos y sugerencias: radícalas en línea o con el formato oficial.",
     href: "/pqr",
   },
   {

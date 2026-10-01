@@ -15,8 +15,9 @@ const HREF = "/empresa/certificaciones";
  * sello del certificador y qué normas están vigentes, y manda a
  * /empresa/certificaciones, donde se consultan los documentos.
  *
- * Todo sale del Studio (Certificaciones): el primer sello, los códigos ISO y
- * cuántos certificados RETIE hay.
+ * Todo sale del Studio (Certificaciones). Si hay certificados ISO se muestran
+ * junto al total RETIE; si no, se listan los certificados RETIE con su
+ * alcance.
  */
 export default function Certificaciones({
   certs = [],
@@ -39,8 +40,9 @@ export default function Certificaciones({
           </div>
           <TituloSeccion titulo={titulo} fallback={{ texto: "Respaldados por", destacado: "norma" }} />
           <p data-reveal className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Sistemas de gestión certificados y certificados de producto RETIE vigentes, emitidos
-            por organismos acreditados ante la ONAC.
+            {iso.length > 0
+              ? "Sistemas de gestión certificados y certificados de producto RETIE vigentes, emitidos por organismos acreditados ante la ONAC."
+              : "Nuestros productos cuentan con certificados de conformidad RETIE vigentes, emitidos por un organismo acreditado ante la ONAC."}
           </p>
           <div data-reveal className="mt-9">
             <Link
@@ -74,34 +76,50 @@ export default function Certificaciones({
             </div>
           )}
 
-          <dl className="grid divide-y divide-[var(--border)] sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-            <div className="p-6 md:p-7">
-              <dt className="text-xs font-semibold tracking-widest text-electric">SISTEMAS DE GESTIÓN</dt>
-              <dd className="mt-3 space-y-1.5">
-                {iso.map((c) => (
-                  <p key={c._id} className="font-display text-lg font-semibold text-[var(--text)]">
-                    {c.codigo}
+          {iso.length > 0 ? (
+            <dl className="grid divide-y divide-[var(--border)] sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+              <div className="p-6 md:p-7">
+                <dt className="text-xs font-semibold tracking-widest text-electric">SISTEMAS DE GESTIÓN</dt>
+                <dd className="mt-3 space-y-1.5">
+                  {iso.map((c) => (
+                    <p key={c._id} className="font-display text-lg font-semibold text-[var(--text)]">
+                      {c.codigo}
+                    </p>
+                  ))}
+                  {iso[0]?.emisor && <p className="pt-1 text-sm text-faint">{iso[0].emisor}</p>}
+                </dd>
+              </div>
+              <div className="p-6 md:p-7">
+                <dt className="text-xs font-semibold tracking-widest text-electric">PRODUCTO · RETIE</dt>
+                <dd className="mt-3">
+                  <p className="font-display text-5xl font-bold leading-none text-[var(--text)]">{retie.length}</p>
+                  <p className="mt-2 text-sm text-muted">certificados de conformidad</p>
+                </dd>
+              </div>
+            </dl>
+          ) : (
+            /* Sólo certificados de producto: cada uno con su alcance. */
+            <div>
+              <div className="flex items-end justify-between gap-4 border-b border-[var(--border)] p-6 md:p-7">
+                <div>
+                  <p className="text-xs font-semibold tracking-widest text-electric">PRODUCTO · RETIE</p>
+                  <p className="mt-2 text-sm text-muted">
+                    Certificados de conformidad
+                    {retie[0]?.emisor ? ` · ${retie[0].emisor.split("·")[0].trim()}` : ""}
                   </p>
-                ))}
-                {iso[0]?.emisor && <p className="pt-1 text-sm text-faint">{iso[0].emisor}</p>}
-              </dd>
-            </div>
-            <div className="p-6 md:p-7">
-              <dt className="text-xs font-semibold tracking-widest text-electric">PRODUCTO · RETIE</dt>
-              <dd className="mt-3">
+                </div>
                 <p className="font-display text-5xl font-bold leading-none text-[var(--text)]">{retie.length}</p>
-                <p className="mt-2 text-sm text-muted">
-                  certificados de conformidad
-                  {retie.length > 0 && (
-                    <>
-                      <br />
-                      {retie.map((c) => c.codigo.replace(/^Cert\.\s*/, "")).join(" · ")}
-                    </>
-                  )}
-                </p>
-              </dd>
+              </div>
+              <ul className="divide-y divide-[var(--border)]">
+                {retie.map((c) => (
+                  <li key={c._id} className="flex items-baseline gap-4 px-6 py-4 md:px-7">
+                    <span className="w-24 shrink-0 font-display text-sm font-semibold text-[var(--text)]">{c.codigo}</span>
+                    <span className="text-sm text-muted">{c.nombre}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </dl>
+          )}
         </Link>
       </div>
     </section>

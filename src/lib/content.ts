@@ -6,13 +6,6 @@
    expuestos en una URL directa y sólo se sirven optimizados por next/image.
    Los PDF originales no se publican — los certificados son de consulta, no
    de descarga. */
-import iso9001 from "@/assets/certificados/iso-9001.jpg";
-import iso14001 from "@/assets/certificados/iso-14001.jpg";
-import iso45001 from "@/assets/certificados/iso-45001.jpg";
-import retie0307 from "@/assets/certificados/retie-0307.png";
-import retie0308 from "@/assets/certificados/retie-0308.png";
-import retie0309 from "@/assets/certificados/retie-0309.png";
-import retie0310 from "@/assets/certificados/retie-0310.png";
 
 export type NavItem = {
   label: string;
@@ -28,7 +21,7 @@ export const NAV: NavItem[] = [
       { label: "Gestión integral", href: "/empresa/gestion-integral" },
       { label: "Certificaciones", href: "/empresa/certificaciones" },
       { label: "Tratamiento de datos", href: "/empresa/tratamiento-datos" },
-      { label: "PQR", href: "/pqr" },
+      { label: "PQRS", href: "/pqr" },
     ],
   },
   {
@@ -57,7 +50,7 @@ export const SERVICES = [
   {
     n: "01",
     title: "Mantenimiento",
-    desc: "Servicio de mantenimiento en media y baja tensión, certificado ISO 45001, 24/7 en todo el territorio nacional.",
+    desc: "Servicio de mantenimiento en media y baja tensión, 24/7 en todo el territorio nacional.",
     tags: ["Media tensión", "Baja tensión", "24/7"],
     href: "/servicios/mantenimiento",
   },
@@ -74,7 +67,7 @@ export const STATS = [
   { value: 1960, suffix: "", label: "Fundada en" },
   { value: 65, suffix: "+", label: "Años de trayectoria" },
   { value: 24, suffix: "/7", label: "Línea de mantenimiento" },
-  { value: 7, suffix: "", label: "Certificaciones ISO / RETIE" },
+  { value: 4, suffix: "", label: "Certificados de producto RETIE" },
 ] as const;
 
 /* --- Empresa --- */
@@ -115,60 +108,8 @@ export const EMPRESA = {
   },
   certificaciones: {
     title: "Certificaciones",
-    lead: "Certificaciones obtenidas",
-    iso: [
-      {
-        code: "ISO 9001:2015",
-        name: "Sistema de Gestión de la Calidad",
-        issuer: "Kiwa CQR SAS",
-        validez: "Vigente hasta agosto 2027",
-        img: iso9001,
-      },
-      {
-        code: "ISO 14001:2015",
-        name: "Sistema de Gestión Ambiental",
-        issuer: "Kiwa CQR SAS",
-        validez: "Vigente hasta febrero 2027",
-        img: iso14001,
-      },
-      {
-        code: "ISO 45001:2018",
-        name: "Seguridad y Salud en el Trabajo",
-        issuer: "Kiwa CQR SAS",
-        validez: "Vigente hasta febrero 2027",
-        img: iso45001,
-      },
-    ],
-    retie: [
-      {
-        code: "Cert. 0307",
-        name: "Envolventes vacías / tableros auto soportados",
-        issuer: "Certicheck S.A.S · Esquema 5 RETIE",
-        validez: "Vigente hasta diciembre 2030",
-        img: retie0307,
-      },
-      {
-        code: "Cert. 0308",
-        name: "Tableros de baja tensión",
-        issuer: "Certicheck S.A.S · Esquema 5 RETIE",
-        validez: "Vigente hasta diciembre 2030",
-        img: retie0308,
-      },
-      {
-        code: "Cert. 0309",
-        name: "Celdas de media tensión",
-        issuer: "Certicheck S.A.S · Esquema 5 RETIE",
-        validez: "Vigente hasta diciembre 2030",
-        img: retie0309,
-      },
-      {
-        code: "Cert. 0310",
-        name: "Tableros de transferencias automáticas de carga",
-        issuer: "Certicheck S.A.S · Esquema 5 RETIE",
-        validez: "Vigente hasta diciembre 2030",
-        img: retie0310,
-      },
-    ],
+    lead: "Productos con certificado de conformidad RETIE, emitido por un organismo acreditado ante la ONAC.",
+    // Los certificados (imagen, código, vigencia) se administran en el Studio.
   },
   datos: {
     title: "Tratamiento de datos",
@@ -179,20 +120,20 @@ export const EMPRESA = {
   },
 };
 
-/* --- PQR — peticiones, quejas y reclamos --- */
+/* --- PQRS — peticiones, quejas, reclamos y sugerencias --- */
 export const PQR = {
-  lead: "Peticiones, quejas y reclamos",
+  lead: "Peticiones, quejas, reclamos y sugerencias",
   intro:
     "Buscamos una comunicación fluida y eficaz con clientes y demás grupos de interés para la recepción y atención de sugerencias, peticiones, quejas y reclamos. Puedes comunicarte por correo electrónico, por teléfono, por correspondencia o personalmente en nuestras instalaciones.",
   email: "calidad@metalandes.com",
-  /* Formato oficial que la empresa publica para radicar la PQR. */
+  /* Formato oficial que la empresa publica para radicar la PQRS. */
   formato: "/documentos/formulario-pqr.xlsx",
-  formatoLabel: "Formato de reporte de PQR (Excel)",
+  formatoLabel: "Formato de reporte de PQRS (Excel)",
   pasos: [
     {
       n: "01",
       title: "Descarga el formato",
-      desc: "Usa el formato de reporte de PQR para que quede registrada toda la información que necesitamos para atenderte.",
+      desc: "Usa el formato de reporte de PQRS para que quede registrada toda la información que necesitamos para atenderte.",
     },
     {
       n: "02",
@@ -213,7 +154,7 @@ export const PQR = {
 export const SERVICIOS_PAGE = {
   mantenimiento: {
     title: "Mantenimiento — asistencia técnica",
-    body: "Servicio de mantenimiento para media y baja tensión certificado ISO 45001:2018, con impecable cumplimiento de salud y seguridad en el trabajo. Operamos 24 horas, 7 días a la semana en todo el territorio nacional.",
+    body: "Servicio de mantenimiento para media y baja tensión, con impecable cumplimiento de salud y seguridad en el trabajo. Operamos 24 horas, 7 días a la semana en todo el territorio nacional.",
     emergencia: "310 668 2128",
     items: [
       "Transferencias automáticas en baja y media tensión.",
@@ -269,7 +210,7 @@ export const TRABAJO = {
     },
     {
       title: "Seguridad primero",
-      desc: "Sistema de Gestión de Seguridad y Salud en el Trabajo certificado bajo ISO 45001:2018, auditado por un organismo acreditado ante la ONAC.",
+      desc: "Trabajamos bajo un Sistema de Gestión de Seguridad y Salud en el Trabajo.",
     },
     {
       title: "Estabilidad",
@@ -319,6 +260,8 @@ export const CONTACT = {
   whatsappHref: "573243515023",
   waLink: "https://wa.me/573243515023",
   emailCalidad: "calidad@metalandes.com",
+  telefonoPqrs: "317 242 1531",
+  telefonoPqrsHref: "+573172421531",
   email: "info@metalandes.com",
   emergencia: "310 668 2128",
   emergenciaHref: "+573106682128",
