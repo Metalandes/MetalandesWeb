@@ -23,7 +23,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <a href="#main" className="skip-link">
         Saltar al contenido
       </a>
-      <div className="noise" aria-hidden />
       <SmoothScroll>
         <Navbar nav={nav} />
         {children}
