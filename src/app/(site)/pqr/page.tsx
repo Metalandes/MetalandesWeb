@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const c = resolverContacto(await getContacto());
   return {
     title: "PQRS",
-    description: `Canal de peticiones, quejas, reclamos y sugerencias (PQRS) de Metalandes. Radica tu PQRS en línea, descarga el formato o envíalo a ${c.emailCalidad} o entrégalo en nuestras instalaciones en Medellín.`,
+    description: `Canal de peticiones, quejas, reclamos y sugerencias (PQRS) de Metalandes. Descarga el formato o escribe tu PQRS a ${c.emailCalidad} o entrégalo en nuestras instalaciones en Medellín.`,
   };
 }
 

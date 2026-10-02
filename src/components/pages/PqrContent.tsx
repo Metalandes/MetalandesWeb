@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import Pasos from "@/components/brand/Pasos";
 import RichText from "@/components/RichText";
 import { NodeSeparator } from "@/components/brand/BrandBits";
 import { useContacto } from "@/components/ContactoProvider";
@@ -38,21 +39,7 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
       />
 
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12 md:pt-16">
-        {pagina?.tarjetas?.length ? (
-          <div className="grid gap-5 md:grid-cols-3">
-            {pagina.tarjetas.map((t, i) => (
-              <div key={t._key} data-reveal className="glass clip-proto p-8">
-                <span className="font-display text-sm text-faint">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-5 font-display text-xl font-semibold text-[var(--text)]">
-                  {t.titulo}
-                </h2>
-                <p className="mt-3 leading-relaxed text-muted">{t.texto}</p>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <Pasos items={pagina?.tarjetas ?? []} />
 
         <div
           data-reveal

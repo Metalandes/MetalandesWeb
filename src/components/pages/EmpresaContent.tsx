@@ -29,7 +29,7 @@ const CARDS = [
   {
     n: "04",
     title: "PQRS",
-    desc: "Peticiones, quejas, reclamos y sugerencias: radícalas en línea o con el formato oficial.",
+    desc: "Peticiones, quejas, reclamos y sugerencias: radícalas por correo o con el formato oficial.",
     href: "/pqr",
   },
   {
@@ -66,24 +66,29 @@ export default function EmpresaContent({ textos = {} }: { textos?: TextosPaginas
           className="mt-12"
         />
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        {/* Índice de la sección Empresa: filas con línea fina, número y flecha. */}
+        <nav aria-label="Secciones de Empresa" className="mt-14 border-t border-[var(--border)]">
           {CARDS.map((c) => (
             <Link
               key={c.href}
               href={c.href}
               data-reveal
-              className="group glass clip-proto relative flex flex-col overflow-hidden p-8 transition duration-300 hover:-translate-y-2"
+              className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-[var(--border)] py-6 transition-colors hover:bg-[var(--tint)] md:grid-cols-[4rem_minmax(0,1.1fr)_minmax(0,1fr)_auto] md:gap-x-8 md:py-8"
             >
-              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-electric to-transparent opacity-0 transition group-hover:opacity-100" />
-              <span className="font-display text-sm text-faint">{c.n}</span>
-              <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">{c.title}</h2>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.desc}</p>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric transition group-hover:gap-3">
-                Ver más <span aria-hidden>→</span>
+              <span className="font-display text-sm tabular-nums text-electric md:pl-4">{c.n}</span>
+              <h2 className="font-display text-2xl font-semibold text-[var(--text)] md:text-3xl">{c.title}</h2>
+              <p className="col-start-2 row-start-2 mt-2 text-sm leading-relaxed text-muted md:col-start-3 md:row-start-1 md:mt-0 md:text-base">
+                {c.desc}
+              </p>
+              <span
+                aria-hidden
+                className="col-start-3 row-span-2 row-start-1 grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] text-[var(--text)] transition group-hover:border-electric group-hover:bg-electric group-hover:text-white md:col-start-4 md:row-span-1 md:mr-4"
+              >
+                →
               </span>
             </Link>
           ))}
-        </div>
+        </nav>
       </div>
     </main>
   );

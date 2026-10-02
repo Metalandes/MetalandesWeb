@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import PageHero from "@/components/PageHero";
+import Pasos from "@/components/brand/Pasos";
 import FotoSeccion from "@/components/brand/FotoSeccion";
 import type { Image as SanityImage } from "sanity";
 import RichText from "@/components/RichText";
@@ -42,21 +43,7 @@ export default function TrabajaContent({
           sizes="(max-width: 1280px) 100vw, 1280px"
           className="mb-14"
         />
-        {pagina?.tarjetas?.length ? (
-          <div className="grid gap-5 md:grid-cols-3">
-            {pagina.tarjetas.map((t, i) => (
-              <div key={t._key} data-reveal className="glass clip-proto p-8">
-                <span className="font-display text-sm text-faint">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-5 font-display text-2xl font-semibold text-[var(--text)]">
-                  {t.titulo}
-                </h2>
-                <p className="mt-3 leading-relaxed text-muted">{t.texto}</p>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <Pasos items={pagina?.tarjetas ?? []} />
 
         {pagina?.lista?.length ? (
           <>
