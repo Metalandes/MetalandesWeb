@@ -46,7 +46,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  // Color de la barra del navegador en celular: el azul marino del menú.
+  themeColor: "#2b313c",
 };
 
 export default function RootLayout({

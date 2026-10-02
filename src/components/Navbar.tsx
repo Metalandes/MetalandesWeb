@@ -52,15 +52,15 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
   const items = NAV_ITEMS.filter((item) => item.href !== "/contacto");
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-white">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[var(--text)] text-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
         <Link href="/" className="group flex items-center gap-2.5" aria-label="Metalandes inicio">
           <span className="relative">
             {/* Resplandor rojo que se enciende detrás de la placa al pasar el cursor */}
             <span className="absolute -inset-1 rounded-xl bg-gradient-to-br from-electric to-energy opacity-0 blur-md transition group-hover:opacity-60" />
-            <LogoTile className="relative h-8 w-8" />
+            <LogoTile className="relative h-8 w-8 ring-1 ring-white/20" />
           </span>
-          <span className="font-display text-lg font-bold tracking-tight">
+          <span className="font-display text-lg font-bold tracking-tight text-white">
             Metal<span className="text-electric">andes</span>
           </span>
         </Link>
@@ -75,11 +75,11 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
                   className={`relative flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm transition-colors ${
-                    activo ? "font-medium text-[var(--text)]" : "text-muted hover:text-[var(--text)]"
+                    activo ? "font-medium text-white" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {item.label}
-                  {item.children && <Chevron className="text-faint transition group-hover:rotate-180" />}
+                  {item.children && <Chevron className="text-white/50 transition group-hover:rotate-180" />}
                   {/* Sección actual: línea roja bajo la opción del menú. */}
                   <span
                     aria-hidden
@@ -118,7 +118,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
           })}
           <Link
             href="/contacto"
-            className="ml-2 rounded-lg bg-electric px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+            className="ml-2 rounded-lg bg-electric px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
           >
             Contacto
           </Link>
@@ -144,7 +144,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
       <div
         id="menu-movil"
         data-lenis-prevent
-        className={`fixed inset-0 -z-10 flex flex-col overflow-y-auto bg-white pt-[76px] transition duration-300 lg:hidden ${
+        className={`fixed inset-0 -z-10 flex flex-col overflow-y-auto bg-[var(--text)] pt-[76px] transition duration-300 lg:hidden ${
           open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
         }`}
       >
@@ -153,13 +153,13 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
             const activo = isActive(item.href);
             const abierto = expanded === item.href;
             return (
-              <div key={item._key ?? item.href} className="border-b border-[var(--border)]">
+              <div key={item._key ?? item.href} className="border-b border-white/10">
                 <div className="flex items-center justify-between">
                   <Link
                     href={item.href}
                     aria-current={pathname === item.href ? "page" : undefined}
                     className={`flex flex-1 items-center gap-3 py-4 font-display text-2xl font-semibold tracking-tight ${
-                      activo ? "text-[var(--text)]" : "text-[var(--text)]/80"
+                      activo ? "text-white" : "text-white/75"
                     }`}
                   >
                     {activo && <span aria-hidden className="h-2 w-2 rotate-45 bg-electric" />}
@@ -168,7 +168,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
                   {item.children && (
                     <button
                       onClick={() => setExpanded((e) => (e === item.href ? null : item.href))}
-                      className="-mr-2 grid h-11 w-11 place-items-center text-faint"
+                      className="-mr-2 grid h-11 w-11 place-items-center text-white/50"
                       aria-label={`Expandir ${item.label}`}
                       aria-expanded={abierto}
                     >
@@ -189,7 +189,7 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
                             key={c._key ?? c.href}
                             href={c.href}
                             className={`py-2.5 pl-5 text-base ${
-                              pathname === c.href ? "font-medium text-electric" : "text-muted"
+                              pathname === c.href ? "font-medium text-electric" : "text-white/60"
                             }`}
                           >
                             {c.label}
@@ -216,13 +216,13 @@ export default function Navbar({ nav }: { nav?: NavItemDoc[] | null }) {
               href={`https://wa.me/${CONTACT.whatsappHref}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xl border border-[var(--border)] px-4 py-3 text-center font-medium text-[var(--text)]"
+              className="rounded-xl border border-white/20 px-4 py-3 text-center font-medium text-white"
             >
               WhatsApp
             </a>
             <a
               href={`tel:${CONTACT.phoneHref}`}
-              className="rounded-xl border border-[var(--border)] px-4 py-3 text-center font-medium text-[var(--text)]"
+              className="rounded-xl border border-white/20 px-4 py-3 text-center font-medium text-white"
             >
               Llamar
             </a>
