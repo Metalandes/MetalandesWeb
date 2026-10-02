@@ -14,6 +14,18 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
   const CONTACT = useContacto();
   // Correo de calidad editable en el Studio (Datos de contacto).
   const email = CONTACT.emailCalidad;
+  /* Sin servidor de correo: el botón abre el correo de la persona con una
+     plantilla para que la PQRS llegue con todo lo necesario para atenderla. */
+  const plantilla = [
+    "Tipo (petición, queja, reclamo o sugerencia): ",
+    "Nombre completo: ",
+    "Empresa (si aplica): ",
+    "Teléfono de contacto: ",
+    "",
+    "Descripción:",
+    "",
+  ].join("\n");
+  const mailtoPqrs = `mailto:${email}?subject=${encodeURIComponent("PQRS — Metalandes")}&body=${encodeURIComponent(plantilla)}`;
 
   return (
     <main id="main" ref={scope} className="relative z-[2]">
@@ -68,18 +80,25 @@ export default function PqrContent({ pagina }: { pagina: PoliticaDoc | null }) {
                 </a>
               )}
               <a
-                href={`mailto:${email}?subject=${encodeURIComponent("Reporte de PQRS")}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--text)] transition hover:text-electric"
+                href={mailtoPqrs}
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--text)] px-6 py-3.5 font-semibold text-[var(--text)] transition hover:bg-[var(--text)] hover:text-white"
               >
-                Enviar a {email}
+                Escribir mi PQRS por correo
                 <span aria-hidden>→</span>
               </a>
             </div>
+            <p className="mt-3 text-sm text-faint">
+              Se abre tu correo con una plantilla lista para diligenciar, dirigida a {email}.
+            </p>
 
             <dl className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div>
                 <dt className="text-xs font-semibold tracking-widest text-electric">CORREO</dt>
-                <dd className="mt-2 text-muted">{email}</dd>
+                <dd className="mt-2">
+                  <a href={mailtoPqrs} className="break-all text-muted transition hover:text-electric">
+                    {email}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold tracking-widest text-electric">TELÉFONO PQRS</dt>
