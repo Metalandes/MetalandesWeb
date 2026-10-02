@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     // AVIF primero (más liviano), luego WebP.
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
+    // 75 por defecto; 85 para la portada del hero, que va a pantalla completa.
+    qualities: [75, 85],
     // Fotos subidas desde el Studio: viven en la CDN de Sanity.
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },

@@ -5,12 +5,15 @@ import Image from "next/image";
 
 /**
  * Fondo del hero: poster optimizado (LCP) + video diferido.
- * El video sólo se monta tras la hidratación y si el dispositivo/conexión
- * lo permite (no móvil pequeño, no data-saver, no conexión lenta, no
- * reduced-motion). Así la carga inicial no se bloquea con el MP4.
+ * El video sólo se monta tras la hidratación y si la conexión lo permite
+ * (no ahorro de datos, no conexión lenta, no reduced-motion), así la carga
+ * inicial no se bloquea. En celular se usa una versión liviana (960 px).
+ * El video es un loop de 3,5 s con el final fundido sobre el inicio, sin
+ * salto al reiniciar.
  */
 export default function HeroVideo() {
   const [showVideo, setShowVideo] = useState(false);
+  const [movil, setMovil] = useState(false);
 
   useEffect(() => {
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,7 +24,8 @@ export default function HeroVideo() {
     const slow =
       conn && (conn.saveData || ["slow-2g", "2g", "3g"].includes(conn.effectiveType));
 
-    if (mqReduce || isSmall || slow) return;
+    if (mqReduce || slow) return;
+    setMovil(isSmall);
 
     // Espera a que el hilo esté libre para no competir con el primer render.
     const idle =
@@ -44,20 +48,30 @@ export default function HeroVideo() {
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        quality={85}
+        className="object-cover object-[64%_center] md:object-center"
       />
       {showVideo && (
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          // key: si cambia el tamaño de pantalla se recarga con la fuente adecuada
+          key={movil ? "movil" : "escritorio"}
+          className="hero-video absolute inset-0 h-full w-full object-cover object-[64%_center] md:object-center"
           autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
           poster="/hero-poster.jpg"
+          aria-hidden
         >
-          <source src="/hero.webm" type="video/webm" />
-          <source src="/hero.mp4" type="video/mp4" />
+          {movil ? (
+            <source src="/hero-movil.mp4" type="video/mp4" />
+          ) : (
+            <>
+              <source src="/hero.webm" type="video/webm" />
+              <source src="/hero.mp4" type="video/mp4" />
+            </>
+          )}
         </video>
       )}
       {/* Overlay legibilidad */}
