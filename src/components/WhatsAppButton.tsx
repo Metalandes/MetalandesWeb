@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex items-center gap-3"
+      className="wa-flotante group fixed bottom-6 right-6 z-50 flex items-center gap-3 transition-opacity"
     >
       <span className="pointer-events-none hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-[var(--text)] opacity-0 shadow-lg transition group-hover:opacity-100 md:block">
         Escríbenos

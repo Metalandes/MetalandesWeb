@@ -64,6 +64,12 @@ main :where(h1, h2, h3, h4, p, li, dd, blockquote, a) {
   overflow-wrap: anywhere;
 }
 
+/* Con el menú móvil abierto el botón flotante se oculta: el menú ya ofrece WhatsApp. */
+html[data-menu="abierto"] .wa-flotante {
+  opacity: 0;
+  pointer-events: none;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
