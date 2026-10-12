@@ -1,12 +1,12 @@
 "use client";
 
 import TituloSeccion, { type Titulo } from "@/components/brand/TituloSeccion";
-import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/hooks/useReveal";
 import { ElectricEyebrow } from "@/components/brand/BrandBits";
-import { urlFor } from "@/sanity/image";
 import type { CertificacionDoc } from "@/sanity/queries";
+import CertImagen from "@/components/CertImagen";
+import { useEscudo } from "@/hooks/useEscudo";
 
 const HREF = "/empresa/certificaciones";
 
@@ -27,6 +27,7 @@ export default function Certificaciones({
   titulo?: Titulo;
 }) {
   const scope = useReveal<HTMLDivElement>();
+  const oculto = useEscudo();
   const sello = certs.find((c) => c.tipo === "sello");
   const iso = certs.filter((c) => c.tipo === "iso");
   const retie = certs.filter((c) => c.tipo === "retie");
@@ -60,18 +61,14 @@ export default function Certificaciones({
           aria-label="Ver certificaciones"
           className="group block border border-[var(--border)] bg-white transition hover:border-[var(--text)]/25"
         >
-          {sello?.imagen && (
-            <div
-              className="relative aspect-[23/10] border-b border-[var(--border)]"
-              onContextMenu={(e) => e.preventDefault()}
-            >
-              <Image
-                src={urlFor(sello.imagen).width(1100).url()}
+          {sello && (
+            <div className="relative aspect-[23/10] border-b border-[var(--border)] p-6 md:p-8">
+              <CertImagen
+                cert={sello}
+                v="mini"
+                oculto={oculto}
                 alt={`Sello ${sello.codigo} — ${sello.emisor ?? ""}`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                draggable={false}
-                className="pointer-events-none select-none object-contain p-6 md:p-8"
+                className="h-full w-full"
               />
             </div>
           )}

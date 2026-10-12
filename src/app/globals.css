@@ -233,3 +233,19 @@ html.lenis body {
   padding-left: 1.25rem;
   font-style: italic;
 }
+
+/* Certificados en modo consulta: sin "guardar imagen" de la pulsación larga
+   (iOS), sin selección ni arrastre, y en blanco al imprimir. */
+.cert-protegido {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cert-protegido img {
+  -webkit-user-drag: none;
+}
+@media print {
+  [data-cert] {
+    visibility: hidden !important;
+  }
+}
