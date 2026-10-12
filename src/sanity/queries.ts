@@ -7,7 +7,7 @@ import { client } from "./client";
  * instante y esto queda como red de seguridad; sin él (en local) se refresca
  * cada minuto.
  */
-const REFRESCO = process.env.SANITY_REVALIDATE_SECRET ? 3600 : 60;
+export const REFRESCO = process.env.SANITY_REVALIDATE_SECRET ? 3600 : 60;
 
 /**
  * Una imagen cuya foto se borró en el Studio queda guardada como `{_type:
@@ -58,7 +58,8 @@ export type CertificacionDoc = {
   tipo: "iso" | "retie" | "sello";
   emisor?: string;
   validez?: string;
-  imagen?: Image;
+  /** Versión del documento: cambia al editarlo y renueva la imagen en caché. */
+  rev: string;
   /** Dimensiones reales: los ISO son verticales y los RETIE horizontales. */
   ancho?: number;
   alto?: number;
@@ -66,8 +67,10 @@ export type CertificacionDoc = {
 
 export async function getCertificaciones(): Promise<CertificacionDoc[]> {
   return client.fetch(
+    /* La imagen NO se consulta aquí: el navegador sólo recibe la versión con
+       marca de agua de /api/certificado (los certificados se usaron para fraude). */
     `*[_type == "certificacion" && defined(imagen.asset)] | order(orden asc){
-      _id, codigo, nombre, tipo, emisor, validez, imagen,
+      _id, codigo, nombre, tipo, emisor, validez, "rev": _rev,
       "ancho": imagen.asset->metadata.dimensions.width,
       "alto": imagen.asset->metadata.dimensions.height
     }`,
