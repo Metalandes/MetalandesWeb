@@ -21,7 +21,16 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    /* Productos creados desde «Subestaciones media/baja tensión» en el panel
+       ya nacen en esa categoría. */
+    templates: (prev) => [
+      ...prev,
+      { id: "producto-media", title: "Producto de media tensión", schemaType: "producto", value: { categoria: "media" } },
+      { id: "producto-baja", title: "Producto de baja tensión", schemaType: "producto", value: { categoria: "baja" } },
+    ],
+  },
   plugins: [
     structureTool({ structure }),
     // Menús, botones y avisos del Studio en español.
@@ -45,6 +54,12 @@ export default defineConfig({
     comments: { enabled: false },
     /* En los documentos únicos no ofrecemos duplicar ni borrar: son piezas
        fijas del sitio y perderlas dejaría páginas sin contenido. */
+    /* El botón «+» de arriba sólo ofrece lo que se puede tener varias veces
+       (productos, artículos, proyectos…), no las piezas fijas del sitio. */
+    newDocumentOptions: (prev, { creationContext }) =>
+      creationContext.type === "global"
+        ? prev.filter((t) => !TIPOS_UNICOS.includes(t.templateId))
+        : prev,
     actions: (prev, { schemaType }) =>
       TIPOS_UNICOS.includes(schemaType)
         ? prev.filter(({ action }) => action !== "duplicate" && action !== "delete")

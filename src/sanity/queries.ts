@@ -281,18 +281,37 @@ export type PaginaProductosDoc = {
   bajaImagen?: Image;
 };
 
+/** Sin valores nulos: los campos vacíos quedan en undefined y la página usa su respaldo. */
+const sinNulos = <T extends object>(o: T | null | undefined) =>
+  Object.fromEntries(Object.entries(o ?? {}).filter(([, v]) => v != null)) as Partial<T>;
+
+type CategoriaDoc = { titulo?: string; texto?: string; specs?: string[]; catalogoTitulo?: string; imagen?: Image };
+
+/** Introducción del catálogo (Textos — Productos) y los textos de media y baja tensión. */
 export async function getPaginaProductos(): Promise<PaginaProductosDoc> {
-  const doc = await client.fetch<PaginaProductosDoc | null>(
-    `*[_type == "paginaProductos"][0]{
-      ...,
-      ${imagen("mediaImagen")},
-      ${imagen("bajaImagen")}
+  const r = await client.fetch<{ intro?: string; media?: CategoriaDoc; baja?: CategoriaDoc }>(
+    `{
+      "intro": *[_id == "textos-productos"][0].intro,
+      "media": *[_id == "categoria-media"][0]{ titulo, texto, specs, catalogoTitulo, ${imagen("imagen")} },
+      "baja": *[_id == "categoria-baja"][0]{ titulo, texto, specs, catalogoTitulo, ${imagen("imagen")} }
     }`,
     {},
-    { next: { revalidate: REFRESCO, tags: ["paginaProductos"] } }
+    { next: { revalidate: REFRESCO, tags: ["textosPagina", "categoriaProductos"] } }
   );
-  if (!doc) return {};
-  return { ...doc, mediaSpecs: sinVacios(doc.mediaSpecs), bajaSpecs: sinVacios(doc.bajaSpecs) };
+  const m = sinNulos(r.media), b = sinNulos(r.baja);
+  return sinNulos({
+    intro: r.intro,
+    mediaTitulo: m.titulo,
+    mediaTexto: m.texto,
+    mediaSpecs: sinVacios(m.specs),
+    mediaCatalogoTitulo: m.catalogoTitulo,
+    mediaImagen: m.imagen,
+    bajaTitulo: b.titulo,
+    bajaTexto: b.texto,
+    bajaSpecs: sinVacios(b.specs),
+    bajaCatalogoTitulo: b.catalogoTitulo,
+    bajaImagen: b.imagen,
+  });
 }
 
 export type ProductoDestacadoDoc = {
@@ -336,7 +355,7 @@ export async function getConteoProductos(): Promise<{ media: number; baja: numbe
   );
 }
 
-/* --- Introducciones de páginas --- */
+/* --- Textos de las páginas internas --- */
 
 export type TextosPaginasDoc = {
   empresaIntro?: string;
@@ -350,23 +369,32 @@ export type TextosPaginasDoc = {
   trabajaImagen?: Image;
 };
 
-/** Documento único; campos vacíos quedan en undefined y cada página usa su texto original. */
+/**
+ * Textos de las páginas internas: un documento por página en el Studio
+ * (Textos — Empresa, Textos — Blog…). Campos vacíos quedan en undefined y
+ * cada página usa su texto original.
+ */
 export async function getTextosPaginas(): Promise<TextosPaginasDoc> {
-  const doc = await client.fetch<TextosPaginasDoc | null>(
-    `*[_id == "textosPaginas"][0]{
-      ...,
-      ${imagen("empresaImagen")},
-      ${imagen("trabajaImagen")}
-    }`,
+  const docs = await client.fetch<{ _id: string; intro?: string; texto?: string; imagen?: Image }[]>(
+    `*[_type == "textosPagina"]{ _id, intro, texto, ${imagen("imagen")} }`,
     {},
-    { next: { revalidate: REFRESCO, tags: ["textosPaginas"] } }
+    { next: { revalidate: REFRESCO, tags: ["textosPagina"] } }
   );
-  if (!doc) return {};
+  const de = (id: string) => docs.find((d) => d._id === `textos-${id}`);
+  const textos: TextosPaginasDoc = {
+    empresaIntro: de("empresa")?.intro,
+    empresaTexto: de("empresa")?.texto,
+    empresaImagen: de("empresa")?.imagen,
+    certificacionesIntro: de("certificaciones")?.intro,
+    certificacionesTexto: de("certificaciones")?.texto,
+    serviciosIntro: de("servicios")?.intro,
+    proyectosIntro: de("proyectos")?.intro,
+    blogIntro: de("blog")?.intro,
+    trabajaImagen: de("trabaja")?.imagen,
+  };
   // Textos vacíos y fotos sin archivo se descartan: la página usa su respaldo.
   return Object.fromEntries(
-    Object.entries(doc).filter(([k, v]) =>
-      !k.startsWith("_") && (typeof v === "string" ? v.trim() !== "" : v != null)
-    )
+    Object.entries(textos).filter(([, v]) => (typeof v === "string" ? v.trim() !== "" : v != null))
   ) as TextosPaginasDoc;
 }
 

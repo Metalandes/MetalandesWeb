@@ -1,90 +1,109 @@
-import type { StructureResolver } from "sanity/structure";
+import type { StructureBuilder, StructureResolver } from "sanity/structure";
 
 /**
  * Organización del panel lateral del Studio.
  *
- * En vez de una lista plana de tipos, agrupa el contenido por dónde aparece en
- * el sitio, que es como lo piensa quien edita: primero la portada, después el
- * catálogo, después el resto de páginas, y al final los ajustes.
+ * Copia la barra de navegación del sitio: Inicio, Empresa, Productos,
+ * Servicios, Proyectos, Blog, Trabaja con nosotros y Contacto, cada una con
+ * sus subpáginas en el mismo orden. Quien edita busca por el nombre que ve en
+ * la página y ahí mismo encuentra todo lo que se cambia en ella.
  *
- * Los documentos únicos (portada, menú, contacto) se abren directo en su
- * formulario: no tiene sentido mostrar una lista con un solo elemento ni dejar
- * que alguien cree un segundo por error.
+ * Las piezas fijas (portada, textos de cada página, páginas institucionales,
+ * contacto, menú) se abren directo en su formulario: no tiene sentido mostrar
+ * una lista con un solo elemento ni dejar que alguien cree un segundo por
+ * error.
  */
+
+/** Un documento fijo que se abre directo en su formulario. */
+const unico = (S: StructureBuilder, titulo: string, tipo: string, id: string) =>
+  S.listItem()
+    .title(titulo)
+    .id(id)
+    .schemaType(tipo)
+    .child(S.document().schemaType(tipo).documentId(id).title(titulo));
+
+/** "Textos de la página" de una sección. */
+const textos = (S: StructureBuilder, id: string, titulo = "Textos de la página") =>
+  unico(S, titulo, "textosPagina", id);
+
+/** Carpeta del panel con las piezas de una página. */
+const carpeta = (S: StructureBuilder, titulo: string, id: string, items: ReturnType<StructureBuilder["listItem"]>[]) =>
+  S.listItem().title(titulo).id(id).child(S.list().title(titulo).id(id).items(items));
+
+/** Productos de un tipo de subestación; los nuevos ya nacen en esa categoría. */
+const productos = (S: StructureBuilder, categoria: "media" | "baja", titulo: string) =>
+  S.listItem()
+    .title(titulo)
+    .id(`productos-${categoria}`)
+    .schemaType("producto")
+    .child(
+      S.documentList()
+        .title(titulo)
+        .schemaType("producto")
+        .filter('_type == "producto" && categoria == $categoria')
+        .params({ categoria })
+        .defaultOrdering([{ field: "orden", direction: "asc" }])
+        .initialValueTemplates([S.initialValueTemplateItem(`producto-${categoria}`)])
+    );
+
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Contenido del sitio")
     .items([
-      S.listItem()
-        .title("Portada")
-        .id("portada")
-        .child(S.document().schemaType("portada").documentId("portada").title("Portada")),
+      carpeta(S, "Inicio", "inicio", [
+        unico(S, "Portada", "portada", "portada"),
+        S.documentTypeListItem("faq").title("Preguntas frecuentes"),
+      ]),
 
-      S.listItem()
-        .title("Menú de navegación")
-        .id("navegacion")
-        .child(
-          S.document()
-            .schemaType("navegacion")
-            .documentId("navegacion")
-            .title("Menú de navegación")
-        ),
+      carpeta(S, "Empresa", "empresa", [
+        textos(S, "textos-empresa"),
+        unico(S, "Gestión integral", "politica", "politica-gestion-integral"),
+        carpeta(S, "Certificaciones", "certificaciones", [
+          textos(S, "textos-certificaciones"),
+          S.documentTypeListItem("certificacion").title("Certificados"),
+        ]),
+        unico(S, "Tratamiento de datos", "politica", "politica-tratamiento-datos"),
+        unico(S, "PQRS", "politica", "politica-pqr"),
+      ]),
 
-      S.divider(),
+      carpeta(S, "Productos", "productos", [
+        textos(S, "textos-productos"),
+        carpeta(S, "Subestaciones media tensión", "media-tension", [
+          unico(S, "Textos de la página", "categoriaProductos", "categoria-media"),
+          productos(S, "media", "Productos de media tensión"),
+        ]),
+        carpeta(S, "Subestaciones baja tensión", "baja-tension", [
+          unico(S, "Textos de la página", "categoriaProductos", "categoria-baja"),
+          productos(S, "baja", "Productos de baja tensión"),
+        ]),
+      ]),
 
-      S.listItem()
-        .title("Catálogo")
-        .child(
-          S.list()
-            .title("Catálogo")
-            .items([
-              S.documentTypeListItem("producto").title("Productos"),
-              S.listItem()
-                .title("Textos de las páginas de productos")
-                .id("paginaProductos")
-                .child(
-                  S.document()
-                    .schemaType("paginaProductos")
-                    .documentId("paginaProductos")
-                    .title("Textos de las páginas de productos")
-                ),
-              S.documentTypeListItem("servicio").title("Servicios"),
-              S.documentTypeListItem("proyecto").title("Proyectos"),
-            ])
-        ),
+      carpeta(S, "Servicios", "servicios", [
+        textos(S, "textos-servicios"),
+        S.documentTypeListItem("servicio").title("Servicios (Mantenimiento, Subestaciones…)"),
+      ]),
 
-      S.listItem()
-        .title("Páginas")
-        .child(
-          S.list()
-            .title("Páginas")
-            .items([
-              S.listItem()
-                .title("Introducciones de páginas")
-                .id("textosPaginas")
-                .child(
-                  S.document()
-                    .schemaType("textosPaginas")
-                    .documentId("textosPaginas")
-                    .title("Introducciones de páginas")
-                ),
-              S.documentTypeListItem("politica").title("Páginas institucionales"),
-              S.documentTypeListItem("certificacion").title("Certificaciones"),
-              S.documentTypeListItem("faq").title("Preguntas frecuentes"),
-            ])
-        ),
+      carpeta(S, "Proyectos", "proyectos", [
+        textos(S, "textos-proyectos"),
+        S.documentTypeListItem("proyecto").title("Proyectos"),
+      ]),
 
-      S.documentTypeListItem("post").title("Blog"),
+      carpeta(S, "Blog", "blog", [
+        textos(S, "textos-blog"),
+        S.documentTypeListItem("post").title("Artículos"),
+      ]),
+
+      carpeta(S, "Trabaja con nosotros", "trabaja", [
+        unico(S, "Textos de la página", "politica", "politica-trabaja-con-nosotros"),
+        textos(S, "textos-trabaja", "Foto de la página"),
+      ]),
+
+      unico(S, "Contacto", "contacto", "contacto"),
 
       S.divider(),
 
-      S.listItem()
-        .title("Datos de contacto")
-        .id("contacto")
-        .child(
-          S.document().schemaType("contacto").documentId("contacto").title("Datos de contacto")
-        ),
+      unico(S, "Menú de navegación", "navegacion", "navegacion"),
     ]);
 
-/** Tipos con un único documento: no se listan aparte ni se pueden duplicar. */
-export const TIPOS_UNICOS = ["portada", "navegacion", "paginaProductos", "contacto", "textosPaginas"];
+/** Tipos de documento fijo: no se crean desde el botón «+», ni se duplican ni se borran. */
+export const TIPOS_UNICOS = ["portada", "navegacion", "contacto", "textosPagina", "categoriaProductos", "politica"];

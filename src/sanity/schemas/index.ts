@@ -8,16 +8,16 @@ import { contacto } from "./contacto";
 import { portada } from "./portada";
 import { servicio } from "./servicio";
 import { proyecto } from "./proyecto";
-import { paginaProductos } from "./paginaProductos";
+import { categoriaProductos } from "./categoriaProductos";
 import { navegacion } from "./navegacion";
-import { textosPaginas } from "./textosPaginas";
+import { textosPagina } from "./textosPagina";
 
 /** Tipos de contenido editables desde el Studio. */
 export const schemaTypes: SchemaTypeDefinition[] = [
   portada,
   navegacion,
   producto,
-  paginaProductos,
+  categoriaProductos,
   servicio,
   proyecto,
   certificacion,
@@ -25,5 +25,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   politica,
   faq,
   contacto,
-  textosPaginas,
+  textosPagina,
 ];

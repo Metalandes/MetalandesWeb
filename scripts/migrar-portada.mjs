@@ -29,7 +29,7 @@ const client = createClient({
    borra lo que se haya editado desde el Studio, así que sólo corre si el
    dataset todavía no tiene portada, menú, servicios, proyectos o textos de productos o si se pide explícitamente con --forzar. */
 if (!process.argv.includes("--forzar")) {
-  const existentes = await client.fetch(`count(*[_type in ["portada", "navegacion", "servicio", "proyecto", "paginaProductos"]])`);
+  const existentes = await client.fetch(`count(*[_type in ["portada", "navegacion", "servicio", "proyecto", "categoriaProductos"]])`);
   if (existentes > 0) {
     console.error(
       `\nYa hay ${existentes} documentos de portada, menú, servicios, proyectos o textos de productos en Sanity. Este script los reemplazaría y` +
@@ -187,30 +187,38 @@ async function main() {
 
   console.log("Páginas de productos");
   await client.createOrReplace({
-    _id: "paginaProductos",
-    _type: "paginaProductos",
+    _id: "textos-productos",
+    _type: "textosPagina",
     intro:
       "Somos fabricantes de subestaciones eléctricas de media y baja tensión, con amplia oferta de tableros y gabinetes para uso interior y exterior, ajustados a la medida del cliente. Certificación RETIE.",
-    mediaTitulo: "Subestaciones de media tensión",
-    mediaTexto:
+  });
+  await client.createOrReplace({
+    _id: "categoria-media",
+    _type: "categoriaProductos",
+    titulo: "Subestaciones de media tensión",
+    texto:
       "Celdas de media tensión de 13.2 kV a 34.5 kV. Diseño y fabricación bajo norma, con certificación RETIE y certificado 0309.",
-    mediaSpecs: [
+    specs: [
       "Rango 13.2 kV – 34.5 kV",
       "Celdas certificadas (Cert. 0309)",
       "Uso interior y exterior",
       "Diseño a la medida",
     ],
-    mediaCatalogoTitulo: "Gabinetes de media tensión",
-    bajaTitulo: "Subestaciones de baja tensión",
-    bajaTexto:
+    catalogoTitulo: "Gabinetes de media tensión",
+  });
+  await client.createOrReplace({
+    _id: "categoria-baja",
+    _type: "categoriaProductos",
+    titulo: "Subestaciones de baja tensión",
+    texto:
       "Tableros y gabinetes de baja tensión fabricados en lámina Cold Rolled, galvanizada o acero inoxidable. Acabado en pintura en polvo RAL 7032 y tratamiento de superficie de 5 pasos.",
-    bajaSpecs: [
+    specs: [
       "Lámina Cold Rolled / Galvanizada / Inox",
       "Pintura en polvo RAL 7032",
       "Fosfatizado en zinc de 5 pasos",
       "Certificación RETIE (Cert. 0308)",
     ],
-    bajaCatalogoTitulo: "Tableros y equipos de baja tensión",
+    catalogoTitulo: "Tableros y equipos de baja tensión",
   });
   console.log("  ✓ páginas de productos");
 
