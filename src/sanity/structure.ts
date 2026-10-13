@@ -1,4 +1,5 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
+import { apiVersion } from "./env";
 
 /**
  * Organización del panel lateral del Studio.
@@ -40,6 +41,7 @@ const productos = (S: StructureBuilder, categoria: "media" | "baja", titulo: str
       S.documentList()
         .title(titulo)
         .schemaType("producto")
+        .apiVersion(apiVersion)
         .filter('_type == "producto" && categoria == $categoria')
         .params({ categoria })
         .defaultOrdering([{ field: "orden", direction: "asc" }])
