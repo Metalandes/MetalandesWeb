@@ -215,6 +215,30 @@ export default function ProductCatalog({
                   </p>
                 )}
 
+                {/* Especificaciones técnicas: «Etiqueta: valor», la etiqueta en negrita. */}
+                {!!producto.especificaciones?.length && (
+                  <ul className="mt-6 divide-y divide-[var(--border)] border-y border-[var(--border)] text-sm">
+                    {producto.especificaciones.map((linea, i) => {
+                      const corte = linea.indexOf(":");
+                      return (
+                        <li key={i} className="flex gap-3 py-2.5 leading-relaxed text-muted">
+                          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-electric" />
+                          <span>
+                            {corte > 0 && corte < 40 ? (
+                              <>
+                                <strong className="font-semibold text-[var(--text)]">{linea.slice(0, corte + 1)}</strong>
+                                {linea.slice(corte + 1)}
+                              </>
+                            ) : (
+                              linea
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+
                 <a
                   href="/contacto"
                   className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-electric px-6 py-3.5 font-semibold text-white transition hover:opacity-90"

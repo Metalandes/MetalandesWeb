@@ -30,6 +30,26 @@ export const servicio = defineType({
       description: "Texto largo, si el servicio tiene página propia.",
     }),
     defineField({
+      name: "servicios",
+      title: "Tipos de servicio (con foto)",
+      type: "array",
+      description:
+        "Tarjetas con foto, título y descripción en la página del servicio. Ej: Mantenimiento preventivo, Termografía. Arrástralas para cambiar el orden.",
+      of: [
+        {
+          type: "object",
+          name: "tipoServicio",
+          title: "Tipo de servicio",
+          fields: [
+            defineField({ name: "titulo", title: "Título", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "descripcion", title: "Descripción", type: "text", rows: 4 }),
+            defineField({ name: "imagen", title: "Foto", type: "image", options: { hotspot: true } }),
+          ],
+          preview: { select: { title: "titulo", subtitle: "descripcion", media: "imagen" } },
+        },
+      ],
+    }),
+    defineField({
       name: "items",
       title: "Alcance",
       type: "array",

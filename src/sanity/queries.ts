@@ -25,6 +25,8 @@ export type ProductoDoc = {
   nombre: string;
   categoria: "media" | "baja";
   descripcion?: string;
+  /** Viñetas técnicas de la ficha (corriente, tensión, protección…). */
+  especificaciones?: string[];
   /** La primera foto es la que representa al producto en el catálogo. */
   galeria?: Image[];
 };
@@ -36,17 +38,18 @@ export type ProductoDoc = {
 const PRODUCTOS_POR_CATEGORIA = `
   *[_type == "producto" && categoria == $categoria]
   | order(orden asc, nombre asc){
-    _id, nombre, categoria, descripcion, "galeria": galeria[defined(asset)]
+    _id, nombre, categoria, descripcion, especificaciones, "galeria": galeria[defined(asset)]
   }
 `;
 
 export async function getProductos(categoria: "media" | "baja"): Promise<ProductoDoc[]> {
-  return client.fetch(
+  const docs = await client.fetch<ProductoDoc[]>(
     PRODUCTOS_POR_CATEGORIA,
     { categoria },
     // Etiqueta de caché: al publicar en el Studio se revalida sólo esto.
     { next: { revalidate: REFRESCO, tags: ["producto"] } }
   );
+  return docs.map((d) => ({ ...d, especificaciones: sinVacios(d.especificaciones) }));
 }
 
 /* --- Certificaciones --- */
@@ -231,12 +234,15 @@ export type ServicioDoc = {
   imagen?: Image;
   items?: string[];
   detalle?: PortableTextBlock[];
+  /** Tarjetas con foto de la página del servicio (preventivo, termografía…). */
+  servicios?: { _key: string; titulo: string; descripcion?: string; imagen?: Image }[];
 };
 
 export async function getServicios(): Promise<ServicioDoc[]> {
   const docs = await client.fetch<ServicioDoc[]>(
     `*[_type == "servicio"] | order(orden asc){
-      _id, titulo, descripcion, etiquetas, enlace, ${imagen("imagen")}, items, detalle
+      _id, titulo, descripcion, etiquetas, enlace, ${imagen("imagen")}, items, detalle,
+      "servicios": servicios[defined(titulo) && titulo != ""]{ _key, titulo, descripcion, ${imagen("imagen")} }
     }`,
     {},
     { next: { revalidate: REFRESCO, tags: ["servicio"] } }

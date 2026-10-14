@@ -50,6 +50,14 @@ export const producto = defineType({
       description: "Se muestra en la ficha del producto. Opcional.",
     }),
     defineField({
+      name: "especificaciones",
+      title: "Especificaciones técnicas",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "Cada línea es una viñeta en la ficha del producto. Si lleva «:», lo de antes sale en negrita. Ej: Corriente nominal: 630 A. Opcional.",
+    }),
+    defineField({
       name: "destacado",
       title: "Mostrar en la portada",
       type: "boolean",
