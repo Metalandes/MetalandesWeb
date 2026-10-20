@@ -108,9 +108,41 @@ export const portada = defineType({
       name: "aliados",
       title: "Aliados",
       type: "array",
-      of: [{ type: "string" }],
       group: "aliados",
-      description: "Nombres que aparecen en la banda de aliados.",
+      description:
+        "Marcas de la banda en movimiento de la portada. Arrástralas para cambiar el orden. Si una marca no tiene logo, se muestra su nombre.",
+      of: [
+        {
+          type: "object",
+          name: "aliado",
+          title: "Aliado",
+          fields: [
+            defineField({
+              name: "nombre",
+              title: "Nombre",
+              type: "string",
+              validation: (r) => r.required(),
+              description: "Se muestra si no hay logo; también lo leen Google y los lectores de pantalla.",
+            }),
+            defineField({
+              name: "logo",
+              title: "Logo",
+              type: "image",
+              options: { accept: "image/svg+xml,image/png,image/webp,image/jpeg" },
+              description:
+                "Súbelo sólo cuando la marca haya dado permiso. Ideal: SVG o PNG con fondo transparente, versión horizontal y para fondo claro (no la versión blanca). En la web se ve en gris y toma su color al pasar el mouse.",
+            }),
+          ],
+          preview: {
+            select: { title: "nombre", media: "logo" },
+            prepare: ({ title, media }) => ({
+              title,
+              subtitle: media ? "Con logo" : "Sin logo · se muestra el nombre",
+              media,
+            }),
+          },
+        },
+      ],
     }),
 
     /* Títulos de sección */

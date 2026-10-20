@@ -206,21 +206,47 @@ export type PortadaDoc = {
   valores?: { _key: string; titulo: string; texto: string }[];
   cifras?: { _key: string; valor: number; sufijo?: string; etiqueta: string }[];
   aliadosTitulo?: string;
-  aliados?: string[];
+  aliados?: AliadoDoc[];
   tituloServicios?: TituloSeccionDoc;
   tituloProductos?: TituloSeccionDoc;
   tituloCertificaciones?: TituloSeccionDoc;
   tituloFaq?: TituloSeccionDoc;
 };
 
+/** Marca de la banda de aliados; el logo es opcional (sin él se muestra el nombre). */
+export type AliadoDoc = { _key?: string; nombre: string; logo?: Image; ancho?: number; alto?: number };
+
+type AliadoCrudo = string | { _key?: string; nombre?: string; logo?: Image } | null;
+
 export async function getPortada(): Promise<PortadaDoc> {
-  const doc = await client.fetch<PortadaDoc | null>(
-    `*[_type == "portada"][0]{ ..., ${imagen("empresaImagen")} }`,
+  const doc = await client.fetch<
+    (Omit<PortadaDoc, "aliados"> & {
+      aliados?: AliadoCrudo[];
+      medidas?: ({ _key?: string; ancho?: number; alto?: number } | null)[];
+    }) | null
+  >(
+    `*[_type == "portada"][0]{
+      ..., ${imagen("empresaImagen")},
+      "medidas": aliados[]{ _key, "ancho": logo.asset->metadata.dimensions.width, "alto": logo.asset->metadata.dimensions.height }
+    }`,
     {},
     { next: { revalidate: REFRESCO, tags: ["portada"] } }
   );
   if (!doc) return {};
-  return { ...doc, aliados: sinVacios(doc.aliados), marquee: sinVacios(doc.marquee) };
+  const { medidas, ...resto } = doc;
+  // Acepta el formato anterior (sólo el nombre) y el actual (nombre + logo).
+  const aliados = (doc.aliados ?? []).flatMap((a): AliadoDoc[] => {
+    if (typeof a === "string") return a.trim() ? [{ nombre: a.trim() }] : [];
+    const nombre = a?.nombre?.trim();
+    if (!a || !nombre) return [];
+    const m = medidas?.find((x) => x?._key && x._key === a._key);
+    return [
+      a.logo?.asset && m?.ancho && m?.alto
+        ? { _key: a._key, nombre, logo: a.logo, ancho: m.ancho, alto: m.alto }
+        : { _key: a._key, nombre },
+    ];
+  });
+  return { ...resto, aliados, marquee: sinVacios(doc.marquee) };
 }
 
 /* --- Servicios --- */
