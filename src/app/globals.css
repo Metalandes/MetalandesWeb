@@ -188,6 +188,12 @@ html.lenis body {
 .marquee-track {
   animation: marquee 32s linear infinite;
 }
+/* Banda de aliados: se detiene mientras el mouse está encima, para mirar un logo con calma. */
+@media (hover: hover) {
+  .marquee-pausa:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }

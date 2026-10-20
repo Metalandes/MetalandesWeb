@@ -32,11 +32,12 @@ function Marca({ aliado }: { aliado: AliadoDoc }) {
         title={aliado.nombre}
         width={w}
         height={h}
-        loading="lazy"
+        // Inmediata: en una banda en movimiento un logo no debe "aparecer de golpe" al entrar.
+        loading="eager"
         decoding="async"
         draggable={false}
         style={{ "--h": `${h}px` } as CSSProperties}
-        className="h-[calc(var(--h)*0.78)] w-auto max-w-none select-none object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-[var(--h)]"
+        className="h-[calc(var(--h)*0.78)] w-auto max-w-none select-none object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-[var(--h)]"
       />
     );
   }
@@ -52,7 +53,7 @@ export default function Aliados({ aliados = [], titulo }: { aliados?: AliadoDoc[
   if (!aliados.length) return null;
 
   return (
-    <section className="relative border-y border-[var(--border)] py-16">
+    <section data-aliados className="relative border-y border-[var(--border)] py-16">
       <div ref={scope} className="mx-auto max-w-7xl px-5">
         <p data-reveal className="mb-10 text-center text-sm tracking-widest text-faint">
           {titulo ?? "SECTORES Y ALIADOS QUE CONFÍAN EN LA INGENIERÍA METALANDES"}
@@ -61,9 +62,9 @@ export default function Aliados({ aliados = [], titulo }: { aliados?: AliadoDoc[
         {/* Banda en movimiento: se detiene al pasar el mouse para mirar un logo con calma. */}
         <div
           data-reveal
-          className="group relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]"
+          className="marquee-pausa relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]"
         >
-          <div className="marquee-track flex shrink-0 items-center gap-14 whitespace-nowrap pr-14 group-hover:[animation-play-state:paused] md:gap-20 md:pr-20">
+          <div className="marquee-track flex shrink-0 items-center gap-14 whitespace-nowrap pr-14 md:gap-20 md:pr-20">
             {Array.from({ length: 2 }).map((_, r) => (
               // La segunda copia sólo existe para que el movimiento no tenga cortes.
               <span key={r} aria-hidden={r === 1 || undefined} className="flex items-center gap-14 md:gap-20">
