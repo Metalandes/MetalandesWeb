@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
     // expire: 0 → la próxima visita ya trae el contenido nuevo, no la versión anterior.
     revalidateTag(body._type, { expire: 0 });
     return NextResponse.json({ revalidado: body._type });
-  } catch (err) {
-    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  } catch {
+    // Sin detalles del error: no se le dan pistas a quien esté probando la ruta.
+    return NextResponse.json({ error: "Solicitud no válida" }, { status: 400 });
   }
 }
